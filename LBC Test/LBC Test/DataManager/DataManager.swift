@@ -47,9 +47,9 @@ class DataManager {
         }
     }
     
-    internal func purgeInternal(entityName: String)  {
+    internal func purgeInternal(entityName: CoreDataEntityNames)  {
         let request = NSFetchRequest<NSManagedObject>()
-        request.entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+        request.entity = NSEntityDescription.entity(forEntityName: entityName.rawValue, in: context)
         request.includesSubentities = false
         var classified = [NSManagedObject]()
         do {
@@ -62,12 +62,12 @@ class DataManager {
         }
 
     }
-    func purgeClassified () {
+    func purge () {
         context.performAndWait {
             //TODO: Could be done by changing the deletion rule of the model & only deleting categories
-            purgeInternal(entityName: CoreDataConstant.entityCategory)
-            purgeInternal(entityName: CoreDataConstant.entityClassified)
-            purgeInternal(entityName: CoreDataConstant.entityImages)
+            purgeInternal(entityName: CoreDataEntityNames.Category)
+            purgeInternal(entityName: CoreDataEntityNames.Classified)
+            purgeInternal(entityName: CoreDataEntityNames.Images)
         }
         save()
     }
@@ -93,7 +93,7 @@ class DataManager {
         //TODO: check if the id doesn't already exist ?
         context.performAndWait {
             for c in cArray {
-                let entity = NSEntityDescription.entity(forEntityName: CoreDataConstant.entityCategory, in: context)
+                let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
                 category.id = c.id
                 category.title = c.name
@@ -106,7 +106,7 @@ class DataManager {
     func addClassified(_ c: ClassifiedProtocol) {
         context.performAndWait {
             //TODO: check if the id doesn't already exist ?
-            let entity = NSEntityDescription.entity(forEntityName: CoreDataConstant.entityClassified, in: context)
+            let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
             let classified = Classified(entity: entity!, insertInto: context)
             classified.creationDate = c.creationDate
             classified.id = c.id
@@ -116,7 +116,7 @@ class DataManager {
             classified.siret = c.siret
             classified.urgent = c.urgent
             //TODO: missing a few entries - the link to category and images mainly
-            let fetch = NSFetchRequest<Category>(entityName: CoreDataConstant.entityCategory)
+            let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
             fetch.predicate = NSPredicate(format: "\(CoreDataClassified.id) == \(c.categoryID)")
 
             let category = try? context.fetch(fetch)
@@ -125,10 +125,10 @@ class DataManager {
         }
         save()
     }
-
-    func getNumberOfItems() -> Int {
+    
+    func count(entity: CoreDataEntityNames) -> Int {
         let countRequest = NSFetchRequest<NSFetchRequestResult>()
-        countRequest.entity = NSEntityDescription.entity(forEntityName: CoreDataConstant.entityClassified, in: container.viewContext)
+        countRequest.entity = NSEntityDescription.entity(forEntityName: entity.rawValue, in: container.viewContext)
         countRequest.includesSubentities = false
         var count = 0
         do {
@@ -136,8 +136,11 @@ class DataManager {
         } catch {
             fatalError("CoreData Context Count error \(error)")
         }
-
         return count
     }
-
+    
+    func count() -> Int {
+        return count(entity: CoreDataEntityNames.Classified)
+    }
+    
 }

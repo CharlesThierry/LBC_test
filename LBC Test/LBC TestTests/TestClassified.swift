@@ -24,7 +24,7 @@ func getRandomDate() -> Date {
     return randomDate
 }
 
-class TestClassified: ClassifiedProtocol {
+class TestRandomClassified: ClassifiedProtocol {
     var id: Int64
     
     var title: String

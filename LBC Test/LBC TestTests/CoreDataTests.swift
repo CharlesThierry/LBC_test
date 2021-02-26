@@ -8,14 +8,14 @@
 import XCTest
 @testable import Test_LBC
 
-class LBC_TestTests: XCTestCase {
+class CoreDataTests: XCTestCase {
 
     var manager: DataManager?
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         manager = DataManager()
-        manager?.purgeClassified()
+        manager?.purge()
         
     }
 
@@ -23,19 +23,25 @@ class LBC_TestTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testAddAnEntry() throws {
+    func testPopulateCategories() {
+        let categories = (0 ..< maxCategoryID).indices.map { id in TestCategory(id: Int64(id)) }
+        manager?.addCategories(categories)
+        let categoryCount = manager?.count(entity: CoreDataEntityNames.Category)
+        XCTAssert(categoryCount == maxCategoryID, "\(categoryCount ?? -1) != \(maxCategoryID)")
+    }
+    
+    func testAddARandomClassified() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let categories = (0 ..< maxCategoryID).indices.map { id in TestCategory(id: Int64(id)) }
         manager?.addCategories(categories)
-        manager?.addClassified(TestClassified())
-        let number = manager?.getNumberOfItems()
-        XCTAssert(number == 1, "\(number!) != 1 classified.")
-        
+        manager?.addClassified(TestRandomClassified())
+        let classifiedCount = manager?.count()
+        XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
+    func testAddStaticClassified () {
+        
     }
 
 }

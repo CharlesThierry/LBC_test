@@ -10,9 +10,12 @@ import Foundation
 class CoreDataConstant {
     static let dbName = "LBC"
     static let modelName = "LBC"
-    static let entityCategory = "Category"
-    static let entityClassified = "Classified"
-    static let entityImages = "Images"
+}
+
+enum CoreDataEntityNames: String {
+    case Category
+    case Classified
+    case Images
 }
 
 enum CoreDataCategory: String {
