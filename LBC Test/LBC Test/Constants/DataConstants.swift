@@ -12,6 +12,23 @@ class CoreDataConstant {
     static let modelName = "LBC"
 }
 
+enum JSONCategory: String, CodingKey {
+    case id
+    case name
+}
+
+enum JSONClassified: String, CodingKey {
+    case id
+    case category_id
+    case title
+    case description
+    case price
+    case images_urls
+    case creation_date
+    case is_urgent
+    case siret
+}
+
 enum CoreDataEntityNames: String {
     case Category
     case Classified
@@ -32,7 +49,7 @@ enum CoreDataImages: String {
     case url
 }
 
-enum ClassifiedImagesTitle: String {
+enum ClassifiedImagesTitle: String, Codable {
     case small
     case thumb
 }

@@ -10,29 +10,42 @@ import Foundation
 import CoreData
 
 protocol ClassifiedProtocol {
-    var id: Int64 { get }
-    var title: String { get }
-    var description: String { get }
-    var price: Float { get }
-    var urgent: Bool { get }
+    var id: Int64? { get }
+    var title: String? { get }
+    var description: String? { get }
+    var price: Float? { get }
+    var urgent: Bool? { get }
     var siret: String? { get }
-    var creationDate: Date { get }
+    var creationDate: Date? { get }
     
-    var categoryID: Int { get }
-    var images: [ClassifiedImagesTitle: URL] { get }
+    var categoryID: Int? { get }
+    var images: [ClassifiedImagesTitle: URL]? { get }
 }
 
-class ClassifiedDescription: ClassifiedProtocol {
-    internal var id: Int64
-    internal var title: String
-    internal var description: String
-    internal var price: Float
-    internal var urgent: Bool
-    internal var siret: String?
-    internal var creationDate: Date
-    internal var categoryID: Int
-    internal var images: [ClassifiedImagesTitle : URL]
-
+class ClassifiedDescription: ClassifiedProtocol, Decodable {
+    
+    var id: Int64?
+    var title: String?
+    var description: String?
+    var price: Float?
+    var urgent: Bool?
+    var creationDate: Date?
+    var categoryID: Int?
+    var siret: String?
+    
+    internal var images: [ClassifiedImagesTitle : URL]?
+    
+    required init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: JSONClassified.self)
+        self.id = try c.decodeIfPresent(Int64.self, forKey: .id)
+        self.title = try c.decodeIfPresent(String.self, forKey: .title)
+        self.description = try c.decodeIfPresent(String.self, forKey: .description)
+        self.price = try c.decodeIfPresent(Float.self, forKey: .price)
+        self.urgent = try c.decodeIfPresent(Bool.self, forKey: .is_urgent)
+        self.siret = try c.decodeIfPresent(String.self, forKey: .siret)
+        self.categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
+    }
+    
     init (id: Int64,
           title: String,
           desc: String,

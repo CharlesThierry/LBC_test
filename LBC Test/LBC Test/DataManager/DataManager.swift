@@ -102,7 +102,8 @@ class DataManager {
                 let fetch = NSFetchRequest<Category>()
                 fetch.entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: container.viewContext)
                 fetch.includesSubentities = false
-                fetch.predicate = NSPredicate(format: "\(CoreDataClassified.id) == \(c.id)")
+                guard let id = c.id else {fatalError("Trying to fetch a category without an ID")}
+                fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(id)")
                 var count = 0
                 do {
                     try count = container.viewContext.count(for: fetch)
@@ -113,7 +114,7 @@ class DataManager {
                 //TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
-                category.id = c.id
+                category.id = id
                 category.title = c.name
             }
         }
@@ -126,16 +127,16 @@ class DataManager {
             let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
             let classified = Classified(entity: entity!, insertInto: context)
             classified.creationDate = c.creationDate
-            classified.id = c.id
+            classified.id = c.id ?? -1
             classified.longDesc = c.description
             classified.title = c.title
-            classified.price = c.price
+            classified.price = c.price ?? -1
             classified.siret = c.siret
-            classified.urgent = c.urgent
+            classified.urgent = c.urgent ?? false
             
             // Fetch the category to link to this classified
             let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
-            fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID)")
+            fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
 
             let category = try? context.fetch(fetch)
             classified.oneCategory = category?.first

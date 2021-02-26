@@ -16,7 +16,8 @@ enum FetchingError: Error {
     case httpError
 }
 
-func fetchJson (url: URL, completion: @escaping (Result<[[String: Any]], FetchingError>) -> Void) {
+// TODO: Use generics to fetch the Classified description
+func fetchJson(url: URL, completion: @escaping (Result<[CategoryDescription], FetchingError>) -> Void) {
     let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
     var request = URLRequest(url: url)
 
@@ -39,15 +40,24 @@ func fetchJson (url: URL, completion: @escaping (Result<[[String: Any]], Fetchin
             completion(Result.failure(.noDataError))
             return
         }
-        var array: [[String: Any]] = [[:]]
+        
         do {
-            array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [[String: Any]]
+            let decoder = JSONDecoder()
+            let array = try decoder.decode([CategoryDescription].self, from: data)
+            completion(Result.success(array))
         } catch {
             print("Invalid JSON file fetched at \(url)")
             completion(Result.failure(.dataConversionError))
         }
-        completion(Result.success(array))
     }
     task.resume()
 }
 
+func generateItemsDescriptions () {
+    
+}
+
+
+func populateItemsDescriptions () {
+    
+}
