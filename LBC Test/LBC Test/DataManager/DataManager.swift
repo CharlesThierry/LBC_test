@@ -109,7 +109,7 @@ class DataManager {
                 } catch {
                     fatalError("CoreData Category add check fail \(error)")
                 }
-                guard count > 0 else { continue } // there is already a category with that ID.
+                guard count == 0 else { continue } // there is already a category with that ID.
                 //TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
@@ -132,9 +132,10 @@ class DataManager {
             classified.price = c.price
             classified.siret = c.siret
             classified.urgent = c.urgent
-            //TODO: missing entry to the images
+            
+            // Fetch the category to link to this classified
             let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
-            fetch.predicate = NSPredicate(format: "\(CoreDataClassified.id) == \(c.categoryID)")
+            fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID)")
 
             let category = try? context.fetch(fetch)
             classified.oneCategory = category?.first
