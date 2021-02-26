@@ -12,7 +12,8 @@ enum FetchingError: Error {
     case downloadError
     case dataConversionError
     case noDataError
-
+    case connectionError
+    case httpError
 }
 
 func fetchJson (url: URL, completion: @escaping (Result<[[String: Any]], FetchingError>) -> Void) {
@@ -27,20 +28,25 @@ func fetchJson (url: URL, completion: @escaping (Result<[[String: Any]], Fetchin
             return
         }
         guard let r = response as? HTTPURLResponse else {
+            completion(Result.failure(.connectionError))
             return
         }
-        if r.statusCode == 200 {
-            if let data = data {
-                var array: [[String: Any]] = [[:]]
-                do {
-                    array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [[String: Any]]
-                } catch {
-                    print("Invalid JSON file fetched at \(url)")
-                    completion(Result.failure(.dataConversionError))
-                }
-                completion(Result.success(array))
-            } //TODO: Return Error for no data
-        } //TODO: Return Error for non 200 http return code
+        guard r.statusCode == 200 else {
+            completion(Result.failure(.httpError))
+            return
+        }
+        guard let data = data else {
+            completion(Result.failure(.noDataError))
+            return
+        }
+        var array: [[String: Any]] = [[:]]
+        do {
+            array = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [[String: Any]]
+        } catch {
+            print("Invalid JSON file fetched at \(url)")
+            completion(Result.failure(.dataConversionError))
+        }
+        completion(Result.success(array))
     }
     task.resume()
 }
