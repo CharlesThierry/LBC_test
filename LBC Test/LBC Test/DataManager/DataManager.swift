@@ -93,6 +93,18 @@ class DataManager {
         //TODO: check if the id doesn't already exist ?
         context.performAndWait {
             for c in cArray {
+                let fetch = NSFetchRequest<Category>()
+                fetch.entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: container.viewContext)
+                fetch.includesSubentities = false
+                fetch.predicate = NSPredicate(format: "\(CoreDataClassified.id) == \(c.id)")
+                var count = 0
+                do {
+                    try count = container.viewContext.count(for: fetch)
+                } catch {
+                    fatalError("CoreData Category add check fail \(error)")
+                }
+                guard count > 0 else { continue } // there is already a category with that ID.
+                //TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
                 category.id = c.id
@@ -115,7 +127,7 @@ class DataManager {
             classified.price = c.price
             classified.siret = c.siret
             classified.urgent = c.urgent
-            //TODO: missing a few entries - the link to category and images mainly
+            //TODO: missing entry to the images
             let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
             fetch.predicate = NSPredicate(format: "\(CoreDataClassified.id) == \(c.categoryID)")
 
