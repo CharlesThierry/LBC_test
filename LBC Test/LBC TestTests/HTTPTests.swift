@@ -27,17 +27,29 @@ class HTTPTests: XCTestCase {
             XCTFail("Can't build Classified URL")
             return
         }
-        let expectation = XCTestExpectation(description: "Waiting to download the file")
-        fetchJson(url: categoryURL) { result in
+        let expCategory = XCTestExpectation(description: "Waiting to download the file")
+        fetchJson(url: categoryURL, type: [CategoryDescription].self) { result in
             switch result {
             case .failure(let error):
                 XCTFail("Couldn't download the file \(error)")
             case .success(let data):
                 XCTAssertTrue(data.count > 0, "Data dowloaded")
             }
-            expectation.fulfill()
+            expCategory.fulfill()
         }
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expCategory], timeout: 10.0)
+        
+        let expClassified = XCTestExpectation(description: "Waiting to download the file")
+        fetchJson(url: classifiedURL, type: [ClassifiedDescription].self) { result in
+            switch result {
+            case .failure(let error):
+                XCTFail("Couldn't download the file \(error)")
+            case .success(let data):
+                XCTAssertTrue(data.count > 0, "Data dowloaded")
+            }
+            expClassified.fulfill()
+        }
+        wait(for: [expClassified], timeout: 10.0)
     }
 
 }

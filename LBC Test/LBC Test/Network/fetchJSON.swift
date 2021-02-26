@@ -16,8 +16,8 @@ enum FetchingError: Error {
     case httpError
 }
 
-// TODO: Use generics to fetch the Classified description
-func fetchJson(url: URL, completion: @escaping (Result<[CategoryDescription], FetchingError>) -> Void) {
+func fetchJson<DescriptionArray>(url: URL, type:DescriptionArray.Type, completion: @escaping (Result<DescriptionArray, FetchingError>) -> Void)
+        where DescriptionArray: Decodable {
     let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
     var request = URLRequest(url: url)
 
@@ -43,7 +43,7 @@ func fetchJson(url: URL, completion: @escaping (Result<[CategoryDescription], Fe
         
         do {
             let decoder = JSONDecoder()
-            let array = try decoder.decode([CategoryDescription].self, from: data)
+            let array = try decoder.decode(type, from: data)
             completion(Result.success(array))
         } catch {
             print("Invalid JSON file fetched at \(url)")
