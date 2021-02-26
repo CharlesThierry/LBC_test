@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB042F7B25E8E5E3001ACCC1 /* ClassifiedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042F7525E8E5E2001ACCC1 /* ClassifiedDescription.swift */; };
+		FB042F9D25E8F138001ACCC1 /* CategoryDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042F9C25E8F138001ACCC1 /* CategoryDescription.swift */; };
+		FB042FA225E8F17A001ACCC1 /* ImagesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA125E8F17A001ACCC1 /* ImagesDescription.swift */; };
+		FB042FA725E8F35C001ACCC1 /* TestClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestClassified.swift */; };
+		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
+		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
+		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
 		FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF9125E7C73700CD2689 /* ViewController.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
@@ -32,15 +39,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FBD2EF8A25E7C73700CD2689 /* LBC Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LBC Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB042F7525E8E5E2001ACCC1 /* ClassifiedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifiedDescription.swift; sourceTree = "<group>"; };
+		FB042F9C25E8F138001ACCC1 /* CategoryDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDescription.swift; sourceTree = "<group>"; };
+		FB042FA125E8F17A001ACCC1 /* ImagesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesDescription.swift; sourceTree = "<group>"; };
+		FB042FA625E8F35C001ACCC1 /* TestClassified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClassified.swift; sourceTree = "<group>"; };
+		FB770A0625E84183005C322B /* LBC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LBC.xcdatamodel; sourceTree = "<group>"; };
+		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
+		FBD2EF8A25E7C73700CD2689 /* Test LBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test LBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBD2EF9125E7C73700CD2689 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FBD2EF9625E7C73800CD2689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBD2EF9B25E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBD2EFA025E7C73800CD2689 /* LBC TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LBC TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD2EFA025E7C73800CD2689 /* Test LBCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test LBCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EFA425E7C73800CD2689 /* LBC_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_TestTests.swift; sourceTree = "<group>"; };
 		FBD2EFA625E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBD2EFAB25E7C73800CD2689 /* LBC TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LBC TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD2EFAB25E7C73800CD2689 /* Test LBCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test LBCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_TestUITests.swift; sourceTree = "<group>"; };
 		FBD2EFB125E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +84,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB7709FA25E8409F005C322B /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				FB770A2325E848C4005C322B /* EntitiesDescriptions */,
+				FB770A0525E84183005C322B /* LBC.xcdatamodeld */,
+				FB770A2425E8496D005C322B /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		FB770A2325E848C4005C322B /* EntitiesDescriptions */ = {
+			isa = PBXGroup;
+			children = (
+				FB042F7525E8E5E2001ACCC1 /* ClassifiedDescription.swift */,
+				FB042F9C25E8F138001ACCC1 /* CategoryDescription.swift */,
+				FB042FA125E8F17A001ACCC1 /* ImagesDescription.swift */,
+			);
+			path = EntitiesDescriptions;
+			sourceTree = "<group>";
+		};
+		FB770A7C25E84FC6005C322B /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				FB770A7425E84E32005C322B /* DataConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		FBD2EF8125E7C73700CD2689 = {
 			isa = PBXGroup;
 			children = (
@@ -79,13 +121,14 @@
 				FBD2EF8B25E7C73700CD2689 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		FBD2EF8B25E7C73700CD2689 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FBD2EF8A25E7C73700CD2689 /* LBC Test.app */,
-				FBD2EFA025E7C73800CD2689 /* LBC TestTests.xctest */,
-				FBD2EFAB25E7C73800CD2689 /* LBC TestUITests.xctest */,
+				FBD2EF8A25E7C73700CD2689 /* Test LBC.app */,
+				FBD2EFA025E7C73800CD2689 /* Test LBCTests.xctest */,
+				FBD2EFAB25E7C73800CD2689 /* Test LBCUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +138,8 @@
 			children = (
 				FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */,
 				FBD2EF9125E7C73700CD2689 /* ViewController.swift */,
+				FB770A7C25E84FC6005C322B /* Constants */,
+				FB7709FA25E8409F005C322B /* DataManager */,
 				FBD2EF9625E7C73800CD2689 /* Assets.xcassets */,
 				FBD2EF9B25E7C73800CD2689 /* Info.plist */,
 			);
@@ -104,6 +149,7 @@
 		FBD2EFA325E7C73800CD2689 /* LBC TestTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB042FA625E8F35C001ACCC1 /* TestClassified.swift */,
 				FBD2EFA425E7C73800CD2689 /* LBC_TestTests.swift */,
 				FBD2EFA625E7C73800CD2689 /* Info.plist */,
 			);
@@ -122,9 +168,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FBD2EF8925E7C73700CD2689 /* LBC Test */ = {
+		FBD2EF8925E7C73700CD2689 /* Test LBC */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBD2EFB425E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC Test" */;
+			buildConfigurationList = FBD2EFB425E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBC" */;
 			buildPhases = (
 				FBD2EF8625E7C73700CD2689 /* Sources */,
 				FBD2EF8725E7C73700CD2689 /* Frameworks */,
@@ -134,14 +180,14 @@
 			);
 			dependencies = (
 			);
-			name = "LBC Test";
+			name = "Test LBC";
 			productName = "LBC Test";
-			productReference = FBD2EF8A25E7C73700CD2689 /* LBC Test.app */;
+			productReference = FBD2EF8A25E7C73700CD2689 /* Test LBC.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FBD2EF9F25E7C73800CD2689 /* LBC TestTests */ = {
+		FBD2EF9F25E7C73800CD2689 /* Test LBCTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBD2EFB725E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC TestTests" */;
+			buildConfigurationList = FBD2EFB725E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBCTests" */;
 			buildPhases = (
 				FBD2EF9C25E7C73800CD2689 /* Sources */,
 				FBD2EF9D25E7C73800CD2689 /* Frameworks */,
@@ -152,14 +198,14 @@
 			dependencies = (
 				FBD2EFA225E7C73800CD2689 /* PBXTargetDependency */,
 			);
-			name = "LBC TestTests";
+			name = "Test LBCTests";
 			productName = "LBC TestTests";
-			productReference = FBD2EFA025E7C73800CD2689 /* LBC TestTests.xctest */;
+			productReference = FBD2EFA025E7C73800CD2689 /* Test LBCTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		FBD2EFAA25E7C73800CD2689 /* LBC TestUITests */ = {
+		FBD2EFAA25E7C73800CD2689 /* Test LBCUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBD2EFBA25E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC TestUITests" */;
+			buildConfigurationList = FBD2EFBA25E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBCUITests" */;
 			buildPhases = (
 				FBD2EFA725E7C73800CD2689 /* Sources */,
 				FBD2EFA825E7C73800CD2689 /* Frameworks */,
@@ -170,9 +216,9 @@
 			dependencies = (
 				FBD2EFAD25E7C73800CD2689 /* PBXTargetDependency */,
 			);
-			name = "LBC TestUITests";
+			name = "Test LBCUITests";
 			productName = "LBC TestUITests";
-			productReference = FBD2EFAB25E7C73800CD2689 /* LBC TestUITests.xctest */;
+			productReference = FBD2EFAB25E7C73800CD2689 /* Test LBCUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -197,7 +243,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FBD2EF8525E7C73700CD2689 /* Build configuration list for PBXProject "LBC Test" */;
+			buildConfigurationList = FBD2EF8525E7C73700CD2689 /* Build configuration list for PBXProject "Test LBC" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -210,9 +256,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FBD2EF8925E7C73700CD2689 /* LBC Test */,
-				FBD2EF9F25E7C73800CD2689 /* LBC TestTests */,
-				FBD2EFAA25E7C73800CD2689 /* LBC TestUITests */,
+				FBD2EF8925E7C73700CD2689 /* Test LBC */,
+				FBD2EF9F25E7C73800CD2689 /* Test LBCTests */,
+				FBD2EFAA25E7C73800CD2689 /* Test LBCUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,8 +293,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB042FA725E8F35C001ACCC1 /* TestClassified.swift in Sources */,
+				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
 				FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
+				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,
+				FB042FA225E8F17A001ACCC1 /* ImagesDescription.swift in Sources */,
+				FB042F9D25E8F138001ACCC1 /* CategoryDescription.swift in Sources */,
+				FB042F7B25E8E5E3001ACCC1 /* ClassifiedDescription.swift in Sources */,
+				FB770A2525E8496D005C322B /* DataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,12 +326,12 @@
 /* Begin PBXTargetDependency section */
 		FBD2EFA225E7C73800CD2689 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FBD2EF8925E7C73700CD2689 /* LBC Test */;
+			target = FBD2EF8925E7C73700CD2689 /* Test LBC */;
 			targetProxy = FBD2EFA125E7C73800CD2689 /* PBXContainerItemProxy */;
 		};
 		FBD2EFAD25E7C73800CD2689 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FBD2EF8925E7C73700CD2689 /* LBC Test */;
+			target = FBD2EF8925E7C73700CD2689 /* Test LBC */;
 			targetProxy = FBD2EFAC25E7C73800CD2689 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -456,7 +509,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LBC Test.app/LBC Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test LBC.app/Test LBC";
 			};
 			name = Debug;
 		};
@@ -478,7 +531,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LBC Test.app/LBC Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Test LBC.app/Test LBC";
 			};
 			name = Release;
 		};
@@ -525,7 +578,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FBD2EF8525E7C73700CD2689 /* Build configuration list for PBXProject "LBC Test" */ = {
+		FBD2EF8525E7C73700CD2689 /* Build configuration list for PBXProject "Test LBC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBD2EFB225E7C73800CD2689 /* Debug */,
@@ -534,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBD2EFB425E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC Test" */ = {
+		FBD2EFB425E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBD2EFB525E7C73800CD2689 /* Debug */,
@@ -543,7 +596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBD2EFB725E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC TestTests" */ = {
+		FBD2EFB725E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBCTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBD2EFB825E7C73800CD2689 /* Debug */,
@@ -552,7 +605,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBD2EFBA25E7C73800CD2689 /* Build configuration list for PBXNativeTarget "LBC TestUITests" */ = {
+		FBD2EFBA25E7C73800CD2689 /* Build configuration list for PBXNativeTarget "Test LBCUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FBD2EFBB25E7C73800CD2689 /* Debug */,
@@ -562,6 +615,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FB770A0525E84183005C322B /* LBC.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FB770A0625E84183005C322B /* LBC.xcdatamodel */,
+			);
+			currentVersion = FB770A0625E84183005C322B /* LBC.xcdatamodel */;
+			path = LBC.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FBD2EF8225E7C73700CD2689 /* Project object */;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="manyClassified" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classified" inverseName="oneCategory" inverseEntity="Classified"/>
+    </entity>
+    <entity name="Classified" representedClassName="Classified" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="longDesc" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="siret" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="urgent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="manyImages" toMany="YES" deletionRule="Nullify" destinationEntity="Images" inverseName="oneClassified" inverseEntity="Images"/>
+        <relationship name="oneCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="manyClassified" inverseEntity="Category"/>
+    </entity>
+    <entity name="Images" representedClassName="Images" syncable="YES" codeGenerationType="class">
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="oneClassified" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classified" inverseName="manyImages" inverseEntity="Classified"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-36" positionY="81" width="128" height="74"/>
+        <element name="Classified" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Images" positionX="-54" positionY="36" width="128" height="74"/>
+    </elements>
+</model>
