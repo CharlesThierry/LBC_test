@@ -10,7 +10,7 @@
 		FB042F7B25E8E5E3001ACCC1 /* ClassifiedDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042F7525E8E5E2001ACCC1 /* ClassifiedDescription.swift */; };
 		FB042F9D25E8F138001ACCC1 /* CategoryDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042F9C25E8F138001ACCC1 /* CategoryDescription.swift */; };
 		FB042FA225E8F17A001ACCC1 /* ImagesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA125E8F17A001ACCC1 /* ImagesDescription.swift */; };
-		FB042FA725E8F35C001ACCC1 /* TestClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestClassified.swift */; };
+		FB042FA725E8F35C001ACCC1 /* TestRandomClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */; };
 		FB042FBC25E94125001ACCC1 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */; };
 		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
@@ -42,7 +42,7 @@
 		FB042F7525E8E5E2001ACCC1 /* ClassifiedDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassifiedDescription.swift; sourceTree = "<group>"; };
 		FB042F9C25E8F138001ACCC1 /* CategoryDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDescription.swift; sourceTree = "<group>"; };
 		FB042FA125E8F17A001ACCC1 /* ImagesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesDescription.swift; sourceTree = "<group>"; };
-		FB042FA625E8F35C001ACCC1 /* TestClassified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestClassified.swift; sourceTree = "<group>"; };
+		FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRandomClassified.swift; sourceTree = "<group>"; };
 		FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		FB770A0625E84183005C322B /* LBC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LBC.xcdatamodel; sourceTree = "<group>"; };
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -149,7 +149,7 @@
 		FBD2EFA325E7C73800CD2689 /* LBC TestTests */ = {
 			isa = PBXGroup;
 			children = (
-				FB042FA625E8F35C001ACCC1 /* TestClassified.swift */,
+				FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */,
 				FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */,
 				FBD2EFA625E7C73800CD2689 /* Info.plist */,
 			);
@@ -294,7 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB042FA725E8F35C001ACCC1 /* TestClassified.swift in Sources */,
+				FB042FA725E8F35C001ACCC1 /* TestRandomClassified.swift in Sources */,
 				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
 				FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
