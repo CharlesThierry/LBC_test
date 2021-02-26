@@ -8,6 +8,10 @@
 import Foundation
 import CoreData
 
+/*
+ Basic CoreData implementation to store the information fetched from the JSON URLs in a database.
+ 3 types of entities are created (Category, Classified and Images) as described in the model.
+ */
 class DataManager {
     lazy var container: NSPersistentContainer = {
         // setting up the container with the most basic undo&merge options
@@ -46,8 +50,9 @@ class DataManager {
             fatalError("CoreData Store load error \(error), \(error.userInfo)")
         }
     }
-    
-    internal func purgeInternal(entityName: CoreDataEntityNames)  {
+
+    //MARK: Purge will remove all data from the store
+    internal func purgeInternal(entityName: CoreDataEntityNames) {
         let request = NSFetchRequest<NSManagedObject>()
         request.entity = NSEntityDescription.entity(forEntityName: entityName.rawValue, in: context)
         request.includesSubentities = false
@@ -64,7 +69,7 @@ class DataManager {
     }
     func purge () {
         context.performAndWait {
-            //TODO: Could be done by changing the deletion rule of the model & only deleting categories
+            //TODO: Could probably be done by changing the deletion rule of the model & only deleting categories
             purgeInternal(entityName: CoreDataEntityNames.Category)
             purgeInternal(entityName: CoreDataEntityNames.Classified)
             purgeInternal(entityName: CoreDataEntityNames.Images)
@@ -72,7 +77,7 @@ class DataManager {
         save()
     }
     
-// Store and context update
+    //MARK: Save the context
     func save() {
         context.performAndWait {
             if context.hasChanges {
@@ -89,6 +94,7 @@ class DataManager {
         }
     }
 
+    //MARK: Insert Data
     func addCategories(_ cArray: [CategoryProtocol]) {
         //TODO: check if the id doesn't already exist ?
         context.performAndWait {
@@ -112,7 +118,6 @@ class DataManager {
             }
         }
         save()
-
     }
 
     func addClassified(_ c: ClassifiedProtocol) {
@@ -133,11 +138,12 @@ class DataManager {
 
             let category = try? context.fetch(fetch)
             classified.oneCategory = category?.first
-
         }
         save()
     }
     
+    // MARK: Count the categories and ads.
+    // TODO: Move outside if only test
     func count(entity: CoreDataEntityNames) -> Int {
         let countRequest = NSFetchRequest<NSFetchRequestResult>()
         countRequest.entity = NSEntityDescription.entity(forEntityName: entity.rawValue, in: container.viewContext)
@@ -150,9 +156,9 @@ class DataManager {
         }
         return count
     }
-    
+
     func count() -> Int {
         return count(entity: CoreDataEntityNames.Classified)
     }
-    
+
 }
