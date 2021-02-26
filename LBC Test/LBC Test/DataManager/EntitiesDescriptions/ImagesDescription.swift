@@ -16,9 +16,9 @@ protocol ImagesProtocol {
 class ImagesDescription: ImagesProtocol {
     internal var title: ClassifiedImagesTitle
     internal var url: URL
-    
+
     init(title: ClassifiedImagesTitle,
-         url: URL) {
+        url: URL) {
         self.title = title
         self.url = url
     }

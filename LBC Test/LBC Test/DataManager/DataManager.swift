@@ -76,7 +76,7 @@ class DataManager {
         }
         save()
     }
-    
+
     //MARK: Save the context
     func save() {
         context.performAndWait {
@@ -102,7 +102,7 @@ class DataManager {
                 let fetch = NSFetchRequest<Category>()
                 fetch.entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: container.viewContext)
                 fetch.includesSubentities = false
-                guard let id = c.id else {fatalError("Trying to fetch a category without an ID")}
+                guard let id = c.id else { fatalError("Trying to fetch a category without an ID") }
                 fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(id)")
                 var count = 0
                 do {
@@ -133,7 +133,7 @@ class DataManager {
             classified.price = c.price ?? -1
             classified.siret = c.siret
             classified.urgent = c.urgent ?? false
-            
+
             // Fetch the category to link to this classified
             let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
             fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
@@ -143,7 +143,7 @@ class DataManager {
         }
         save()
     }
-    
+
     // MARK: Count the categories and ads.
     // TODO: Move outside if only test
     func count(entity: CoreDataEntityNames) -> Int {

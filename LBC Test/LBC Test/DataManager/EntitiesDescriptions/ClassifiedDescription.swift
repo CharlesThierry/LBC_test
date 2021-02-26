@@ -17,13 +17,13 @@ protocol ClassifiedProtocol {
     var urgent: Bool? { get }
     var siret: String? { get }
     var creationDate: Date? { get }
-    
+
     var categoryID: Int? { get }
     var images: [ClassifiedImagesTitle: URL]? { get }
 }
 
 class ClassifiedDescription: ClassifiedProtocol, Decodable {
-    
+
     var id: Int64?
     var title: String?
     var description: String?
@@ -32,9 +32,9 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
     var creationDate: Date?
     var categoryID: Int?
     var siret: String?
-    
-    internal var images: [ClassifiedImagesTitle : URL]?
-    
+
+    internal var images: [ClassifiedImagesTitle: URL]?
+
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONClassified.self)
         self.id = try c.decodeIfPresent(Int64.self, forKey: .id)
@@ -45,16 +45,16 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         self.siret = try c.decodeIfPresent(String.self, forKey: .siret)
         self.categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
     }
-    
+
     init (id: Int64,
-          title: String,
-          desc: String,
-          price: Float,
-          urgent: Bool,
-          siret: String?,
-          creationDate: Date,
-          images: [ClassifiedImagesTitle: URL],
-          categoryID: Int) {
+        title: String,
+        desc: String,
+        price: Float,
+        urgent: Bool,
+        siret: String?,
+        creationDate: Date,
+        images: [ClassifiedImagesTitle: URL],
+        categoryID: Int) {
         self.id = id
         self.title = title
         self.description = desc
@@ -62,7 +62,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         self.urgent = urgent
         self.siret = siret
         self.creationDate = creationDate
-        
+
         self.images = images
         self.categoryID = categoryID
     }

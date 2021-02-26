@@ -17,7 +17,7 @@ class HTTPTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     func testDownloadFile() {
         guard let categoryURL = URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json") else {
             XCTFail("Can't build Category URL")
@@ -38,7 +38,7 @@ class HTTPTests: XCTestCase {
             expCategory.fulfill()
         }
         wait(for: [expCategory], timeout: 10.0)
-        
+
         let expClassified = XCTestExpectation(description: "Waiting to download the file")
         fetchJson(url: classifiedURL, type: [ClassifiedDescription].self) { result in
             switch result {

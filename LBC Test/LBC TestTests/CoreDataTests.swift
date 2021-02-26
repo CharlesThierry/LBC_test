@@ -11,12 +11,12 @@ import XCTest
 class CoreDataTests: XCTestCase {
 
     var manager: DataManager?
-    
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         manager = DataManager()
         manager?.purge()
-        
+
     }
 
     override func tearDownWithError() throws {
@@ -30,7 +30,7 @@ class CoreDataTests: XCTestCase {
         let categoryCount = manager?.count(entity: CoreDataEntityNames.Category)
         XCTAssert(categoryCount == maxCategoryID, "\(categoryCount ?? -1) != \(maxCategoryID)")
     }
-    
+
     func testAddARandomClassified() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -42,7 +42,7 @@ class CoreDataTests: XCTestCase {
     }
 
     func testAddStaticClassified () {
-        
+
     }
 
 }

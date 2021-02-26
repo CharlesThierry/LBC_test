@@ -16,8 +16,10 @@ enum FetchingError: Error {
     case httpError
 }
 
-func fetchJson<DescriptionArray>(url: URL, type:DescriptionArray.Type, completion: @escaping (Result<DescriptionArray, FetchingError>) -> Void)
-        where DescriptionArray: Decodable {
+func fetchJson<DescriptionArray>(url: URL,
+    type: DescriptionArray.Type,
+    completion: @escaping (Result<DescriptionArray, FetchingError>) -> Void)
+where DescriptionArray: Decodable {
     let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
     var request = URLRequest(url: url)
 
@@ -40,7 +42,7 @@ func fetchJson<DescriptionArray>(url: URL, type:DescriptionArray.Type, completio
             completion(Result.failure(.noDataError))
             return
         }
-        
+
         do {
             let decoder = JSONDecoder()
             let array = try decoder.decode(type, from: data)
@@ -54,10 +56,10 @@ func fetchJson<DescriptionArray>(url: URL, type:DescriptionArray.Type, completio
 }
 
 func generateItemsDescriptions () {
-    
+
 }
 
 
 func populateItemsDescriptions () {
-    
+
 }

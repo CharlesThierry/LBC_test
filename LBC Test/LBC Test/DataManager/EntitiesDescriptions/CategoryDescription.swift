@@ -17,7 +17,7 @@ class CategoryDescription: CategoryProtocol, Decodable {
     var id: Int64?
     var name: String?
     init(id: Int64,
-         name: String) {
+        name: String) {
         self.id = id
         self.name = name
     }
@@ -26,5 +26,5 @@ class CategoryDescription: CategoryProtocol, Decodable {
         self.id = try c.decodeIfPresent(Int64.self, forKey: .id)
         self.name = try c.decodeIfPresent(String.self, forKey: .name)
     }
-    
+
 }

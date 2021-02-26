@@ -12,9 +12,9 @@ func getRandomDate() -> Date {
     let day = -Int.random(in: 0 ... 30) - 1
     let hour = arc4random_uniform(23)
     let minute = arc4random_uniform(59)
-    
+
     let today = Date(timeIntervalSinceNow: 0)
-    
+
     let gregorian = Calendar(identifier: .gregorian)
     var offsetComponents = DateComponents()
     offsetComponents.day = -1 * Int(day - 1)
@@ -33,9 +33,9 @@ class TestRandomClassified: ClassifiedProtocol {
     var creationDate: Date?
     var categoryID: Int?
     var siret: String?
-    
-    var images: [ClassifiedImagesTitle : URL]?
-    
+
+    var images: [ClassifiedImagesTitle: URL]?
+
     init () {
         let tID: Int64 = Int64.random(in: 0 ..< INT64_MAX)
         let tTitle = "\(tID)."
@@ -49,8 +49,8 @@ class TestRandomClassified: ClassifiedProtocol {
         images = [ClassifiedImagesTitle: URL]()
         categoryID = Int.random(in: 0 ..< maxCategoryID)
     }
-    
-    init (_ id: Int64)  {
+
+    init (_ id: Int64) {
         self.id = id
         title = "Title \(id)."
         description = "Description \(id)"
@@ -64,10 +64,10 @@ class TestRandomClassified: ClassifiedProtocol {
 }
 
 class TestCategory: CategoryProtocol {
-    
+
     var id: Int64?
     var name: String?
-    
+
     init(id: Int64) {
         self.id = id
         name = "Category \(id)"
