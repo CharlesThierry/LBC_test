@@ -157,7 +157,7 @@ class DataManager {
 
         let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
         let classified = Classified(entity: classifiedED!, insertInto: context)
-        
+
         classified.id = Int64(id)
         classified.longDesc = c.description
         classified.title = c.title
@@ -165,7 +165,7 @@ class DataManager {
         classified.siret = c.siret
         classified.urgent = c.urgent ?? false
         classified.creationDate = c.creationDate
-        
+
         // Fetch the category to link to this classified
         let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
         fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
@@ -183,38 +183,21 @@ class DataManager {
         }
     }
 
-    // MARK: Count the categories and ads.
-
-    // TODO: Move outside if only test
-    func count(entity: CoreDataEntityNames) -> Int {
-        let countRequest = NSFetchRequest<NSFetchRequestResult>()
-        countRequest.entity = NSEntityDescription.entity(forEntityName: entity.rawValue, in: container.viewContext)
-        countRequest.includesSubentities = false
-        var count = 0
-        do {
-            count = try container.viewContext.count(for: countRequest)
-        } catch {
-            fatalError("CoreData Context Count error \(error)")
-        }
-        return count
-    }
-
-    func count() -> Int {
-        return count(entity: CoreDataEntityNames.Classified)
-    }
-
+    // Mark: Using fetchResultsController to update the collectionview
     var fetchResultsController: NSFetchedResultsController<Classified>?
 
-    func setFetchRequest(delegate: Model) {
+    func setFetchDelegate(_ delegate: Model) {
         if fetchResultsController == nil {
-            let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
-            let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
-            let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)
-            request.sortDescriptors = [sortUrgent, sortDate]
-            request.fetchBatchSize = 20
+        let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
+        let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
+        let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)
+        request.sortDescriptors = [sortUrgent, sortDate]
+        request.fetchBatchSize = 20
 
-            fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
-                container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
+            container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         }
+        fetchResultsController?.delegate = delegate
+
     }
 }

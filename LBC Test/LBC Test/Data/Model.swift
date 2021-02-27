@@ -11,13 +11,14 @@ import Foundation
 let category = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
-class Model {
-    weak var viewController: ViewController!
-
+class Model: NSObject, NSFetchedResultsControllerDelegate {
     let dataManager = DataManager()
 
     func initModelData() {
-        fillCategoryData()
+        DispatchQueue.global(qos: .background).async {
+            self.dataManager.setFetchDelegate(self)
+            self.fillCategoryData()
+        }
     }
 
     func fillCategoryData() {
@@ -66,6 +67,4 @@ class Model {
             }
         }
     }
-
-    func start() {}
 }

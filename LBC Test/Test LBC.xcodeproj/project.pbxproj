@@ -14,12 +14,14 @@
 		FB042FBC25E94125001ACCC1 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */; };
 		FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FD225E94490001ACCC1 /* fetchJSON.swift */; };
 		FB042FE525E95D6C001ACCC1 /* HTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FE025E95D54001ACCC1 /* HTTPTests.swift */; };
+		FB04E77825EADC0700F39BB9 /* DataManager+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */; };
 		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
 		FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */; };
+		FB96117025EAB1EB001E215D /* MainCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB96116F25EAB1EB001E215D /* MainCellView.swift */; };
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
-		FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF9125E7C73700CD2689 /* ViewController.swift */; };
+		FBD2EF9225E7C73700CD2689 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF9125E7C73700CD2689 /* MainViewController.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
 		FBD2EFB025E7C73800CD2689 /* LBC_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */; };
 		FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF7E3EA25EA607200E31E4A /* Model.swift */; };
@@ -51,12 +53,14 @@
 		FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		FB042FD225E94490001ACCC1 /* fetchJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchJSON.swift; sourceTree = "<group>"; };
 		FB042FE025E95D54001ACCC1 /* HTTPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTests.swift; sourceTree = "<group>"; };
+		FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+tests.swift"; sourceTree = "<group>"; };
 		FB770A0625E84183005C322B /* LBC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LBC.xcdatamodel; sourceTree = "<group>"; };
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
+		FB96116F25EAB1EB001E215D /* MainCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainCellView.swift; path = Views/MainCellView.swift; sourceTree = "<group>"; };
 		FBD2EF8A25E7C73700CD2689 /* Test LBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test LBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FBD2EF9125E7C73700CD2689 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FBD2EF9125E7C73700CD2689 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FBD2EF9625E7C73800CD2689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FBD2EF9B25E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBD2EFA025E7C73800CD2689 /* Test LBCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test LBCTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +99,8 @@
 		FB01D4E625EA359B0000F950 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FBD2EF9125E7C73700CD2689 /* ViewController.swift */,
+				FBD2EF9125E7C73700CD2689 /* MainViewController.swift */,
+				FB96116F25EAB1EB001E215D /* MainCellView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				FB770A2325E848C4005C322B /* EntitiesDescriptions */,
 				FB770A0525E84183005C322B /* LBC.xcdatamodeld */,
 				FB770A2425E8496D005C322B /* DataManager.swift */,
+				FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -331,13 +337,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
-				FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */,
+				FBD2EF9225E7C73700CD2689 /* MainViewController.swift in Sources */,
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
+				FB04E77825EADC0700F39BB9 /* DataManager+tests.swift in Sources */,
 				FB01D4DA25EA33A40000F950 /* DateFormatter+Custom.swift in Sources */,
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,
 				FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */,
 				FB042FA225E8F17A001ACCC1 /* ImagesDescription.swift in Sources */,
+				FB96117025EAB1EB001E215D /* MainCellView.swift in Sources */,
 				FB042F9D25E8F138001ACCC1 /* CategoryDescription.swift in Sources */,
 				FB042F7B25E8E5E3001ACCC1 /* ClassifiedDescription.swift in Sources */,
 				FB770A2525E8496D005C322B /* DataManager.swift in Sources */,
