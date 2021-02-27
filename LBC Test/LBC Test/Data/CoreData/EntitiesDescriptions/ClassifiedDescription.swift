@@ -11,7 +11,7 @@ import Foundation
 
 // FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
 protocol ClassifiedProtocol {
-    var id: Int64? { get }
+    var id: Int? { get }
     var title: String? { get }
     var description: String? { get }
     var price: Float? { get }
@@ -24,7 +24,7 @@ protocol ClassifiedProtocol {
 }
 
 class ClassifiedDescription: ClassifiedProtocol, Decodable {
-    var id: Int64?
+    var id: Int?
     var title: String?
     var description: String?
     var price: Float?
@@ -37,7 +37,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
 
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONClassified.self)
-        self.id = try c.decodeIfPresent(Int64.self, forKey: .id)
+        self.id = try c.decodeIfPresent(Int.self, forKey: .id)
         self.title = try c.decodeIfPresent(String.self, forKey: .title)
         self.description = try c.decodeIfPresent(String.self, forKey: .description)
         self.price = try c.decodeIfPresent(Float.self, forKey: .price)
@@ -56,7 +56,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         }
     }
 
-    init(id: Int64,
+    init(id: Int,
          title: String,
          desc: String,
          price: Float,

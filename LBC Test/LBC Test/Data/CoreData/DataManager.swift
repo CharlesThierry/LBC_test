@@ -96,28 +96,36 @@ class DataManager {
         }
     }
 
+    func checkIfEntryExists(id: Int, name: CoreDataEntityNames) -> Bool {
+        let fetch = NSFetchRequest<NSFetchRequestResult>()
+        fetch.entity = NSEntityDescription.entity(forEntityName: name.rawValue, in: container.viewContext)
+        fetch.includesSubentities = false
+        fetch.predicate = NSPredicate(format: "id == \(id)")
+        var count = 0
+        do {
+            try count = container.viewContext.count(for: fetch)
+        } catch {
+            fatalError("CoreData Category add check fail \(error)")
+        }
+        return count == 0 // there is already a category with that ID.
+    }
+
     // MARK: Insert Data
 
     func addCategories(_ cArray: [CategoryProtocol]) {
-        // TODO: check if the id doesn't already exist ?
         context.performAndWait {
             for c in cArray {
-                let fetch = NSFetchRequest<Category>()
-                fetch.entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: container.viewContext)
-                fetch.includesSubentities = false
-                guard let id = c.id else { fatalError("Trying to fetch a category without an ID") }
-                fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(id)")
-                var count = 0
-                do {
-                    try count = container.viewContext.count(for: fetch)
-                } catch {
-                    fatalError("CoreData Category add check fail \(error)")
+                guard let id = c.id else { fatalError("Can't add a Category w/o id") }
+                let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Category)
+                if !isNew {
+                    print("This category already exists \(id)")
+                    continue
                 }
-                guard count == 0 else { continue } // there is already a category with that ID.
+
                 // TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
-                category.id = id
+                category.id = Int64(id)
                 category.title = c.name
             }
         }
@@ -126,11 +134,18 @@ class DataManager {
 
     func addClassified(_ c: ClassifiedProtocol) {
         context.performAndWait {
-            // TODO: check if the id doesn't already exist ?
+            guard let id = c.id else { fatalError("Can't add a classified w/o an ID") }
+            let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
+            if !isNew {
+                print("This classified already exists \(id)")
+                return
+            }
+
             let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
             let classified = Classified(entity: classifiedED!, insertInto: context)
             classified.creationDate = c.creationDate
-            classified.id = c.id ?? -1
+
+            classified.id = Int64(id)
             classified.longDesc = c.description
             classified.title = c.title
             classified.price = c.price ?? -1
@@ -143,9 +158,9 @@ class DataManager {
 
             let category = try? context.fetch(fetch)
             classified.oneCategory = category?.first
-            
-            //TODO: ? Check if the URL is already available somewhere, maybe ?
-            for (t,u) in c.images! {
+
+            // TODO: can there be multiple images with the same URLs?
+            for (t, u) in c.images! {
                 let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
                 let images = Images(entity: imageED!, insertInto: context)
                 images.title = t.rawValue

@@ -24,8 +24,8 @@ func getRandomDate() -> Date {
     return randomDate
 }
 
-class TestRandomClassified: ClassifiedProtocol {
-    var id: Int64?
+class TestClassified: ClassifiedProtocol {
+    var id: Int?
     var title: String?
     var description: String?
     var price: Float?
@@ -36,39 +36,40 @@ class TestRandomClassified: ClassifiedProtocol {
 
     var images: [ClassifiedImagesTitle: URL]?
 
-    init () {
-        let tID: Int64 = Int64.random(in: 0 ..< INT64_MAX)
+    init() {
+        let tID = Int.random(in: 0 ..< 20000)
         let tTitle = "\(tID)."
-        self.id = tID
+        id = tID
         title = tTitle
         description = "Description \(tID)"
         price = Float.random(in: 0 ... 2000)
         urgent = Bool.random()
         siret = Bool.random() ? "" : "siret of \(tID)."
         creationDate = getRandomDate()
-        images = [ClassifiedImagesTitle: URL]()
+        images = [.small: URL(string: "https://example.com/imagesSmall-\(tID).jpg")!,
+                  .thumb: URL(string: "https://example.com/imagesThumb-\(tID).jpg")!]
         categoryID = Int.random(in: 0 ..< maxCategoryID)
     }
 
-    init (_ id: Int64) {
+    init(id: Int, category: Int) {
         self.id = id
         title = "Title \(id)."
+        categoryID = category
         description = "Description \(id)"
         price = Float.random(in: 0 ... 2000)
         urgent = Bool.random()
-        siret = Bool.random() ? "" : "siret of id."
+        siret = Bool.random() ? "" : "siret of \(id)."
         creationDate = getRandomDate()
-        images = [ClassifiedImagesTitle: URL]()
-        categoryID = Int.random(in: 0 ..< maxCategoryID)
+        images = [.small: URL(string: "https://example.com/imagesSmall-\(id).jpg")!,
+                  .thumb: URL(string: "https://example.com/imagesThumb-\(id).jpg")!]
     }
 }
 
 class TestCategory: CategoryProtocol {
-
-    var id: Int64?
+    var id: Int?
     var name: String?
 
-    init(id: Int64) {
+    init(id: Int) {
         self.id = id
         name = "Category \(id)"
     }
