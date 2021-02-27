@@ -30,11 +30,9 @@ class CoreDataTests: XCTestCase {
     }
 
     func testAddARandomClassified() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
         let categories = (0 ..< maxCategoryID).indices.map { id in TestCategory(id: Int(id)) }
         manager?.addCategories(categories)
-        manager?.addClassified(TestClassified())
+        manager?.addClassifieds([TestClassified()])
         let classifiedCount = manager?.count()
         XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
     }
@@ -43,11 +41,11 @@ class CoreDataTests: XCTestCase {
         let category = TestCategory(id: 2)
         manager?.addCategories([category])
         let classified1 = TestClassified(id: 1, category: 2)
-        manager?.addClassified(classified1)
+        manager?.addClassifieds([classified1])
         let classifiedCount = manager?.count()
         XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
         let classified2 = TestClassified(id: 1, category: 2)
-        manager?.addClassified(classified2)
+        manager?.addClassifieds([classified2])
         XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
     }
 }
