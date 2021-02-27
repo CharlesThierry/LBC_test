@@ -96,6 +96,12 @@ class DataManager {
         }
     }
 
+    /*
+     This method is used to check the uniqueness of categories and classified based on their 'id'.
+     In an ideal world, it could be handled by adding constraints to the model, but in this case
+     it would mean making the relations between the classified and the category optional, which I
+     choose not to do to keep a relation between the objects.
+     */
     func checkIfEntryExists(id: Int, name: CoreDataEntityNames) -> Bool {
         let fetch = NSFetchRequest<NSFetchRequestResult>()
         fetch.entity = NSEntityDescription.entity(forEntityName: name.rawValue, in: container.viewContext)
