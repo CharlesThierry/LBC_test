@@ -50,8 +50,4 @@ class CoreDataTests: XCTestCase {
         manager?.addClassified(classified2)
         XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
     }
-
-    func testAddStaticClassified() {
-        let categories = (0 ..< maxCategoryID).indices.map { id in TestCategory(id: Int(id)) }
-    }
 }

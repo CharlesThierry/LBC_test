@@ -39,7 +39,7 @@ class HTTPTests: XCTestCase {
     func testJSONConversion() {
         let string = "[{\"id\": 1461267313,\"category_id\":4,\"title\":\"Title\",\"description\": \"Description\",\"price\":140.0,\"images_url\":{\"small\":\"https://raw.githubusercontent.com/leboncoin/paperclip/master/ad-small/2c9563bbe85f12a5dcaeb2c40989182463270404.jpg\",\"thumb\":\"https://raw.githubusercontent.com/leboncoin/paperclip/master/ad-thumb/2c9563bbe85f12a5dcaeb2c40989182463270404.jpg\"},\"creation_date\":\"2019-11-05T15:56:59+0000\",\"is_urgent\":true,\"siret\":\"123 123 123\"}]"
         let data = Data(string.utf8)
-
+        // TODO: Add URL tests
         let description = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
         switch description {
         case .failure(let error):
@@ -53,16 +53,15 @@ class HTTPTests: XCTestCase {
             XCTAssert(description[0].price == 140.0, "Fail price")
             XCTAssert(description[0].urgent == true, "Fail urgent")
             XCTAssert(description[0].siret == "123 123 123", "Fail siret")
-            
+
             let dateStr = "2019-11-05T15:56:59+0000"
             let formatter = DateFormatter.custom
             let date = formatter.date(from: dateStr)
             XCTAssert(description[0].creationDate == date, "Fail date")
-            
+
             let wrongDateStr = "2019-11-05T15:56:59+0100"
             let wrongDate = formatter.date(from: wrongDateStr)
             XCTAssert(description[0].creationDate != wrongDate, "Fail date 2")
-
         }
     }
 }
