@@ -44,3 +44,8 @@ enum ClassifiedImagesTitle: String, Codable {
     case small
     case thumb
 }
+
+enum CoreDataClassified: String {
+    case creationDate
+    case urgent
+}

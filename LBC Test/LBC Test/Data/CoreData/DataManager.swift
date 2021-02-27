@@ -138,43 +138,49 @@ class DataManager {
         save()
     }
 
-    func addClassified(_ c: ClassifiedProtocol) {
+    func addClassifieds(_ cArray: [ClassifiedProtocol]) {
         context.performAndWait {
-            guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
-            let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
-            if !isNew {
-                print("CoreData This classified already exists \(id)")
-                return
-            }
-
-            let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
-            let classified = Classified(entity: classifiedED!, insertInto: context)
-            classified.creationDate = c.creationDate
-
-            classified.id = Int64(id)
-            classified.longDesc = c.description
-            classified.title = c.title
-            classified.price = c.price ?? -1
-            classified.siret = c.siret
-            classified.urgent = c.urgent ?? false
-
-            // Fetch the category to link to this classified
-            let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
-            fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
-
-            let category = try? context.fetch(fetch)
-            classified.oneCategory = category?.first
-
-            // TODO: can there be multiple images with the same URLs?
-            for (t, u) in c.images! {
-                let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
-                let images = Images(entity: imageED!, insertInto: context)
-                images.title = t.rawValue
-                images.url = u
-                images.oneClassified = classified
+            for c in cArray {
+                addClassified(c)
             }
         }
         save()
+    }
+
+    internal func addClassified(_ c: ClassifiedProtocol) {
+        guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
+        let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
+        if !isNew {
+            print("CoreData This classified already exists \(id)")
+            return
+        }
+
+        let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
+        let classified = Classified(entity: classifiedED!, insertInto: context)
+        classified.creationDate = c.creationDate
+
+        classified.id = Int64(id)
+        classified.longDesc = c.description
+        classified.title = c.title
+        classified.price = c.price ?? -1
+        classified.siret = c.siret
+        classified.urgent = c.urgent ?? false
+
+        // Fetch the category to link to this classified
+        let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
+        fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
+
+        let category = try? context.fetch(fetch)
+        classified.oneCategory = category?.first
+
+        // TODO: can there be multiple images with the same URLs?
+        for (t, u) in c.images! {
+            let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
+            let images = Images(entity: imageED!, insertInto: context)
+            images.title = t.rawValue
+            images.url = u
+            images.oneClassified = classified
+        }
     }
 
     // MARK: Count the categories and ads.
@@ -195,5 +201,20 @@ class DataManager {
 
     func count() -> Int {
         return count(entity: CoreDataEntityNames.Classified)
+    }
+
+    var fetchResultsController: NSFetchedResultsController<Classified>?
+
+    func setFetchRequest(delegate: Model) {
+        if fetchResultsController == nil {
+            let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
+            let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
+            let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)
+            request.sortDescriptors = [sortUrgent, sortDate]
+            request.fetchBatchSize = 20
+
+            fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
+                container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        }
     }
 }
