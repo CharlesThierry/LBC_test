@@ -10,16 +10,16 @@ import Foundation
 // the Classified ads JSON is available at https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json
 enum FetchingError: Error {
     case downloadError
-    case dataConversionError
     case noDataError
     case connectionError
     case httpError
 }
 
-func fetchJson<DescriptionArray>(url: URL,
-    type: DescriptionArray.Type,
-    completion: @escaping (Result<DescriptionArray, FetchingError>) -> Void)
-where DescriptionArray: Decodable {
+enum ConversionError: Error {
+    case dataConversionError
+}
+
+func fetchJson(url: URL, completion: @escaping (Result<Data, FetchingError>) -> Void) {
     let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
     var request = URLRequest(url: url)
 
@@ -42,21 +42,19 @@ where DescriptionArray: Decodable {
             completion(Result.failure(.noDataError))
             return
         }
-
-        do {
-            let decoder = JSONDecoder()
-            let array = try decoder.decode(type, from: data)
-            completion(Result.success(array))
-        } catch {
-            print("Invalid JSON file fetched at \(url)")
-            completion(Result.failure(.dataConversionError))
-        }
+        completion(Result.success(data))
     }
     task.resume()
 }
 
-func generateItemsDescriptions () {
-
+func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionArray.Type) -> Result<DescriptionArray, ConversionError> where DescriptionArray: Decodable {
+    do {
+        let decoder = JSONDecoder()
+        let array = try decoder.decode(type, from: data)
+        return Result.success(array)
+    } catch {
+        return Result.failure(.dataConversionError)
+    }
 }
 
 
