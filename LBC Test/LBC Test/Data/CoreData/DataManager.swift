@@ -127,8 +127,8 @@ class DataManager {
     func addClassified(_ c: ClassifiedProtocol) {
         context.performAndWait {
             // TODO: check if the id doesn't already exist ?
-            let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
-            let classified = Classified(entity: entity!, insertInto: context)
+            let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
+            let classified = Classified(entity: classifiedED!, insertInto: context)
             classified.creationDate = c.creationDate
             classified.id = c.id ?? -1
             classified.longDesc = c.description
@@ -143,16 +143,19 @@ class DataManager {
 
             let category = try? context.fetch(fetch)
             classified.oneCategory = category?.first
+            
+            //TODO: ? Check if the URL is already available somewhere, maybe ?
+            for (t,u) in c.images! {
+                let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
+                let images = Images(entity: imageED!, insertInto: context)
+                images.title = t.rawValue
+                images.url = u
+                images.oneClassified = classified
+            }
         }
         save()
     }
-    
-    // returns the 
-    func getDataForFilter() {
-        
-    }
-    
-    
+
     // MARK: Count the categories and ads.
 
     // TODO: Move outside if only test
