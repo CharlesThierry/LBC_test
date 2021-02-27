@@ -5,6 +5,7 @@
 //  Created by Charles Thierry on 25/02/2021.
 //
 
+// TODO: Look at NSFetchedResultsController for list control
 import UIKit
 
 class ViewController: UIViewController {
