@@ -90,6 +90,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB01D4E625EA359B0000F950 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FBD2EF9125E7C73700CD2689 /* ViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FB01D4E825EA35B20000F950 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FB7709FA25E8409F005C322B /* CoreData */,
+				FB042FD125E943BC001ACCC1 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		FB042FD125E943BC001ACCC1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,14 +115,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		FB7709FA25E8409F005C322B /* DataManager */ = {
+		FB7709FA25E8409F005C322B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				FB770A2325E848C4005C322B /* EntitiesDescriptions */,
 				FB770A0525E84183005C322B /* LBC.xcdatamodeld */,
 				FB770A2425E8496D005C322B /* DataManager.swift */,
 			);
-			path = DataManager;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		FB770A2325E848C4005C322B /* EntitiesDescriptions */ = {
@@ -118,13 +135,13 @@
 			path = EntitiesDescriptions;
 			sourceTree = "<group>";
 		};
-		FB770A7C25E84FC6005C322B /* Constants */ = {
+		FB770A7C25E84FC6005C322B /* Constants & Aux */ = {
 			isa = PBXGroup;
 			children = (
 				FB770A7425E84E32005C322B /* DataConstants.swift */,
 				FB01D4D925EA33A40000F950 /* DateFormatter+Custom.swift */,
 			);
-			path = Constants;
+			path = "Constants & Aux";
 			sourceTree = "<group>";
 		};
 		FBD2EF8125E7C73700CD2689 = {
@@ -152,10 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */,
-				FBD2EF9125E7C73700CD2689 /* ViewController.swift */,
-				FB770A7C25E84FC6005C322B /* Constants */,
-				FB7709FA25E8409F005C322B /* DataManager */,
-				FB042FD125E943BC001ACCC1 /* Network */,
+				FB01D4E625EA359B0000F950 /* UI */,
+				FB770A7C25E84FC6005C322B /* Constants & Aux */,
+				FB01D4E825EA35B20000F950 /* Data */,
 				FBD2EF9625E7C73800CD2689 /* Assets.xcassets */,
 				FBD2EF9B25E7C73800CD2689 /* Info.plist */,
 			);
