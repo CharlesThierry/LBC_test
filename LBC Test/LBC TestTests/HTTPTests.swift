@@ -17,27 +17,28 @@ class HTTPTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testDownloadFile() {
-        guard let categoryURL = URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json") else {
-            XCTFail("Can't build Category URL")
-            return
-        }
-
-        let expCategory = XCTestExpectation(description: "Waiting to download the file")
-        fetchJson(url: categoryURL) { result in
-            switch result {
-            case .failure(let error):
-                XCTFail("Couldn't download the file \(error)")
-            case .success(let data):
-                XCTAssertTrue(data.count > 0, "Data dowloaded")
-            }
-            expCategory.fulfill()
-        }
-        wait(for: [expCategory], timeout: 10.0)
-    }
+    // Test commented since it depends on am actual network source
+//    func testDownloadFile() {
+//        guard let categoryURL = URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json") else {
+//            XCTFail("Can't build Category URL")
+//            return
+//        }
+//
+//        let expCategory = XCTestExpectation(description: "Waiting to download the file")
+//        fetchJson(url: categoryURL) { result in
+//            switch result {
+//            case .failure(let error):
+//                XCTFail("Couldn't download the file \(error)")
+//            case .success(let data):
+//                XCTAssertTrue(data.count > 0, "Data dowloaded")
+//            }
+//            expCategory.fulfill()
+//        }
+//        wait(for: [expCategory], timeout: 10.0)
+//    }
 
     func testJSONConversion() {
-        let string = "[{\"id\": 1461267313,\"category_id\":4,\"title\":\"Title\",\"description\": \"Description\",\"price\":140.0,\"images_url\":{\"small\":\"https://raw.githubusercontent.com/leboncoin/paperclip/master/ad-small/2c9563bbe85f12a5dcaeb2c40989182463270404.jpg\",\"thumb\":\"https://raw.githubusercontent.com/leboncoin/paperclip/master/ad-thumb/2c9563bbe85f12a5dcaeb2c40989182463270404.jpg\"},\"creation_date\":\"2019-11-05T15:56:59+0000\",\"is_urgent\":true,\"siret\":\"123 123 123\"}]"
+        let string = "[{\"id\": 1461267313,\"category_id\":4,\"title\":\"Title\",\"description\": \"Description\",\"price\":140.0,\"images_url\":{\"small\":\"https://example.com/small.jpg\",\"thumb\":\"https://example.com/small.jpg\"},\"creation_date\":\"2019-11-05T15:56:59+0000\",\"is_urgent\":true,\"siret\":\"123 123 123\"}]"
         let data = Data(string.utf8)
         // TODO: Add URL tests
         let description = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)

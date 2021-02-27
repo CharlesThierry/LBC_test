@@ -5,6 +5,8 @@
 //  Created by Charles Thierry on 26/02/2021.
 //
 
+@testable import Test_LBC
+
 import Foundation
 let maxCategoryID = 20
 
