@@ -115,10 +115,10 @@ class DataManager {
     func addCategories(_ cArray: [CategoryProtocol]) {
         context.performAndWait {
             for c in cArray {
-                guard let id = c.id else { fatalError("Can't add a Category w/o id") }
+                guard let id = c.id else { fatalError("CoreData Can't add a Category w/o id") }
                 let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Category)
                 if !isNew {
-                    print("This category already exists \(id)")
+                    print("CoreData This category already exists \(id)")
                     continue
                 }
 
@@ -134,10 +134,10 @@ class DataManager {
 
     func addClassified(_ c: ClassifiedProtocol) {
         context.performAndWait {
-            guard let id = c.id else { fatalError("Can't add a classified w/o an ID") }
+            guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
             let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
             if !isNew {
-                print("This classified already exists \(id)")
+                print("CoreData This classified already exists \(id)")
                 return
             }
 
