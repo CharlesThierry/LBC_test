@@ -36,6 +36,7 @@ class DataManager {
 
     init() {
         storeSetup()
+        setupFetchController()
     }
 
     func storeSetup() {
@@ -124,7 +125,6 @@ class DataManager {
                 guard let id = c.id else { fatalError("CoreData Can't add a Category w/o id") }
                 let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Category)
                 if !isNew {
-                    print("CoreData This category already exists \(id)")
                     continue
                 }
 
@@ -151,7 +151,6 @@ class DataManager {
         guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
         let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
         if !isNew {
-            print("CoreData This classified already exists \(id)")
             return
         }
 
@@ -183,21 +182,17 @@ class DataManager {
         }
     }
 
-    // Mark: Using fetchResultsController to update the collectionview
-    var fetchResultsController: NSFetchedResultsController<Classified>?
-
-    func setFetchDelegate(_ delegate: Model) {
-        if fetchResultsController == nil {
+    // MARK: Using fetchResultsController to update the collectionview
+    var fetchController : NSFetchedResultsController<Classified>?
+    
+    func setupFetchController()  {
         let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
         let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
         let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)
         request.sortDescriptors = [sortUrgent, sortDate]
         request.fetchBatchSize = 20
 
-        fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext:
-            container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        }
-        fetchResultsController?.delegate = delegate
-
+        fetchController = NSFetchedResultsController<Classified>(fetchRequest: request, managedObjectContext:
+            context, sectionNameKeyPath: nil, cacheName: CoreDataConstant.cacheName)
     }
 }

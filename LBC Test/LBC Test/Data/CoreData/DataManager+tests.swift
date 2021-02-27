@@ -5,6 +5,8 @@
 //  Created by Charles Thierry on 27/02/2021.
 //
 
+@testable import Test_LBC
+
 import Foundation
 import CoreData
 

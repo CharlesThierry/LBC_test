@@ -17,6 +17,7 @@ class MainViewController: UITableViewController, NSFetchedResultsControllerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor.white
+        self.tableView.register(MainCellView.self, forCellReuseIdentifier: ClassifiedReuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {}
@@ -28,7 +29,12 @@ class MainViewController: UITableViewController, NSFetchedResultsControllerDeleg
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = resultController.sections![section]
+        guard let controller = resultController else {
+            return 0
+        }
+        guard let sectionInfo = controller.sections?[section] else {
+            return 0
+        }
         return sectionInfo.numberOfObjects
     }
 
@@ -39,8 +45,6 @@ class MainViewController: UITableViewController, NSFetchedResultsControllerDeleg
 
     // MARK: FetchedResultControllerDelegation
 
-    var objectChange: [NSFetchedResultsChangeType: Any]!
-
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -50,9 +54,9 @@ class MainViewController: UITableViewController, NSFetchedResultsControllerDeleg
     {
         switch type {
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.deleteRows(at: [indexPath!], with: .left)
         case .insert:
-            tableView.insertRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [indexPath!], with: .left)
         case .move:
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
         case .update:

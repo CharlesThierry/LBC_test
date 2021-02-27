@@ -14,14 +14,13 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
 class Model: NSObject, NSFetchedResultsControllerDelegate {
     let dataManager = DataManager()
 
-    func initModelData() {
+    func initModelData(completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .background).async {
-            self.dataManager.setFetchDelegate(self)
-            self.fillCategoryData()
+            self.fillCategoryData(completion)
         }
     }
 
-    func fillCategoryData() {
+    func fillCategoryData(_ completion: @escaping () -> ()) {
         let c = URL(string: category)
         guard let categoryURL = c else {
             fatalError("Model Categorystring not a URL")
@@ -31,6 +30,7 @@ class Model: NSObject, NSFetchedResultsControllerDelegate {
             case .failure(let error):
                 print("Can't fetch category information \(error)")
                 // TODO: handle error / warn user
+                completion()
                 return
             case .success(let data):
                 let generateResult = generateItemsDescriptions(data: data, type: [CategoryDescription].self)
@@ -39,13 +39,13 @@ class Model: NSObject, NSFetchedResultsControllerDelegate {
                     print("Can't generate descriptions \(error)")
                 case .success(let catArray):
                     self.dataManager.addCategories(catArray)
-                    self.fillClassifiedData()
+                    self.fillClassifiedData(completion)
                 }
             }
         }
     }
 
-    func fillClassifiedData() {
+    func fillClassifiedData(_ completion: @escaping () -> ()) {
         let c = URL(string: listing)
         guard let classifiedURL = c else {
             fatalError("Model Categorystring not a URL")
@@ -55,7 +55,6 @@ class Model: NSObject, NSFetchedResultsControllerDelegate {
             case .failure(let error):
                 print("Can't fetch category information \(error)")
                 // TODO: handle error / warn user
-                return
             case .success(let data):
                 let generateResult = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
                 switch generateResult {
@@ -65,6 +64,8 @@ class Model: NSObject, NSFetchedResultsControllerDelegate {
                     self.dataManager.addClassifieds(catArray)
                 }
             }
+            try? self.dataManager.fetchController?.performFetch()
+            completion()
         }
     }
 }

@@ -14,7 +14,7 @@
 		FB042FBC25E94125001ACCC1 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */; };
 		FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FD225E94490001ACCC1 /* fetchJSON.swift */; };
 		FB042FE525E95D6C001ACCC1 /* HTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FE025E95D54001ACCC1 /* HTTPTests.swift */; };
-		FB04E77825EADC0700F39BB9 /* DataManager+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */; };
+		FB04E77C25EAF00500F39BB9 /* DataManager+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */; };
 		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
@@ -340,7 +340,6 @@
 				FBD2EF9225E7C73700CD2689 /* MainViewController.swift in Sources */,
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
-				FB04E77825EADC0700F39BB9 /* DataManager+tests.swift in Sources */,
 				FB01D4DA25EA33A40000F950 /* DateFormatter+Custom.swift in Sources */,
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,
 				FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */,
@@ -357,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB042FBC25E94125001ACCC1 /* CoreDataTests.swift in Sources */,
+				FB04E77C25EAF00500F39BB9 /* DataManager+tests.swift in Sources */,
 				FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */,
 				FB042FE525E95D6C001ACCC1 /* HTTPTests.swift in Sources */,
 			);
