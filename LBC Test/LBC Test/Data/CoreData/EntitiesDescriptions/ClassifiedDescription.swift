@@ -46,6 +46,14 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         self.categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
         // TODO: Date stays at nil, check why the JSONDecoder fails
         self.creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
+        
+        let imagesUrl = try c.decodeIfPresent([String:String].self, forKey: .images_url)
+        guard let urls = imagesUrl else { return }
+        var imagesSet = [ImagesDescription]()
+        for (k, v) in urls {
+            let imageDescription = ImagesDescription(title: ClassifiedImagesTitle(rawValue: k), url: URL(string:v))
+            imagesSet.append(imageDescription)
+        }
     }
 
     init(id: Int64,

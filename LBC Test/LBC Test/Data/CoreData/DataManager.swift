@@ -146,7 +146,13 @@ class DataManager {
         }
         save()
     }
-
+    
+    // returns the 
+    func getDataForFilter() {
+        
+    }
+    
+    
     // MARK: Count the categories and ads.
 
     // TODO: Move outside if only test

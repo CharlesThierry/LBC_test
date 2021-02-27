@@ -23,7 +23,7 @@ enum JSONClassified: String, CodingKey {
     case title
     case description
     case price
-    case images_urls
+    case images_url
     case creation_date
     case is_urgent
     case siret

@@ -8,16 +8,16 @@
 import Foundation
 
 protocol ImagesProtocol {
-    var title: ClassifiedImagesTitle { get }
-    var url: URL { get }
+    var title: ClassifiedImagesTitle? { get }
+    var url: URL? { get }
 }
 
 class ImagesDescription: ImagesProtocol {
-    internal var title: ClassifiedImagesTitle
-    internal var url: URL
+    internal var title: ClassifiedImagesTitle?
+    internal var url: URL?
 
-    init(title: ClassifiedImagesTitle,
-         url: URL)
+    init(title: ClassifiedImagesTitle?,
+         url: URL?)
     {
         self.title = title
         self.url = url
