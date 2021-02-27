@@ -16,7 +16,9 @@ class Model {
 
     let dataManager = DataManager()
 
-    func initModelData() {}
+    func initModelData() {
+        fillCategoryData()
+    }
 
     func fillCategoryData() {
         let c = URL(string: category)
@@ -38,6 +40,7 @@ class Model {
                     return
                 case .success(let catArray):
                     self.dataManager.addCategories(catArray)
+                    self.fillClassifiedData()
                     return
                 }
             }
