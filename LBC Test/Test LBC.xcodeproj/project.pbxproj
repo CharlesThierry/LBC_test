@@ -22,6 +22,7 @@
 		FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF9125E7C73700CD2689 /* ViewController.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
 		FBD2EFB025E7C73800CD2689 /* LBC_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */; };
+		FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF7E3EA25EA607200E31E4A /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		FBD2EFAB25E7C73800CD2689 /* Test LBCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test LBCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_TestUITests.swift; sourceTree = "<group>"; };
 		FBD2EFB125E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBF7E3EA25EA607200E31E4A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				FB7709FA25E8409F005C322B /* CoreData */,
 				FB042FD125E943BC001ACCC1 /* Network */,
+				FBF7E3EA25EA607200E31E4A /* Model.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				FB042FA725E8F35C001ACCC1 /* TestRandomClassified.swift in Sources */,
 				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
 				FBD2EF9225E7C73700CD2689 /* ViewController.swift in Sources */,
+				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
 				FB01D4DA25EA33A40000F950 /* DateFormatter+Custom.swift in Sources */,
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,

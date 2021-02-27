@@ -61,5 +61,3 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
         return Result.failure(.dataConversionError)
     }
 }
-
-func populateItemsDescriptions() {}
