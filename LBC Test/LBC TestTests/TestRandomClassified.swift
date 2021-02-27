@@ -36,7 +36,7 @@ class TestClassified: ClassifiedProtocol {
     var categoryID: Int?
     var siret: String?
 
-    var images: [ClassifiedImagesTitle: URL]?
+    var images: [ImagesDescription]?
 
     init() {
         let tID = Int.random(in: 0 ..< 20000)
@@ -48,8 +48,10 @@ class TestClassified: ClassifiedProtocol {
         urgent = Bool.random()
         siret = Bool.random() ? "" : "siret of \(tID)."
         creationDate = getRandomDate()
-        images = [.small: URL(string: "https://example.com/imagesSmall-\(tID).jpg")!,
-                  .thumb: URL(string: "https://example.com/imagesThumb-\(tID).jpg")!]
+        var imDescrip = [ImagesDescription]()
+        imDescrip.append(ImagesDescription(title: .small, url: "https://example.com/imagesSmall-\(tID).jpg"))
+        imDescrip.append(ImagesDescription(title: .thumb, url: "https://example.com/imagesThumb-\(tID).jpg"))
+        images = imDescrip
         categoryID = Int.random(in: 0 ..< maxCategoryID)
     }
 
@@ -62,8 +64,10 @@ class TestClassified: ClassifiedProtocol {
         urgent = Bool.random()
         siret = Bool.random() ? "" : "siret of \(id)."
         creationDate = getRandomDate()
-        images = [.small: URL(string: "https://example.com/imagesSmall-\(id).jpg")!,
-                  .thumb: URL(string: "https://example.com/imagesThumb-\(id).jpg")!]
+        var imDescrip = [ImagesDescription]()
+        imDescrip.append(ImagesDescription(title: .small, url: "https://example.com/imagesSmall-\(id).jpg"))
+        imDescrip.append(ImagesDescription(title: .thumb, url: "https://example.com/imagesThumb-\(id).jpg"))
+        images = imDescrip
     }
 }
 

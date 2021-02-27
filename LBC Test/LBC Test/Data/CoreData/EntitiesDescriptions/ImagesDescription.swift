@@ -9,17 +9,20 @@ import Foundation
 
 protocol ImagesProtocol {
     var title: ClassifiedImagesTitle? { get }
-    var url: URL? { get }
+    var url: String? { get }
 }
 
 class ImagesDescription: ImagesProtocol {
     internal var title: ClassifiedImagesTitle?
-    internal var url: URL?
+    internal var url: String?
 
     init(title: ClassifiedImagesTitle?,
-         url: URL?)
+         url: String?)
     {
+        guard let optURL = url else {
+            fatalError("URL is empty")
+        }
         self.title = title
-        self.url = url
+        self.url = optURL
     }
 }

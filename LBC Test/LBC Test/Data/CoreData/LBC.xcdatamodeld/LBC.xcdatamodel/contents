@@ -18,7 +18,7 @@
     </entity>
     <entity name="Images" representedClassName="Images" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="oneClassified" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classified" inverseName="manyImages" inverseEntity="Classified"/>
     </entity>
     <elements>

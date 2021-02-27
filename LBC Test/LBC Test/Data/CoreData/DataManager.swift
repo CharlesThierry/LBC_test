@@ -157,15 +157,15 @@ class DataManager {
 
         let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
         let classified = Classified(entity: classifiedED!, insertInto: context)
-        classified.creationDate = c.creationDate
-
+        
         classified.id = Int64(id)
         classified.longDesc = c.description
         classified.title = c.title
         classified.price = c.price ?? -1
         classified.siret = c.siret
         classified.urgent = c.urgent ?? false
-
+        classified.creationDate = c.creationDate
+        
         // Fetch the category to link to this classified
         let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
         fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
@@ -174,11 +174,11 @@ class DataManager {
         classified.oneCategory = category?.first
 
         // TODO: can there be multiple images with the same URLs?
-        for (t, u) in c.images! {
+        for description in c.images! {
             let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
             let images = Images(entity: imageED!, insertInto: context)
-            images.title = t.rawValue
-            images.url = u
+            images.title = description.title?.rawValue
+            images.url = description.url
             images.oneClassified = classified
         }
     }

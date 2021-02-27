@@ -20,7 +20,7 @@ protocol ClassifiedProtocol {
     var creationDate: Date? { get }
 
     var categoryID: Int? { get }
-    var images: [ClassifiedImagesTitle: URL]? { get }
+    var images: [ImagesDescription]? { get }
 }
 
 class ClassifiedDescription: ClassifiedProtocol, Decodable {
@@ -33,7 +33,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
     var categoryID: Int?
     var siret: String?
 
-    internal var images: [ClassifiedImagesTitle: URL]?
+    internal var images: [ImagesDescription]?
 
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONClassified.self)
@@ -51,9 +51,10 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         guard let urls = imagesUrl else { return }
         var imagesSet = [ImagesDescription]()
         for (k, v) in urls {
-            let imageDescription = ImagesDescription(title: ClassifiedImagesTitle(rawValue: k), url: URL(string: v))
+            let imageDescription = ImagesDescription(title: ClassifiedImagesTitle(rawValue: k), url: v)
             imagesSet.append(imageDescription)
         }
+        self.images = imagesSet
     }
 
     init(id: Int,
@@ -63,7 +64,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
          urgent: Bool,
          siret: String?,
          creationDate: Date,
-         images: [ClassifiedImagesTitle: URL],
+         images: [ImagesDescription],
          categoryID: Int)
     {
         self.id = id
