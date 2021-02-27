@@ -6,10 +6,10 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
-//FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
+// FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
 protocol ClassifiedProtocol {
     var id: Int64? { get }
     var title: String? { get }
@@ -24,7 +24,6 @@ protocol ClassifiedProtocol {
 }
 
 class ClassifiedDescription: ClassifiedProtocol, Decodable {
-
     var id: Int64?
     var title: String?
     var description: String?
@@ -49,15 +48,16 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         self.creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
     }
 
-    init (id: Int64,
-        title: String,
-        desc: String,
-        price: Float,
-        urgent: Bool,
-        siret: String?,
-        creationDate: Date,
-        images: [ClassifiedImagesTitle: URL],
-        categoryID: Int) {
+    init(id: Int64,
+         title: String,
+         desc: String,
+         price: Float,
+         urgent: Bool,
+         siret: String?,
+         creationDate: Date,
+         images: [ClassifiedImagesTitle: URL],
+         categoryID: Int)
+    {
         self.id = id
         self.title = title
         self.description = desc

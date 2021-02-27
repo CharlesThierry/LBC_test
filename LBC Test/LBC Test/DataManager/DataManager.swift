@@ -5,8 +5,8 @@
 //  Created by Charles Thierry on 25/02/2021.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 /*
  Basic CoreData implementation to store the information fetched from the JSON URLs in a database.
@@ -16,7 +16,7 @@ class DataManager {
     lazy var container: NSPersistentContainer = {
         // setting up the container with the most basic undo&merge options
         let container = NSPersistentContainer(name: CoreDataConstant.modelName)
-        container.loadPersistentStores(completionHandler: { (_, error) in
+        container.loadPersistentStores(completionHandler: { _, error in
             guard let error = error as NSError? else { return }
             fatalError("COreData Container load error: \(error), \(error.userInfo)")
         })
@@ -34,7 +34,7 @@ class DataManager {
         return context
     }()
 
-    init () {
+    init() {
         storeSetup()
     }
 
@@ -45,13 +45,14 @@ class DataManager {
         description.url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             .first?.appendingPathComponent(CoreDataConstant.dbName)
         container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { (_, error) in
+        container.loadPersistentStores { _, error in
             guard let error = error as NSError? else { return }
             fatalError("CoreData Store load error \(error), \(error.userInfo)")
         }
     }
 
-    //MARK: Purge will remove all data from the store
+    // MARK: Purge will remove all data from the store
+
     internal func purgeInternal(entityName: CoreDataEntityNames) {
         let request = NSFetchRequest<NSManagedObject>()
         request.entity = NSEntityDescription.entity(forEntityName: entityName.rawValue, in: context)
@@ -65,11 +66,11 @@ class DataManager {
         classified.forEach { c in
             context.delete(c)
         }
-
     }
-    func purge () {
+
+    func purge() {
         context.performAndWait {
-            //TODO: Could probably be done by changing the deletion rule of the model & only deleting categories
+            // TODO: Could probably be done by changing the deletion rule of the model & only deleting categories
             purgeInternal(entityName: CoreDataEntityNames.Category)
             purgeInternal(entityName: CoreDataEntityNames.Classified)
             purgeInternal(entityName: CoreDataEntityNames.Images)
@@ -77,7 +78,8 @@ class DataManager {
         save()
     }
 
-    //MARK: Save the context
+    // MARK: Save the context
+
     func save() {
         context.performAndWait {
             if context.hasChanges {
@@ -94,9 +96,10 @@ class DataManager {
         }
     }
 
-    //MARK: Insert Data
+    // MARK: Insert Data
+
     func addCategories(_ cArray: [CategoryProtocol]) {
-        //TODO: check if the id doesn't already exist ?
+        // TODO: check if the id doesn't already exist ?
         context.performAndWait {
             for c in cArray {
                 let fetch = NSFetchRequest<Category>()
@@ -111,7 +114,7 @@ class DataManager {
                     fatalError("CoreData Category add check fail \(error)")
                 }
                 guard count == 0 else { continue } // there is already a category with that ID.
-                //TODO: Check if the name shouldn't be overriden ?
+                // TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
                 category.id = id
@@ -123,7 +126,7 @@ class DataManager {
 
     func addClassified(_ c: ClassifiedProtocol) {
         context.performAndWait {
-            //TODO: check if the id doesn't already exist ?
+            // TODO: check if the id doesn't already exist ?
             let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
             let classified = Classified(entity: entity!, insertInto: context)
             classified.creationDate = c.creationDate
@@ -145,6 +148,7 @@ class DataManager {
     }
 
     // MARK: Count the categories and ads.
+
     // TODO: Move outside if only test
     func count(entity: CoreDataEntityNames) -> Int {
         let countRequest = NSFetchRequest<NSFetchRequestResult>()
@@ -152,7 +156,7 @@ class DataManager {
         countRequest.includesSubentities = false
         var count = 0
         do {
-            count = try self.container.viewContext.count(for: countRequest)
+            count = try container.viewContext.count(for: countRequest)
         } catch {
             fatalError("CoreData Context Count error \(error)")
         }
@@ -162,5 +166,4 @@ class DataManager {
     func count() -> Int {
         return count(entity: CoreDataEntityNames.Classified)
     }
-
 }

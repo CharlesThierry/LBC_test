@@ -10,7 +10,6 @@ import Foundation
 protocol ImagesProtocol {
     var title: ClassifiedImagesTitle { get }
     var url: URL { get }
-
 }
 
 class ImagesDescription: ImagesProtocol {
@@ -18,7 +17,8 @@ class ImagesDescription: ImagesProtocol {
     internal var url: URL
 
     init(title: ClassifiedImagesTitle,
-        url: URL) {
+         url: URL)
+    {
         self.title = title
         self.url = url
     }

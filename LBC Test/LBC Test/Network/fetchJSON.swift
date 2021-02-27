@@ -24,7 +24,7 @@ func fetchJson(url: URL, completion: @escaping (Result<Data, FetchingError>) -> 
     var request = URLRequest(url: url)
 
     request.httpMethod = "GET"
-    let task = session.dataTask(with: request) { (data, response, error) in
+    let task = session.dataTask(with: request) { data, response, error in
         if let _ = error {
             print("Couldn't download the file at \(url)")
             completion(Result.failure(.downloadError))
@@ -57,7 +57,4 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
     }
 }
 
-
-func populateItemsDescriptions () {
-
-}
+func populateItemsDescriptions() {}
