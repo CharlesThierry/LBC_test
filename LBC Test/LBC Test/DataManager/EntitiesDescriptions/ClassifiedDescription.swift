@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+//FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
 protocol ClassifiedProtocol {
     var id: Int64? { get }
     var title: String? { get }
@@ -44,6 +45,8 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
         self.urgent = try c.decodeIfPresent(Bool.self, forKey: .is_urgent)
         self.siret = try c.decodeIfPresent(String.self, forKey: .siret)
         self.categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
+        // TODO: Date stays at nil, check why the JSONDecoder fails
+        self.creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
     }
 
     init (id: Int64,
