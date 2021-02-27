@@ -13,13 +13,16 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var model: Model!
+    var model = Model()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        model = Model()
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = ViewController()
+        let viewController = ViewController()
+        viewController.view.bounds = UIScreen.main.bounds
+        model.viewController = viewController
+        viewController.model = model
+        window.rootViewController = viewController
         window.makeKeyAndVisible()
         self.window = window
         return true
