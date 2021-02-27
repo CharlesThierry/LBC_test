@@ -32,16 +32,13 @@ class Model {
                 // TODO: handle error / warn user
                 return
             case .success(let data):
-                // TODO: load category in memory
                 let generateResult = generateItemsDescriptions(data: data, type: [CategoryDescription].self)
                 switch generateResult {
                 case .failure(let error):
                     print("Can't generate descriptions \(error)")
-                    return
                 case .success(let catArray):
                     self.dataManager.addCategories(catArray)
                     self.fillClassifiedData()
-                    return
                 }
             }
         }
@@ -59,15 +56,12 @@ class Model {
                 // TODO: handle error / warn user
                 return
             case .success(let data):
-                // TODO: load category in memory
                 let generateResult = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
                 switch generateResult {
                 case .failure(let error):
                     print("Can't generate descriptions \(error)")
-                    return
                 case .success(let catArray):
                     self.dataManager.addClassifieds(catArray)
-                    return
                 }
             }
         }

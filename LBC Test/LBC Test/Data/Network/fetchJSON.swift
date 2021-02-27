@@ -50,10 +50,8 @@ func fetchJson(url: URL, completion: @escaping (Result<Data, FetchingError>) -> 
 func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionArray.Type) -> Result<DescriptionArray, ConversionError> where DescriptionArray: Decodable {
     do {
         let decoder = JSONDecoder()
-
         // date format needs a custom formatter to be decoded
         decoder.dateDecodingStrategy = .formatted(DateFormatter.custom)
-
         let array = try decoder.decode(type, from: data)
         return Result.success(array)
     } catch {
