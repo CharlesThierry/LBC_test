@@ -17,6 +17,7 @@
 		FB04E77C25EAF00500F39BB9 /* DataManager+tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */; };
 		FB04E78F25EB859700F39BB9 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E78E25EB859700F39BB9 /* SplitViewController.swift */; };
 		FB04E79725EB893F00F39BB9 /* SecondaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E79625EB893F00F39BB9 /* SecondaryViewController.swift */; };
+		FB04E7BA25EB97E900F39BB9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB04E7B925EB97E900F39BB9 /* Launch Screen.storyboard */; };
 		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
@@ -58,6 +59,7 @@
 		FB04E77725EADC0700F39BB9 /* DataManager+tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+tests.swift"; sourceTree = "<group>"; };
 		FB04E78E25EB859700F39BB9 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		FB04E79625EB893F00F39BB9 /* SecondaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryViewController.swift; sourceTree = "<group>"; };
+		FB04E7B925EB97E900F39BB9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FB770A0625E84183005C322B /* LBC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LBC.xcdatamodel; sourceTree = "<group>"; };
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				FB01D4E825EA35B20000F950 /* Data */,
 				FBD2EF9625E7C73800CD2689 /* Assets.xcassets */,
 				FBD2EF9B25E7C73800CD2689 /* Info.plist */,
+				FB04E7B925EB97E900F39BB9 /* Launch Screen.storyboard */,
 			);
 			path = "LBC Test";
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB04E7BA25EB97E900F39BB9 /* Launch Screen.storyboard in Resources */,
 				FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
