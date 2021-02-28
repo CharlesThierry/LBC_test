@@ -11,8 +11,38 @@ import Foundation
 let category = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
-class Model: NSObject, NSFetchedResultsControllerDelegate {
+/*
+ The MainViewController is tasked with displaying the list of Classified ads. As such,
+ it is provided with a FetchedResultsController to be notified of changes in the coreData
+ store. This fetchedResultController is init'd by the Model and retained by the MainCVC
+ */
+protocol PrimaryCVController: AnyObject, NSFetchedResultsControllerDelegate {
+    
+    var resultController: NSFetchedResultsController<Classified>! {get set}
+    func reloadData()
+}
+
+/*
+ The DetailCVC shows all content available for the selected Classified ad.
+ */
+protocol SecondaryCVController: AnyObject {
+    //add information
+    func showClassifiedInformation(desc: ClassifiedDescription)
+}
+
+// Model handles information distribution to both the main view and the detail view
+class Model: NSObject {
     let dataManager = DataManager()
+
+    weak var primaryC : PrimaryCVController!
+    weak var secondaryC : SecondaryCVController!
+    
+    init(primary: PrimaryCVController, secondary: SecondaryCVController) {
+        primaryC = primary
+        primaryC.resultController = self.dataManager.fetchController
+        primaryC.resultController.delegate = primaryC
+        secondaryC = secondary
+    }
 
     func initModelData(completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .background).async {

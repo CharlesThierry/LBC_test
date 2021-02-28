@@ -9,9 +9,15 @@ import UIKit
 
 import CoreData
 
-class MainViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-    weak var model: Model!
-    weak var resultController: NSFetchedResultsController<Classified>!
+class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDelegate, PrimaryCVController {
+    
+    var resultController: NSFetchedResultsController<Classified>!
+    
+    func reloadData() {
+        self.tableView.reloadData()
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +35,14 @@ class MainViewController: UITableViewController, NSFetchedResultsControllerDeleg
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Rows")
         guard let controller = resultController else {
             return 0
         }
         guard let sectionInfo = controller.sections?[section] else {
             return 0
         }
+        print("\(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
 

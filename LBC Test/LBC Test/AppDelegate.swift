@@ -13,30 +13,20 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var model = Model()
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Init the window and the main controller
         let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let viewController = MainViewController()
-        // link the fetchResultController to the viewController
-        viewController.resultController = self.model.dataManager.fetchController
-        viewController.resultController.delegate = viewController
-        viewController.model = self.model
-
-        viewController.view.bounds = UIScreen.main.bounds
+        let viewController = SplitViewController()
+        
         window.rootViewController = viewController
         window.makeKeyAndVisible()
+        viewController.view.bounds = UIScreen.main.bounds
+        
         self.window = window
-
-        // fetch the data then update the UI
-        self.model.initModelData {
-            DispatchQueue.main.async {
-                viewController.tableView.reloadData()
-            }
-        }
-
+    
         return true
     }
 
