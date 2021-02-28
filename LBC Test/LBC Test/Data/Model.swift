@@ -92,7 +92,6 @@ class Model: NSObject {
                     self.dataManager.addClassifieds(catArray)
                 }
             }
-            try? self.dataManager.fetchController?.performFetch()
             completion()
         }
     }
