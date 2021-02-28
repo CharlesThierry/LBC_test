@@ -44,11 +44,11 @@ class MainCellView: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(titleLabel)
-        addSubview(categoryLabel)
-        addSubview(priceLabel)
-        addSubview(picture)
-        addSubview(isUrgentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(categoryLabel)
+        contentView.addSubview(priceLabel)
+        contentView.addSubview(picture)
+        contentView.addSubview(isUrgentView)
     }
 
     override func prepareForReuse() {
