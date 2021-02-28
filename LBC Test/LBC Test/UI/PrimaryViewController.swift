@@ -10,23 +10,13 @@ import UIKit
 import CoreData
 
 class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDelegate, PrimaryCVController {
-    
     var resultController: NSFetchedResultsController<Classified>!
-    
-    func reloadData() {
-        self.tableView.reloadData()
-    }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor.white
-        self.tableView.register(MainCellView.self, forCellReuseIdentifier: ClassifiedReuseIdentifier)
+        tableView.register(MainCellView.self, forCellReuseIdentifier: ClassifiedReuseIdentifier)
     }
-
-    override func viewWillAppear(_ animated: Bool) {}
 
     // MARK: Collection View
 
@@ -35,14 +25,9 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Rows")
-        guard let controller = resultController else {
+        guard let sectionInfo = resultController.sections?[section] else {
             return 0
         }
-        guard let sectionInfo = controller.sections?[section] else {
-            return 0
-        }
-        print("\(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
 
@@ -64,7 +49,7 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .left)
         case .insert:
-            tableView.insertRows(at: [indexPath!], with: .left)
+            tableView.insertRows(at: [newIndexPath!], with: .left)
         case .move:
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
         case .update:

@@ -9,19 +9,25 @@ import UIKit
 
 class SplitViewController: UISplitViewController {
     var model: Model!
+    weak var primary: PrimaryViewController!
+    weak var secondary: SecondaryViewController!
+
+    func initSubControllers() {
+        let tPrimary = PrimaryViewController()
+        primary = tPrimary
+        let tSecondary = SecondaryViewController()
+        secondary = tSecondary
+        viewControllers = [UINavigationController(rootViewController: tPrimary),
+                           UINavigationController(rootViewController: tSecondary)]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let primary = PrimaryViewController()
-        let secondary = SecondaryViewController()
-        viewControllers = [primary, secondary]
-        model = Model(primary: primary, secondary: secondary)
+        model = Model(primary: primary!,
+                      secondary: secondary!)
         // Do any additional setup after loading the view.
 
         model.initModelData {
-            DispatchQueue.main.async {
-                primary.reloadData()
-            }
         }
     }
 

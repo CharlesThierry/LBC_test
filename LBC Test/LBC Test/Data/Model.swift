@@ -19,7 +19,7 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
 protocol PrimaryCVController: AnyObject, NSFetchedResultsControllerDelegate {
     
     var resultController: NSFetchedResultsController<Classified>! {get set}
-    func reloadData()
+
 }
 
 /*
