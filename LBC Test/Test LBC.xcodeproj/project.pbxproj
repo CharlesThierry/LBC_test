@@ -18,6 +18,7 @@
 		FB04E78F25EB859700F39BB9 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E78E25EB859700F39BB9 /* SplitViewController.swift */; };
 		FB04E79725EB893F00F39BB9 /* SecondaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E79625EB893F00F39BB9 /* SecondaryViewController.swift */; };
 		FB04E7BA25EB97E900F39BB9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB04E7B925EB97E900F39BB9 /* Launch Screen.storyboard */; };
+		FB04E7E325EBB68400F39BB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04E7E225EBB68400F39BB9 /* SceneDelegate.swift */; };
 		FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FB770A0525E84183005C322B /* LBC.xcdatamodeld */; };
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
@@ -60,6 +61,7 @@
 		FB04E78E25EB859700F39BB9 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		FB04E79625EB893F00F39BB9 /* SecondaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryViewController.swift; sourceTree = "<group>"; };
 		FB04E7B925EB97E900F39BB9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		FB04E7E225EBB68400F39BB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FB770A0625E84183005C322B /* LBC.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LBC.xcdatamodel; sourceTree = "<group>"; };
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */,
+				FB04E7E225EBB68400F39BB9 /* SceneDelegate.swift */,
 				FB01D4E625EA359B0000F950 /* UI */,
 				FB770A7C25E84FC6005C322B /* Constants & Aux */,
 				FB01D4E825EA35B20000F950 /* Data */,
@@ -351,6 +354,7 @@
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
 				FB01D4DA25EA33A40000F950 /* DateFormatter+Custom.swift in Sources */,
+				FB04E7E325EBB68400F39BB9 /* SceneDelegate.swift in Sources */,
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,
 				FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */,
 				FB042FA225E8F17A001ACCC1 /* ImagesDescription.swift in Sources */,

@@ -15,17 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Init the window and the main controller
-        let window = UIWindow(frame: UIScreen.main.bounds)
+        if #available(iOS 13, *) {
+            // on 13+ we work with SceneDelegate
+        } else {
+            // Init the window and the main controller
+            let window = UIWindow(frame: UIScreen.main.bounds)
 
-        let viewController = SplitViewController()
-        viewController.initSubControllers()
-        window.rootViewController = viewController
-        window.makeKeyAndVisible()
-        viewController.view.bounds = UIScreen.main.bounds
+            let viewController = SplitViewController()
+            viewController.initSubControllers()
+            window.rootViewController = viewController
+            window.makeKeyAndVisible()
+            viewController.view.bounds = UIScreen.main.bounds
 
-        self.window = window
-
+            self.window = window
+        }
         return true
     }
 
