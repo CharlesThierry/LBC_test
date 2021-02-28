@@ -16,8 +16,8 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
  it is provided with a FetchedResultsController to be notified of changes in the coreData
  store. This fetchedResultController is init'd by the Model and retained by the MainCVC
  */
-protocol PrimaryCVController: AnyObject, NSFetchedResultsControllerDelegate {
-    var resultController: NSFetchedResultsController<Entry>! { get set }
+protocol PrimaryCVController: FetchResultUpdates {
+    
 }
 
 /*
@@ -30,19 +30,19 @@ protocol SecondaryCVController: AnyObject {
 // Model handles information distribution to both the main view and the detail view
 class Model: NSObject {
     let dataManager = DataManager()
-
+        
     weak var primaryC: PrimaryCVController!
     weak var secondaryC: SecondaryCVController!
 
     init(primary: PrimaryCVController, secondary: SecondaryCVController) {
         primaryC = primary
-        primaryC.resultController = dataManager.fetchController
-        primaryC.resultController.delegate = primaryC
+        primaryC.results = FetchResults(dataManager.fetchController!)
         secondaryC = secondary
     }
 
     func initModelData(completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .background).async {
+            self.dataManager.purge()
             self.fillCategoryData(completion)
         }
     }

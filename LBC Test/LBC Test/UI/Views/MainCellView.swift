@@ -12,10 +12,10 @@ let ClassifiedReuseIdentifier = "classifiedReuseIdentifier"
 class MainCellView: UITableViewCell {
     static var reuseIdentifier: String? { ClassifiedReuseIdentifier }
 
-    var ad: Entry? { didSet {
+    var ad: ClassifiedDescription? { didSet {
         let formatter1 = DateFormatter()
         formatter1.dateStyle = .short
-        titleLabel.text = formatter1.string(from: ad!.creationDate!)
+        titleLabel.text = formatter1.string(from: ad!.creationDate)
 
         if !ad!.urgent { isUrgentView.backgroundColor = UIColor.green }
         else { isUrgentView.backgroundColor = UIColor.red }

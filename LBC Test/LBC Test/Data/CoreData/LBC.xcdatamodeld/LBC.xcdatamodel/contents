@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
         <relationship name="manyClassified" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="oneCategory" inverseEntity="Entry"/>
     </entity>
     <entity name="Entry" representedClassName="Entry" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="longDesc" optional="YES" attributeType="String"/>
+        <attribute name="creationDate" attributeType="Date" defaultDateTimeInterval="-978310800" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="longDesc" attributeType="String" defaultValueString=""/>
         <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="siret" optional="YES" attributeType="String"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="urgent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <attribute name="urgent" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="manyImages" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="oneClassified" inverseEntity="Image"/>
         <relationship name="oneCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="manyClassified" inverseEntity="Category"/>
     </entity>
     <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="url" attributeType="String"/>
         <relationship name="oneClassified" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="manyImages" inverseEntity="Entry"/>
     </entity>
     <elements>
+        <element name="Category" positionX="-54" positionY="36" width="128" height="74"/>
         <element name="Entry" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="Image" positionX="-54" positionY="36" width="128" height="74"/>
-        <element name="Category" positionX="-54" positionY="36" width="128" height="74"/>
     </elements>
 </model>

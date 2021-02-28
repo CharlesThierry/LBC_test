@@ -205,6 +205,6 @@ class DataManager {
 
         fetchController = NSFetchedResultsController<Entry>(fetchRequest: request, managedObjectContext:
             container.viewContext, sectionNameKeyPath: nil, cacheName: CoreDataConstant.cacheName)
-        try? fetchController?.performFetch()
+        try? fetchController!.performFetch()
     }
 }
