@@ -10,15 +10,24 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class MainViewController: UICollectionViewController, PrimaryCVController {
+    weak var model: Model!
+
     var results: FetchResults? { didSet {
         results?.delegate = self
     }}
 
-    var model = Model()
-
-    override func viewDidLoad() {
+    init(collectionViewLayout layout: UICollectionViewLayout, model: Model) {
+        super.init(collectionViewLayout: layout)
         model.initModelData {}
         model.primary = self
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         super.viewDidLoad()
     }
@@ -46,7 +55,7 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-
+        cell.backgroundColor = .red
         // Configure the cell
 
         return cell
@@ -57,23 +66,17 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
             let insertsOp = changes[.insert]
             if insertsOp != nil {
                 let inserts = insertsOp?.map { _, index in index! }
-                print("Adding \(inserts?.count) items")
                 collectionView.insertItems(at: inserts!)
             }
-            
+
             let deletesOp = changes[.delete]
             if deletesOp != nil {
-
-                let deletes = deletesOp?.map {
-                    _, index in index!
-                    
-                }
+                let deletes = deletesOp?.map { index, _ in index! }
                 collectionView.deleteItems(at: deletes!)
             }
-            
-            let movesOp = changes[.delete]
+
+            let movesOp = changes[.move]
             if movesOp != nil {
-                print("Moving \(movesOp?.count) items")
                 for c in movesOp! {
                     collectionView.moveItem(at: c.0!, to: c.1!)
                 }

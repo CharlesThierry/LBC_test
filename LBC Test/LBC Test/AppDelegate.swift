@@ -13,7 +13,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
+    var model = Model()
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if #available(iOS 13, *) {
             // on 13+ we work with SceneDelegate
@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Init the window and the main controller
             let window = UIWindow(frame: UIScreen.main.bounds)
 
-            let viewController = MainViewController()
+            let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout(), model: model)
             window.rootViewController = viewController
             window.makeKeyAndVisible()
             viewController.view.bounds = UIScreen.main.bounds

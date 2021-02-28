@@ -74,7 +74,6 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     }
     
     func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        print("changes!")
         var operation: FetchChange = .update
         guard let operations = changeOperations else { fatalError("Illegal change operation") }
         
@@ -82,7 +81,6 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
         case .insert:
             operation = .insert
         case .delete:
-            print("Old \(indexPath) New \(newIndexPath)")
             operation = .delete
         case .move:
             operation = .move
