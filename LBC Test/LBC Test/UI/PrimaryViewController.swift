@@ -33,6 +33,7 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ClassifiedReuseIdentifier, for: indexPath) as! MainCellView
+        cell.ad = resultController.object(at: indexPath)
         return cell
     }
 

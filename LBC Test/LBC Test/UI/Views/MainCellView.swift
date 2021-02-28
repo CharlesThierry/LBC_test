@@ -12,8 +12,21 @@ let ClassifiedReuseIdentifier = "classifiedReuseIdentifier"
 class MainCellView: UITableViewCell {
     static var reuseIdentifier: String? { ClassifiedReuseIdentifier }
 
+    var ad: Classified? { didSet {
+        let formatter1 = DateFormatter()
+        formatter1.dateStyle = .short
+        titleLabel.text = formatter1.string(from: ad!.creationDate!)
+
+        if !ad!.urgent { isUrgentView.backgroundColor = UIColor.green }
+        else { isUrgentView.backgroundColor = UIColor.red }
+
+    }}
+
     var titleLabel: UILabel = {
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 10)
+        label.numberOfLines = 0
         return label
     }()
 
@@ -33,7 +46,7 @@ class MainCellView: UITableViewCell {
     }()
 
     var isUrgentView: UIView = {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         return view
     }()
 
@@ -49,6 +62,20 @@ class MainCellView: UITableViewCell {
         contentView.addSubview(priceLabel)
         contentView.addSubview(picture)
         contentView.addSubview(isUrgentView)
+        setupUIConstraints()
+    }
+
+    func setupUIConstraints() {
+        NSLayoutConstraint.activate([
+            isUrgentView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
+            isUrgentView.leftAnchor.constraint(greaterThanOrEqualTo: contentView.leftAnchor),
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
+            titleLabel.leftAnchor.constraint(greaterThanOrEqualTo: contentView.leftAnchor),
+            titleLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
     }
 
     override func prepareForReuse() {

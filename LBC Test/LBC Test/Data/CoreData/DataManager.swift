@@ -141,47 +141,55 @@ class DataManager {
     }
 
     func addClassifieds(_ cArray: [ClassifiedProtocol]) {
+        var count = 0
         for c in cArray {
-            addClassified(c)
+            context.performAndWait {
+                addClassified(c)
+            }
+            count += 1
+            if count == fetchBatchSize {
+                save()
+                count = 0
+            }
+        }
+        if count != 0 {
+            save()
         }
     }
 
     internal func addClassified(_ c: ClassifiedProtocol) {
-        context.performAndWait {
-            guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
-            let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
-            if !isNew {
-                return
-            }
-
-            let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
-            let classified = Classified(entity: classifiedED!, insertInto: context)
-
-            classified.id = Int64(id)
-            classified.longDesc = c.description
-            classified.title = c.title
-            classified.price = c.price ?? -1
-            classified.siret = c.siret
-            classified.urgent = c.urgent ?? false
-            classified.creationDate = c.creationDate
-
-            // Fetch the category to link to this classified
-            let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
-            fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
-
-            let category = try? context.fetch(fetch)
-            classified.oneCategory = category?.first
-
-            // TODO: can there be multiple images with the same URLs?
-            for description in c.images! {
-                let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
-                let images = Images(entity: imageED!, insertInto: context)
-                images.title = description.title?.rawValue
-                images.url = description.url
-                images.oneClassified = classified
-            }
+        guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
+        let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
+        if !isNew {
+            return
         }
-        save()
+
+        let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
+        let classified = Classified(entity: classifiedED!, insertInto: context)
+
+        classified.id = Int64(id)
+        classified.longDesc = c.description
+        classified.title = c.title
+        classified.price = c.price ?? -1
+        classified.siret = c.siret
+        classified.urgent = c.urgent ?? false
+        classified.creationDate = c.creationDate
+
+        // Fetch the category to link to this classified
+        let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
+        fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
+
+        let category = try? context.fetch(fetch)
+        classified.oneCategory = category?.first
+
+        // TODO: can there be multiple images with the same URLs?
+        for description in c.images! {
+            let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
+            let images = Images(entity: imageED!, insertInto: context)
+            images.title = description.title?.rawValue
+            images.url = description.url
+            images.oneClassified = classified
+        }
     }
 
     // MARK: Using fetchResultsController to update the collectionview
