@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDelegate, PrimaryCVController {
-    var resultController: NSFetchedResultsController<Classified>!
+    var resultController: NSFetchedResultsController<Entry>!
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -17,15 +17,14 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
  store. This fetchedResultController is init'd by the Model and retained by the MainCVC
  */
 protocol PrimaryCVController: AnyObject, NSFetchedResultsControllerDelegate {
-    var resultController: NSFetchedResultsController<Classified>! { get set }
+    var resultController: NSFetchedResultsController<Entry>! { get set }
 }
 
 /*
  The DetailCVC shows all content available for the selected Classified ad.
  */
 protocol SecondaryCVController: AnyObject {
-    // add information
-    func showClassifiedInformation(desc: ClassifiedDescription)
+    func showClassifiedInformation(desc: EntryDescription)
 }
 
 // Model handles information distribution to both the main view and the detail view
@@ -67,29 +66,29 @@ class Model: NSObject {
                     print("Can't generate descriptions \(error)")
                 case let .success(catArray):
                     self.dataManager.addCategories(catArray)
-                    self.fillClassifiedData(completion)
+                    self.fillEntryData(completion)
                 }
             }
         }
     }
 
-    func fillClassifiedData(_ completion: @escaping () -> Void) {
+    func fillEntryData(_ completion: @escaping () -> Void) {
         let c = URL(string: listing)
-        guard let classifiedURL = c else {
+        guard let entryURL = c else {
             fatalError("Model Categorystring not a URL")
         }
-        fetchJson(url: classifiedURL) { fetchResult in
+        fetchJson(url: entryURL) { fetchResult in
             switch fetchResult {
             case let .failure(error):
                 print("Can't fetch category information \(error)")
             // TODO: handle error / warn user
             case let .success(data):
-                let generateResult = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
+                let generateResult = generateItemsDescriptions(data: data, type: [EntryDescription].self)
                 switch generateResult {
                 case let .failure(error):
                     print("Can't generate descriptions \(error)")
                 case let .success(catArray):
-                    self.dataManager.addClassifieds(catArray)
+                    self.dataManager.addEntries(catArray)
                 }
             }
             completion()

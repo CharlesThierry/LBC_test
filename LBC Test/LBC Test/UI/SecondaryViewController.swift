@@ -8,7 +8,7 @@
 import UIKit
 
 class SecondaryViewController: UIViewController, SecondaryCVController {
-    func showClassifiedInformation(desc _: ClassifiedDescription) {}
+    func showClassifiedInformation(desc _: EntryDescription) {}
 
     override func viewDidLoad() {
         super.viewDidLoad()

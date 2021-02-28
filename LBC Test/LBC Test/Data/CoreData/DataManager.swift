@@ -75,8 +75,8 @@ class DataManager {
         context.performAndWait {
             // TODO: Could probably be done by changing the deletion rule of the model & only deleting categories
             purgeInternal(entityName: CoreDataEntityNames.Category)
-            purgeInternal(entityName: CoreDataEntityNames.Classified)
-            purgeInternal(entityName: CoreDataEntityNames.Images)
+            purgeInternal(entityName: CoreDataEntityNames.Entry)
+            purgeInternal(entityName: CoreDataEntityNames.Image)
         }
         save()
     }
@@ -140,11 +140,11 @@ class DataManager {
         save()
     }
 
-    func addClassifieds(_ cArray: [ClassifiedProtocol]) {
+    func addEntries(_ cArray: [EntryProtocol]) {
         var count = 0
         for c in cArray {
             context.performAndWait {
-                addClassified(c)
+                addEntry(c)
             }
             count += 1
             if count == fetchBatchSize {
@@ -157,53 +157,53 @@ class DataManager {
         }
     }
 
-    internal func addClassified(_ c: ClassifiedProtocol) {
+    internal func addEntry(_ c: EntryProtocol) {
         guard let id = c.id else { fatalError("CoreData Can't add a classified w/o an ID") }
-        let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Classified)
+        let isNew = checkIfEntryExists(id: id, name: CoreDataEntityNames.Entry)
         if !isNew {
             return
         }
 
-        let classifiedED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Classified.rawValue, in: context)
-        let classified = Classified(entity: classifiedED!, insertInto: context)
+        let entryEntity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Entry.rawValue, in: context)
+        let entry = Entry(entity: entryEntity!, insertInto: context)
 
-        classified.id = Int64(id)
-        classified.longDesc = c.description
-        classified.title = c.title
-        classified.price = c.price ?? -1
-        classified.siret = c.siret
-        classified.urgent = c.urgent ?? false
-        classified.creationDate = c.creationDate
+        entry.id = Int64(id)
+        entry.longDesc = c.description
+        entry.title = c.title
+        entry.price = c.price ?? -1
+        entry.siret = c.siret
+        entry.urgent = c.urgent ?? false
+        entry.creationDate = c.creationDate
 
         // Fetch the category to link to this classified
         let fetch = NSFetchRequest<Category>(entityName: CoreDataEntityNames.Category.rawValue)
         fetch.predicate = NSPredicate(format: "\(CoreDataCategory.id) == \(c.categoryID ?? -1)")
 
         let category = try? context.fetch(fetch)
-        classified.oneCategory = category?.first
+        entry.oneCategory = category?.first
 
         // TODO: can there be multiple images with the same URLs?
         for description in c.images! {
-            let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Images.rawValue, in: context)
-            let images = Images(entity: imageED!, insertInto: context)
+            let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Image.rawValue, in: context)
+            let images = Image(entity: imageED!, insertInto: context)
             images.title = description.title?.rawValue
             images.url = description.url
-            images.oneClassified = classified
+            images.oneClassified = entry
         }
     }
 
     // MARK: Using fetchResultsController to update the collectionview
 
-    var fetchController: NSFetchedResultsController<Classified>?
+    var fetchController: NSFetchedResultsController<Entry>?
 
     func setupFetchController() {
-        let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
-        let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
-        let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)
+        let request = NSFetchRequest<Entry>(entityName: CoreDataEntityNames.Entry.rawValue)
+        let sortUrgent = NSSortDescriptor(key: CoreDataEntry.urgent.rawValue, ascending: false)
+        let sortDate = NSSortDescriptor(key: CoreDataEntry.creationDate.rawValue, ascending: false)
         request.sortDescriptors = [sortUrgent, sortDate]
         request.fetchBatchSize = fetchBatchSize
 
-        fetchController = NSFetchedResultsController<Classified>(fetchRequest: request, managedObjectContext:
+        fetchController = NSFetchedResultsController<Entry>(fetchRequest: request, managedObjectContext:
             container.viewContext, sectionNameKeyPath: nil, cacheName: CoreDataConstant.cacheName)
         try? fetchController?.performFetch()
     }

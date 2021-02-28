@@ -10,7 +10,7 @@ import CoreData
 import Foundation
 
 // FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
-protocol ClassifiedProtocol {
+protocol EntryProtocol {
     var id: Int? { get }
     var title: String? { get }
     var description: String? { get }
@@ -20,10 +20,10 @@ protocol ClassifiedProtocol {
     var creationDate: Date? { get }
 
     var categoryID: Int? { get }
-    var images: [ImagesDescription]? { get }
+    var images: [ImageDescription]? { get }
 }
 
-class ClassifiedDescription: ClassifiedProtocol, Decodable {
+class EntryDescription: EntryProtocol, Decodable {
     var id: Int?
     var title: String?
     var description: String?
@@ -33,7 +33,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
     var categoryID: Int?
     var siret: String?
 
-    internal var images: [ImagesDescription]?
+    internal var images: [ImageDescription]?
 
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONClassified.self)
@@ -49,9 +49,9 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
 
         let imagesUrl = try c.decodeIfPresent([String: String].self, forKey: .images_url)
         guard let urls = imagesUrl else { return }
-        var imagesSet = [ImagesDescription]()
+        var imagesSet = [ImageDescription]()
         for (k, v) in urls {
-            let imageDescription = ImagesDescription(title: ClassifiedImagesTitle(rawValue: k), url: v)
+            let imageDescription = ImageDescription(title: ClassifiedImagesTitle(rawValue: k), url: v)
             imagesSet.append(imageDescription)
         }
         images = imagesSet
@@ -64,7 +64,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
          urgent: Bool,
          siret: String?,
          creationDate: Date,
-         images: [ImagesDescription],
+         images: [ImageDescription],
          categoryID: Int)
     {
         self.id = id

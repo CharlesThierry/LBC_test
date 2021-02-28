@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol ImagesProtocol {
+protocol ImageProtocol {
     var title: ClassifiedImagesTitle? { get }
     var url: String? { get }
 }
 
-class ImagesDescription: ImagesProtocol {
+class ImageDescription: ImageProtocol {
     internal var title: ClassifiedImagesTitle?
     internal var url: String?
 

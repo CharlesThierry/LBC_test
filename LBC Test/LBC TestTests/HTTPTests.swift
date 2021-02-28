@@ -41,7 +41,7 @@ class HTTPTests: XCTestCase {
         let string = "[{\"id\": 1461267313,\"category_id\":4,\"title\":\"Title\",\"description\": \"Description\",\"price\":140.0,\"images_url\":{\"small\":\"https://example.com/small.jpg\",\"thumb\":\"https://example.com/small.jpg\"},\"creation_date\":\"2019-11-05T15:56:59+0000\",\"is_urgent\":true,\"siret\":\"123 123 123\"}]"
         let data = Data(string.utf8)
         // TODO: Add URL tests
-        let description = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
+        let description = generateItemsDescriptions(data: data, type: [EntryDescription].self)
         switch description {
         case let .failure(error):
             XCTFail("Couldn't convert the json data \(error)")

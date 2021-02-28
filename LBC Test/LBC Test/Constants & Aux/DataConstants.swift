@@ -32,8 +32,8 @@ enum JSONClassified: String, CodingKey {
 
 enum CoreDataEntityNames: String {
     case Category
-    case Classified
-    case Images
+    case Entry
+    case Image
 }
 
 enum CoreDataCategory: String {
@@ -46,7 +46,7 @@ enum ClassifiedImagesTitle: String, Codable {
     case thumb
 }
 
-enum CoreDataClassified: String {
+enum CoreDataEntry: String {
     case creationDate
     case urgent
 }

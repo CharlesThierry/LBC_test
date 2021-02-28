@@ -12,7 +12,7 @@ let ClassifiedReuseIdentifier = "classifiedReuseIdentifier"
 class MainCellView: UITableViewCell {
     static var reuseIdentifier: String? { ClassifiedReuseIdentifier }
 
-    var ad: Classified? { didSet {
+    var ad: Entry? { didSet {
         let formatter1 = DateFormatter()
         formatter1.dateStyle = .short
         titleLabel.text = formatter1.string(from: ad!.creationDate!)

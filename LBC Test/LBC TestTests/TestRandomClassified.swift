@@ -26,7 +26,7 @@ func getRandomDate() -> Date {
     return randomDate
 }
 
-class TestClassified: ClassifiedProtocol {
+class TestEntry: EntryProtocol {
     var id: Int?
     var title: String?
     var description: String?
@@ -36,7 +36,7 @@ class TestClassified: ClassifiedProtocol {
     var categoryID: Int?
     var siret: String?
 
-    var images: [ImagesDescription]?
+    var images: [ImageDescription]?
 
     init() {
         let tID = Int.random(in: 0 ..< 20000)
@@ -48,9 +48,9 @@ class TestClassified: ClassifiedProtocol {
         urgent = Bool.random()
         siret = Bool.random() ? "" : "siret of \(tID)."
         creationDate = getRandomDate()
-        var imDescrip = [ImagesDescription]()
-        imDescrip.append(ImagesDescription(title: .small, url: "https://example.com/imagesSmall-\(tID).jpg"))
-        imDescrip.append(ImagesDescription(title: .thumb, url: "https://example.com/imagesThumb-\(tID).jpg"))
+        var imDescrip = [ImageDescription]()
+        imDescrip.append(ImageDescription(title: .small, url: "https://example.com/imagesSmall-\(tID).jpg"))
+        imDescrip.append(ImageDescription(title: .thumb, url: "https://example.com/imagesThumb-\(tID).jpg"))
         images = imDescrip
         categoryID = Int.random(in: 0 ..< maxCategoryID)
     }
@@ -64,9 +64,9 @@ class TestClassified: ClassifiedProtocol {
         urgent = Bool.random()
         siret = Bool.random() ? "" : "siret of \(id)."
         creationDate = getRandomDate()
-        var imDescrip = [ImagesDescription]()
-        imDescrip.append(ImagesDescription(title: .small, url: "https://example.com/imagesSmall-\(id).jpg"))
-        imDescrip.append(ImagesDescription(title: .thumb, url: "https://example.com/imagesThumb-\(id).jpg"))
+        var imDescrip = [ImageDescription]()
+        imDescrip.append(ImageDescription(title: .small, url: "https://example.com/imagesSmall-\(id).jpg"))
+        imDescrip.append(ImageDescription(title: .thumb, url: "https://example.com/imagesThumb-\(id).jpg"))
         images = imDescrip
     }
 }

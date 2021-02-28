@@ -3,9 +3,9 @@
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="manyClassified" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classified" inverseName="oneCategory" inverseEntity="Classified"/>
+        <relationship name="manyClassified" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entry" inverseName="oneCategory" inverseEntity="Entry"/>
     </entity>
-    <entity name="Classified" representedClassName="Classified" syncable="YES" codeGenerationType="class">
+    <entity name="Entry" representedClassName="Entry" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="longDesc" optional="YES" attributeType="String"/>
@@ -13,17 +13,17 @@
         <attribute name="siret" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="urgent" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="manyImages" toMany="YES" deletionRule="Nullify" destinationEntity="Images" inverseName="oneClassified" inverseEntity="Images"/>
+        <relationship name="manyImages" toMany="YES" deletionRule="Nullify" destinationEntity="Image" inverseName="oneClassified" inverseEntity="Image"/>
         <relationship name="oneCategory" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="manyClassified" inverseEntity="Category"/>
     </entity>
-    <entity name="Images" representedClassName="Images" syncable="YES" codeGenerationType="class">
+    <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="String"/>
-        <relationship name="oneClassified" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classified" inverseName="manyImages" inverseEntity="Classified"/>
+        <relationship name="oneClassified" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Entry" inverseName="manyImages" inverseEntity="Entry"/>
     </entity>
     <elements>
-        <element name="Category" positionX="-36" positionY="81" width="128" height="74"/>
-        <element name="Classified" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="Images" positionX="-54" positionY="36" width="128" height="74"/>
+        <element name="Entry" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Image" positionX="-54" positionY="36" width="128" height="74"/>
+        <element name="Category" positionX="-54" positionY="36" width="128" height="74"/>
     </elements>
 </model>

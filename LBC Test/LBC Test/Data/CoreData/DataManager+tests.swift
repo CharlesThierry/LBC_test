@@ -25,6 +25,6 @@ extension DataManager {
     }
 
     func count() -> Int {
-        count(entity: CoreDataEntityNames.Classified)
+        count(entity: CoreDataEntityNames.Entry)
     }
 }

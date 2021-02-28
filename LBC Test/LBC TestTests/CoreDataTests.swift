@@ -32,20 +32,20 @@ class CoreDataTests: XCTestCase {
     func testAddARandomClassified() throws {
         let categories = (0 ..< maxCategoryID).indices.map { id in TestCategory(id: Int(id)) }
         manager?.addCategories(categories)
-        manager?.addClassifieds([TestClassified()])
-        let classifiedCount = manager?.count()
-        XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
+        manager?.addEntries([TestEntry()])
+        let entryCount = manager?.count()
+        XCTAssert(entryCount == 1, "\(entryCount ?? -1) != 1 classified.")
     }
 
     func testAddTwice() {
         let category = TestCategory(id: 2)
         manager?.addCategories([category])
-        let classified1 = TestClassified(id: 1, category: 2)
-        manager?.addClassifieds([classified1])
-        let classifiedCount = manager?.count()
-        XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
-        let classified2 = TestClassified(id: 1, category: 2)
-        manager?.addClassifieds([classified2])
-        XCTAssert(classifiedCount == 1, "\(classifiedCount ?? -1) != 1 classified.")
+        let entry1 = TestEntry(id: 1, category: 2)
+        manager?.addEntries([entry1])
+        let entryCount = manager?.count()
+        XCTAssert(entryCount == 1, "\(entryCount ?? -1) != 1 classified.")
+        let entry2 = TestEntry(id: 1, category: 2)
+        manager?.addEntries([entry2])
+        XCTAssert(entryCount == 1, "\(entryCount ?? -1) != 1 classified.")
     }
 }
