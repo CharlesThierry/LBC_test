@@ -8,15 +8,15 @@
 import Foundation
 
 protocol ImageProtocol {
-    var title: ClassifiedImagesTitle? { get }
+    var title: ImagesTitle? { get }
     var url: String? { get }
 }
 
 class ImageDescription: ImageProtocol {
-    internal var title: ClassifiedImagesTitle?
+    internal var title: ImagesTitle?
     internal var url: String?
 
-    init(title: ClassifiedImagesTitle?,
+    init(title: ImagesTitle?,
          url: String?)
     {
         guard let optURL = url else {

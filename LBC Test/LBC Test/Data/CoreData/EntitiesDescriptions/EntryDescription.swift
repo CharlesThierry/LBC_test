@@ -51,7 +51,7 @@ class EntryDescription: EntryProtocol, Decodable {
         guard let urls = imagesUrl else { return }
         var imagesSet = [ImageDescription]()
         for (k, v) in urls {
-            let imageDescription = ImageDescription(title: ClassifiedImagesTitle(rawValue: k), url: v)
+            let imageDescription = ImageDescription(title: ImagesTitle(rawValue: k), url: v)
             imagesSet.append(imageDescription)
         }
         images = imagesSet

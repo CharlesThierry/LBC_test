@@ -41,7 +41,7 @@ enum CoreDataCategory: String {
     case title
 }
 
-enum ClassifiedImagesTitle: String, Codable {
+enum ImagesTitle: String, Codable {
     case small
     case thumb
 }
