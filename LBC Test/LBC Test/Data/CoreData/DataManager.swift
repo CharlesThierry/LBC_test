@@ -193,6 +193,6 @@ class DataManager {
         request.fetchBatchSize = 20
 
         fetchController = NSFetchedResultsController<Classified>(fetchRequest: request, managedObjectContext:
-            context, sectionNameKeyPath: nil, cacheName: CoreDataConstant.cacheName)
+            container.viewContext, sectionNameKeyPath: nil, cacheName: CoreDataConstant.cacheName)
     }
 }
