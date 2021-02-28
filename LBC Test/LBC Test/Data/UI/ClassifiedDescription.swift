@@ -14,23 +14,22 @@ class ClassifiedDescription {
     var creationDate: Date
     var siret: String!
     var urgent: Bool
-    
+
     var categoryName: String
-    
+
     var coverPicturePath: String
     var additionalPicturesPath = [String]()
-    
-    init (entry: Entry) {
+
+    init(entry: Entry) {
         title = entry.title!
         description = entry.longDesc!
         price = entry.price
         creationDate = entry.creationDate!
         siret = entry.siret
         urgent = entry.urgent
-        
+
         categoryName = (entry.oneCategory?.title)!
-        
+
         coverPicturePath = "placeholder"
-        
     }
 }

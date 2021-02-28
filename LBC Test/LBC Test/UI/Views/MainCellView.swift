@@ -74,7 +74,7 @@ class MainCellView: UITableViewCell {
             titleLabel.leftAnchor.constraint(greaterThanOrEqualTo: contentView.leftAnchor),
             titleLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
             titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
     }
 

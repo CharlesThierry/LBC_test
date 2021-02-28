@@ -16,9 +16,7 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
  it is provided with a FetchedResultsController to be notified of changes in the coreData
  store. This fetchedResultController is init'd by the Model and retained by the MainCVC
  */
-protocol PrimaryCVController: FetchResultUpdates {
-    
-}
+protocol PrimaryCVController: FetchResultUpdates {}
 
 /*
  The DetailCVC shows all content available for the selected Classified ad.
@@ -30,7 +28,7 @@ protocol SecondaryCVController: AnyObject {
 // Model handles information distribution to both the main view and the detail view
 class Model: NSObject {
     let dataManager = DataManager()
-        
+
     weak var primaryC: PrimaryCVController!
     weak var secondaryC: SecondaryCVController!
 

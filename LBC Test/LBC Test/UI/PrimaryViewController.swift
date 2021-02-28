@@ -8,7 +8,6 @@
 import UIKit
 
 class PrimaryViewController: UITableViewController, PrimaryCVController {
-
     var results: FetchResults? { didSet {
         results?.delegate = self
     }}
