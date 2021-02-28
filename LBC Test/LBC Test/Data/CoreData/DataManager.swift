@@ -183,9 +183,10 @@ class DataManager {
     }
 
     // MARK: Using fetchResultsController to update the collectionview
-    var fetchController : NSFetchedResultsController<Classified>?
-    
-    func setupFetchController()  {
+
+    var fetchController: NSFetchedResultsController<Classified>?
+
+    func setupFetchController() {
         let request = NSFetchRequest<Classified>(entityName: CoreDataEntityNames.Classified.rawValue)
         let sortUrgent = NSSortDescriptor(key: CoreDataClassified.urgent.rawValue, ascending: false)
         let sortDate = NSSortDescriptor(key: CoreDataClassified.creationDate.rawValue, ascending: false)

@@ -37,15 +37,15 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
 
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONClassified.self)
-        self.id = try c.decodeIfPresent(Int.self, forKey: .id)
-        self.title = try c.decodeIfPresent(String.self, forKey: .title)
-        self.description = try c.decodeIfPresent(String.self, forKey: .description)
-        self.price = try c.decodeIfPresent(Float.self, forKey: .price)
-        self.urgent = try c.decodeIfPresent(Bool.self, forKey: .is_urgent)
-        self.siret = try c.decodeIfPresent(String.self, forKey: .siret)
-        self.categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
+        id = try c.decodeIfPresent(Int.self, forKey: .id)
+        title = try c.decodeIfPresent(String.self, forKey: .title)
+        description = try c.decodeIfPresent(String.self, forKey: .description)
+        price = try c.decodeIfPresent(Float.self, forKey: .price)
+        urgent = try c.decodeIfPresent(Bool.self, forKey: .is_urgent)
+        siret = try c.decodeIfPresent(String.self, forKey: .siret)
+        categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
         // TODO: Date stays at nil, check why the JSONDecoder fails
-        self.creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
+        creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
 
         let imagesUrl = try c.decodeIfPresent([String: String].self, forKey: .images_url)
         guard let urls = imagesUrl else { return }
@@ -54,7 +54,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
             let imageDescription = ImagesDescription(title: ClassifiedImagesTitle(rawValue: k), url: v)
             imagesSet.append(imageDescription)
         }
-        self.images = imagesSet
+        images = imagesSet
     }
 
     init(id: Int,
@@ -69,7 +69,7 @@ class ClassifiedDescription: ClassifiedProtocol, Decodable {
     {
         self.id = id
         self.title = title
-        self.description = desc
+        description = desc
         self.price = price
         self.urgent = urgent
         self.siret = siret

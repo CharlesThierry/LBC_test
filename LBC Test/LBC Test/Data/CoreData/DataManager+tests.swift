@@ -7,8 +7,8 @@
 
 @testable import Test_LBC
 
-import Foundation
 import CoreData
+import Foundation
 
 extension DataManager {
     func count(entity: CoreDataEntityNames) -> Int {
@@ -25,6 +25,6 @@ extension DataManager {
     }
 
     func count() -> Int {
-        return count(entity: CoreDataEntityNames.Classified)
+        count(entity: CoreDataEntityNames.Classified)
     }
 }

@@ -24,7 +24,7 @@ class CategoryDescription: CategoryProtocol, Decodable {
 
     required init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: JSONCategory.self)
-        self.id = try c.decodeIfPresent(Int.self, forKey: .id)
-        self.name = try c.decodeIfPresent(String.self, forKey: .name)
+        id = try c.decodeIfPresent(Int.self, forKey: .id)
+        name = try c.decodeIfPresent(String.self, forKey: .name)
     }
 }

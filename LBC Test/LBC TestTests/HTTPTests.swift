@@ -43,12 +43,12 @@ class HTTPTests: XCTestCase {
         // TODO: Add URL tests
         let description = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
         switch description {
-        case .failure(let error):
+        case let .failure(error):
             XCTFail("Couldn't convert the json data \(error)")
             return
-        case .success(let description):
+        case let .success(description):
             XCTAssert(description[0].categoryID == 4, "Fail categoryID")
-            XCTAssert(description[0].id == 1461267313, "Fail id")
+            XCTAssert(description[0].id == 1_461_267_313, "Fail id")
             XCTAssert(description[0].title == "Title", "Fail title")
             XCTAssert(description[0].description == "Description", "Fail description")
             XCTAssert(description[0].price == 140.0, "Fail price")

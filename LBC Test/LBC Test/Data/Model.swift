@@ -17,16 +17,14 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
  store. This fetchedResultController is init'd by the Model and retained by the MainCVC
  */
 protocol PrimaryCVController: AnyObject, NSFetchedResultsControllerDelegate {
-    
-    var resultController: NSFetchedResultsController<Classified>! {get set}
-
+    var resultController: NSFetchedResultsController<Classified>! { get set }
 }
 
 /*
  The DetailCVC shows all content available for the selected Classified ad.
  */
 protocol SecondaryCVController: AnyObject {
-    //add information
+    // add information
     func showClassifiedInformation(desc: ClassifiedDescription)
 }
 
@@ -34,40 +32,40 @@ protocol SecondaryCVController: AnyObject {
 class Model: NSObject {
     let dataManager = DataManager()
 
-    weak var primaryC : PrimaryCVController!
-    weak var secondaryC : SecondaryCVController!
-    
+    weak var primaryC: PrimaryCVController!
+    weak var secondaryC: SecondaryCVController!
+
     init(primary: PrimaryCVController, secondary: SecondaryCVController) {
         primaryC = primary
-        primaryC.resultController = self.dataManager.fetchController
+        primaryC.resultController = dataManager.fetchController
         primaryC.resultController.delegate = primaryC
         secondaryC = secondary
     }
 
-    func initModelData(completion: @escaping () -> ()) {
+    func initModelData(completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .background).async {
             self.fillCategoryData(completion)
         }
     }
 
-    func fillCategoryData(_ completion: @escaping () -> ()) {
+    func fillCategoryData(_ completion: @escaping () -> Void) {
         let c = URL(string: category)
         guard let categoryURL = c else {
             fatalError("Model Categorystring not a URL")
         }
         fetchJson(url: categoryURL) { fetchResult in
             switch fetchResult {
-            case .failure(let error):
+            case let .failure(error):
                 print("Can't fetch category information \(error)")
                 // TODO: handle error / warn user
                 completion()
                 return
-            case .success(let data):
+            case let .success(data):
                 let generateResult = generateItemsDescriptions(data: data, type: [CategoryDescription].self)
                 switch generateResult {
-                case .failure(let error):
+                case let .failure(error):
                     print("Can't generate descriptions \(error)")
-                case .success(let catArray):
+                case let .success(catArray):
                     self.dataManager.addCategories(catArray)
                     self.fillClassifiedData(completion)
                 }
@@ -75,22 +73,22 @@ class Model: NSObject {
         }
     }
 
-    func fillClassifiedData(_ completion: @escaping () -> ()) {
+    func fillClassifiedData(_ completion: @escaping () -> Void) {
         let c = URL(string: listing)
         guard let classifiedURL = c else {
             fatalError("Model Categorystring not a URL")
         }
         fetchJson(url: classifiedURL) { fetchResult in
             switch fetchResult {
-            case .failure(let error):
+            case let .failure(error):
                 print("Can't fetch category information \(error)")
-                // TODO: handle error / warn user
-            case .success(let data):
+            // TODO: handle error / warn user
+            case let .success(data):
                 let generateResult = generateItemsDescriptions(data: data, type: [ClassifiedDescription].self)
                 switch generateResult {
-                case .failure(let error):
+                case let .failure(error):
                     print("Can't generate descriptions \(error)")
-                case .success(let catArray):
+                case let .success(catArray):
                     self.dataManager.addClassifieds(catArray)
                 }
             }

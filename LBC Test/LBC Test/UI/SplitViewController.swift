@@ -27,8 +27,7 @@ class SplitViewController: UISplitViewController {
                       secondary: secondary!)
         // Do any additional setup after loading the view.
 
-        model.initModelData {
-        }
+        model.initModelData {}
     }
 
     /*

@@ -10,7 +10,7 @@ import UIKit
 let ClassifiedReuseIdentifier = "classifiedReuseIdentifier"
 
 class MainCellView: UITableViewCell {
-    static var reuseIdentifier: String? { return ClassifiedReuseIdentifier }
+    static var reuseIdentifier: String? { ClassifiedReuseIdentifier }
 
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -38,7 +38,7 @@ class MainCellView: UITableViewCell {
     }()
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("ViewCell should not be called")
     }
 

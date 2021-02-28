@@ -20,11 +20,11 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
 
     // MARK: Collection View
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    override func numberOfSections(in _: UITableView) -> Int {
+        1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sectionInfo = resultController.sections?[section] else {
             return 0
         }
@@ -38,11 +38,11 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
 
     // MARK: FetchedResultControllerDelegation
 
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
 
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any,
+    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any,
                     at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
     {
         switch type {
@@ -59,7 +59,7 @@ class PrimaryViewController: UITableViewController, NSFetchedResultsControllerDe
         }
     }
 
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
 }
