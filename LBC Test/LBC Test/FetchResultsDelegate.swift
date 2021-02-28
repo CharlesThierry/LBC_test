@@ -14,18 +14,31 @@ import Foundation
  */
 protocol FetchResultUpdates: AnyObject {
     var results: FetchResults? { get set }
-    func beginUpdate()
-    func endUpdate()
-    func change(change: FetchChange, wasAt: IndexPath?, nowAt: IndexPath?)
+    func change(changes: [FetchChange: [(IndexPath?, IndexPath?)]])
 }
 
 enum FetchChange {
     case delete
     case insert
     case move
+    case update
+}
+
+func change(f: NSFetchedResultsChangeType) -> FetchChange {
+    switch f {
+    case .delete : return .delete
+    case .insert: return .insert
+    case .move: return .move
+    case .update: return .update
+    @unknown default:
+        fatalError("Non supported")
+    }
 }
 
 class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
+    
+    var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
+    
     weak var delegate: FetchResultUpdates?
 
     private var fetchResultController: NSFetchedResultsController<Entry>
@@ -50,25 +63,41 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.beginUpdate()
+        changeOperations = [FetchChange: [(IndexPath?, IndexPath?)]]()
     }
 
     func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.endUpdate()
+        // push update to the collection view
+        
+        delegate?.change(changes: changeOperations!)
+        changeOperations = nil
     }
-
+    
     func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        print("changes!")
+        var operation: FetchChange = .update
+        guard let operations = changeOperations else { fatalError("Illegal change operation") }
+        
         switch type {
         case .insert:
-            delegate?.change(change: .insert, wasAt: indexPath, nowAt: newIndexPath)
+            operation = .insert
         case .delete:
-            delegate?.change(change: .delete, wasAt: indexPath, nowAt: newIndexPath)
+            print("Old \(indexPath) New \(newIndexPath)")
+            operation = .delete
         case .move:
-            delegate?.change(change: .move, wasAt: indexPath, nowAt: newIndexPath)
+            operation = .move
         case .update:
-            print("Not supported")
+            operation = .update
         @unknown default:
             print("Not supported")
         }
+
+        var changeSet = operations[operation]
+        if changeSet == nil {
+            changeSet = [(IndexPath, IndexPath)]()
+        }
+        changeSet?.append((indexPath, newIndexPath))
+        
+        changeOperations![operation] = changeSet
     }
 }

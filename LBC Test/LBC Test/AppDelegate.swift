@@ -21,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Init the window and the main controller
             let window = UIWindow(frame: UIScreen.main.bounds)
 
-            let viewController = SplitViewController()
-            viewController.initSubControllers()
+            let viewController = MainViewController()
             window.rootViewController = viewController
             window.makeKeyAndVisible()
             viewController.view.bounds = UIScreen.main.bounds

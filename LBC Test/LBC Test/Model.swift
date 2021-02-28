@@ -29,14 +29,11 @@ protocol SecondaryCVController: AnyObject {
 class Model: NSObject {
     let dataManager = DataManager()
 
-    weak var primaryC: PrimaryCVController!
+    weak var primary: PrimaryCVController! { didSet {
+        primary.results = FetchResults(dataManager.fetchController!)
+    }}
+    
     weak var secondaryC: SecondaryCVController!
-
-    init(primary: PrimaryCVController, secondary: SecondaryCVController) {
-        primaryC = primary
-        primaryC.results = FetchResults(dataManager.fetchController!)
-        secondaryC = secondary
-    }
 
     func initModelData(completion: @escaping () -> Void) {
         DispatchQueue.global(qos: .background).async {

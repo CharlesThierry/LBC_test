@@ -18,8 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // TODO: Merge with the AppDelegate
 
-        let viewController = SplitViewController()
-        viewController.initSubControllers()
+        let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
         viewController.view.bounds = UIScreen.main.bounds
 
         let window = UIWindow(windowScene: scene)
