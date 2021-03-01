@@ -4,6 +4,7 @@
 
 * Data fetch and storage
 * Basic main UI
+* Basic Detail UI
 * Cells with pictures downloaded on the fly
 
 ## TODO
@@ -13,8 +14,10 @@
 	* Add a "reset" button?
 	* Add some UI polish?
 * DetailedView
+	* Missing general UI look
+	* polish
 
-* Alerts (on initial network failure)
+* Alerts (on network failure)
 
 * Add tests around the ClassifiedDescription and the formatters
 
