@@ -49,7 +49,8 @@ func httpFetch(url: URL, completion: @escaping (Result<Data, FetchingError>) -> 
     task.resume()
 }
 
-func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionArray.Type) -> Result<DescriptionArray, ConversionError> where DescriptionArray: Decodable {
+func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionArray.Type) -> Result<DescriptionArray, ConversionError> where DescriptionArray: Decodable
+{
     do {
         let decoder = JSONDecoder()
         // date format needs a custom formatter to be decoded
@@ -61,4 +62,3 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
         return Result.failure(.dataConversionError)
     }
 }
-

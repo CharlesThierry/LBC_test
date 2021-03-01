@@ -32,7 +32,7 @@ class ClassifiedDescription {
 
         categoryName = (entry.oneCategory?.title)!
         let images = entry.manyImages as! Set<Image>
-        let image = images.first(where: { image -> Bool in return image.title == ImagesTitle.small.rawValue })
+        let image = images.first(where: { image -> Bool in image.title == ImagesTitle.small.rawValue })
         coverPicturePath = image?.url ?? "placeholder"
     }
 }

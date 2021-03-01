@@ -66,16 +66,16 @@ class CollectionViewCell: UICollectionViewCell {
         if ad.coverPicturePath == "placeholder" { return }
         let url = URL(string: ad.coverPicturePath)
         if url == nil { return }
-        
+
         httpFetch(url: url!) { fetchResult in
-            switch(fetchResult) {
-                case let .failure(error):
-                    print("Could not fetch the related image \(error)")
-                case let .success(data):
-                    let image = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                    }
+            switch fetchResult {
+            case let .failure(error):
+                print("Could not fetch the related image \(error)")
+            case let .success(data):
+                let image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    self.imageView.image = image
+                }
             }
         }
     }
