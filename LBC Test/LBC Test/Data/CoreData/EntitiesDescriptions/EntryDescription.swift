@@ -9,7 +9,6 @@
 import CoreData
 import Foundation
 
-// FIXME: The protocols used to define the Descriptions are only used for testing. Should prob fix that
 protocol EntryProtocol {
     var id: Int? { get }
     var title: String? { get }
