@@ -104,54 +104,27 @@ class CollectionViewCell: UICollectionViewCell {
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
         underview.addSubview(dateLabel)
-        //category goes topleft picture
-        NSLayoutConstraint.activate([
-            categoryLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
-            categoryLabel.leftAnchor.constraint(equalTo: imageView.leftAnchor),
-            categoryLabel.rightAnchor.constraint(lessThanOrEqualTo: imageView.rightAnchor),
-            categoryLabel.bottomAnchor.constraint(lessThanOrEqualTo: imageView.bottomAnchor)
-        ])
         
-        //category goes bottomright picture
+        categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leftAnchor, right: nil)
+        
+        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.rightAnchor)
+        
+        imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leftAnchor, right: rightAnchor)
+
+        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, height: heightAnchor, multiplier: 0.2)
+        
+        titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
+
+        priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
+        
+        dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leftAnchor, right: underview.rightAnchor)
+        
+        // category goes bottomright picture
         NSLayoutConstraint.activate([
             urgentLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
             urgentLabel.leftAnchor.constraint(greaterThanOrEqualTo: imageView.leftAnchor),
-            urgentLabel.rightAnchor.constraint(equalTo: imageView.rightAnchor),
-            urgentLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
-        ])
-        // image view goes above the information view
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.leftAnchor.constraint(equalTo: leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: underview.topAnchor)
         ])
 
-        NSLayoutConstraint.activate([
-            underview.leftAnchor.constraint(equalTo: leftAnchor),
-            underview.rightAnchor.constraint(equalTo: rightAnchor),
-            underview.bottomAnchor.constraint(equalTo: bottomAnchor),
-            underview.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20)
-        ])
-
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: underview.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: underview.rightAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
-            titleLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor),
-            priceLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-            priceLabel.rightAnchor.constraint(equalTo: underview.rightAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
-            priceLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor),
-            dateLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-            dateLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
-            dateLabel.bottomAnchor.constraint(equalTo: underview.bottomAnchor)
-        ])
     }
 
     @available(*, unavailable)
