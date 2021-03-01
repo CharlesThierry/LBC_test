@@ -21,10 +21,10 @@ extension UIView {
             bottomAnchor.constraint(equalTo: bottom).isActive = true
         }
         if let left = left {
-            leftAnchor.constraint(equalTo: left).isActive = true
+            leadingAnchor.constraint(equalTo: left).isActive = true
         }
         if let right = right {
-            rightAnchor.constraint(equalTo: right).isActive = true
+            trailingAnchor.constraint(equalTo: right).isActive = true
         }
         if let width = width,
            let multiplier = multiplier

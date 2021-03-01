@@ -105,24 +105,24 @@ class CollectionViewCell: UICollectionViewCell {
         underview.addSubview(priceLabel)
         underview.addSubview(dateLabel)
 
-        categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leftAnchor, right: nil)
+        categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leadingAnchor, right: nil)
 
-        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.rightAnchor)
+        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.trailingAnchor)
 
-        imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leftAnchor, right: rightAnchor)
+        imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leadingAnchor, right: trailingAnchor)
 
-        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, height: heightAnchor, multiplier: 0.2)
+        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, multiplier: 0.2)
 
-        titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
+        titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
 
-        priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
+        priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
 
-        dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leftAnchor, right: underview.rightAnchor)
+        dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
 
         // category goes bottomright picture
         NSLayoutConstraint.activate([
             urgentLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
-            urgentLabel.leftAnchor.constraint(greaterThanOrEqualTo: imageView.leftAnchor),
+            urgentLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor),
         ])
     }
 

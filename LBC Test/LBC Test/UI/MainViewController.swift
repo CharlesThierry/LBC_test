@@ -121,6 +121,15 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
      }
      */
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedAd = results?.object(at: indexPath)
+        guard let ad = selectedAd else {
+            fatalError("Selected Ad not found")
+        }
+        let detail = DetailViewController(ad: ad)
+        showDetailViewController(detail, sender: self)
+    }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
