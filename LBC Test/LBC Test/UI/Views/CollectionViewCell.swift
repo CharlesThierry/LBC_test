@@ -30,8 +30,18 @@ class CollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
         label.textColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
-        label.backgroundColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1).withAlphaComponent(0.7)
+        label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).withAlphaComponent(0.9)
+        label.layer.cornerRadius = 5.0
         label.text = "URGENT"
+        return label
+    }()
+
+    var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
+        label.lineBreakMode = .byTruncatingTail
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -62,6 +72,8 @@ class CollectionViewCell: UICollectionViewCell {
         priceLabel.text = ad.price
         dateLabel.text = ad.creationDate
         urgentLabel.isHidden = !ad.urgent
+        categoryLabel.text = ad.categoryName
+
         imageView.image = #imageLiteral(resourceName: "placeholder")
         if ad.coverPicturePath == "placeholder" { return }
         let url = URL(string: ad.coverPicturePath)
@@ -82,51 +94,63 @@ class CollectionViewCell: UICollectionViewCell {
 
     func setupUI() {
         addSubview(imageView)
+        addSubview(categoryLabel)
         addSubview(urgentLabel)
+
         let underview = UIView()
         underview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(underview)
+
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
         underview.addSubview(dateLabel)
-
+        //category goes topleft picture
         NSLayoutConstraint.activate([
-            urgentLabel.topAnchor.constraint(equalTo: dateLabel.topAnchor),
-            urgentLabel.bottomAnchor.constraint(equalTo: underview.bottomAnchor),
-            urgentLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
-            urgentLabel.leftAnchor.constraint(equalTo: dateLabel.rightAnchor),
+            categoryLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
+            categoryLabel.leftAnchor.constraint(equalTo: imageView.leftAnchor),
+            categoryLabel.rightAnchor.constraint(lessThanOrEqualTo: imageView.rightAnchor),
+            categoryLabel.bottomAnchor.constraint(lessThanOrEqualTo: imageView.bottomAnchor)
+        ])
+        
+        //category goes bottomright picture
+        NSLayoutConstraint.activate([
+            urgentLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
+            urgentLabel.leftAnchor.constraint(greaterThanOrEqualTo: imageView.leftAnchor),
+            urgentLabel.rightAnchor.constraint(equalTo: imageView.rightAnchor),
+            urgentLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
+        ])
+        // image view goes above the information view
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor),
+            imageView.bottomAnchor.constraint(equalTo: underview.topAnchor)
         ])
 
-        NSLayoutConstraint.activate(
-            [imageView.topAnchor.constraint(equalTo: topAnchor),
-             imageView.leftAnchor.constraint(equalTo: leftAnchor),
-             imageView.rightAnchor.constraint(equalTo: rightAnchor)])
-
         NSLayoutConstraint.activate([
-            imageView.bottomAnchor.constraint(equalTo: underview.topAnchor),
             underview.leftAnchor.constraint(equalTo: leftAnchor),
             underview.rightAnchor.constraint(equalTo: rightAnchor),
             underview.bottomAnchor.constraint(equalTo: bottomAnchor),
-            underview.heightAnchor.constraint(equalToConstant: 50),
+            underview.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20)
         ])
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: underview.topAnchor),
             titleLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: underview.rightAnchor)
         ])
 
         NSLayoutConstraint.activate([
             titleLabel.bottomAnchor.constraint(equalTo: priceLabel.topAnchor),
             priceLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-            priceLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
+            priceLabel.rightAnchor.constraint(equalTo: underview.rightAnchor)
         ])
 
         NSLayoutConstraint.activate([
             priceLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor),
             dateLabel.leftAnchor.constraint(equalTo: underview.leftAnchor),
-//            dateLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
-            dateLabel.bottomAnchor.constraint(equalTo: underview.bottomAnchor),
+            dateLabel.rightAnchor.constraint(equalTo: underview.rightAnchor),
+            dateLabel.bottomAnchor.constraint(equalTo: underview.bottomAnchor)
         ])
     }
 

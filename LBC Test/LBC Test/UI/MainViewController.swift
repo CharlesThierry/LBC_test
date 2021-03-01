@@ -32,6 +32,8 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
     override func viewDidLoad() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
+        // add a navigation bar to the controller to show a filter button
+
         super.viewDidLoad()
     }
 
@@ -129,7 +131,10 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         let screenRatio = view.bounds.height / view.bounds.width
-        return CGSize(width: widthPerItem, height: widthPerItem * screenRatio)
+        
+        // FIXME: This height is problematic on small device w/ compact height (i.e. an iPhone in landscape)
+        let heightPerItem = widthPerItem * screenRatio
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
 
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
