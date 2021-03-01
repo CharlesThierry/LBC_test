@@ -18,8 +18,9 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
     init(collectionViewLayout layout: UICollectionViewLayout, model: Model) {
         super.init(collectionViewLayout: layout)
-        model.initModelData {}
         model.primary = self
+        model.initModelData {}
+        
     }
 
     @available(*, unavailable)

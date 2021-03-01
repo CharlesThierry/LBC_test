@@ -36,6 +36,11 @@ class Model: NSObject {
     weak var secondaryC: SecondaryCVController!
 
     func initModelData(completion: @escaping () -> Void) {
+        guard let _ = primary else {
+            // without a primary set, the data will be desync'd. e.g. setting the primary afterward
+            // will lead to it receiving 'delete' FetchAction when there is actually 0 item displayed
+            fatalError("A primary receiver must be set to sync")
+        }
         DispatchQueue.global(qos: .background).async {
             self.dataManager.purge()
             self.fillCategoryData(completion)
