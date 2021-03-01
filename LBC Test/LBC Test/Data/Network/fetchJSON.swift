@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 // the Category JSON is available at https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json
 // the Classified ads JSON is available at https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json
 enum FetchingError: Error {
@@ -59,3 +61,6 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
         return Result.failure(.dataConversionError)
     }
 }
+
+// UIImage forces recog of UIKit - use data ?
+func fetchImage(url _: URL, completion _: @escaping (_: UIImage) -> Void) {}

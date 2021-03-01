@@ -18,8 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
 
         // TODO: Merge with the AppDelegate
-        
-        let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout(), model: model)
+
+        let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
+
+        model.primary = viewController
+        model.initModelData {}
+
         viewController.view.bounds = UIScreen.main.bounds
 
         let window = UIWindow(windowScene: scene)
@@ -27,7 +31,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
 
         self.window = window
-
     }
 
     func sceneDidDisconnect(_: UIScene) {

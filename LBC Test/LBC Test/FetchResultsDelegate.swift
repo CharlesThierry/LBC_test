@@ -26,7 +26,7 @@ enum FetchChange {
 
 func change(f: NSFetchedResultsChangeType) -> FetchChange {
     switch f {
-    case .delete : return .delete
+    case .delete: return .delete
     case .insert: return .insert
     case .move: return .move
     case .update: return .update
@@ -36,10 +36,11 @@ func change(f: NSFetchedResultsChangeType) -> FetchChange {
 }
 
 class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
-    
     var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
-    
+
     weak var delegate: FetchResultUpdates?
+
+    let dateFormatter = DateFormatter.relative
 
     private var fetchResultController: NSFetchedResultsController<Entry>
 
@@ -58,7 +59,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
 
     func object(at index: IndexPath) -> ClassifiedDescription? {
         let entry = fetchResultController.object(at: index)
-        let classified = ClassifiedDescription(entry: entry)
+        let classified = ClassifiedDescription(entry: entry, formatter: dateFormatter)
         return classified
     }
 
@@ -68,15 +69,15 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         // push update to the collection view
-        
+
         delegate?.change(changes: changeOperations!)
         changeOperations = nil
     }
-    
+
     func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         var operation: FetchChange = .update
         guard let operations = changeOperations else { fatalError("Illegal change operation") }
-        
+
         switch type {
         case .insert:
             operation = .insert
@@ -95,7 +96,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
             changeSet = [(IndexPath, IndexPath)]()
         }
         changeSet?.append((indexPath, newIndexPath))
-        
+
         changeOperations![operation] = changeSet
     }
 }

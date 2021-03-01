@@ -32,7 +32,7 @@ class Model: NSObject {
     weak var primary: PrimaryCVController! { didSet {
         primary.results = FetchResults(dataManager.fetchController!)
     }}
-    
+
     weak var secondaryC: SecondaryCVController!
 
     func initModelData(completion: @escaping () -> Void) {

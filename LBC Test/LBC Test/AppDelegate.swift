@@ -21,7 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Init the window and the main controller
             let window = UIWindow(frame: UIScreen.main.bounds)
 
-            let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout(), model: model)
+            let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
+
+            model.primary = viewController
+            model.initModelData {}
+
             window.rootViewController = viewController
             window.makeKeyAndVisible()
             viewController.view.bounds = UIScreen.main.bounds

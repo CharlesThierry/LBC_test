@@ -10,21 +10,19 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class MainViewController: UICollectionViewController, PrimaryCVController {
-    weak var model: Model!
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let itemsPerRow: CGFloat = 3.0
 
     var results: FetchResults? { didSet {
         results?.delegate = self
     }}
 
-    init(collectionViewLayout layout: UICollectionViewLayout, model: Model) {
+    override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
-        model.primary = self
-        model.initModelData {}
-        
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -45,19 +43,21 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         guard let res = results else { return 0 }
         return res.numberOfObjects
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .red
-        // Configure the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
+        guard let classified = results?.object(at: indexPath) else {
+            fatalError("Can't fetch info for \(indexPath)")
+        }
+        cell.setClassified(ad: classified)
 
         return cell
     }
@@ -115,4 +115,28 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
      }
      */
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
+                        sizeForItemAt _: IndexPath) -> CGSize
+    {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        let screenRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
+        return CGSize(width: widthPerItem, height: widthPerItem * screenRatio)
+    }
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
+                        insetForSectionAt _: Int) -> UIEdgeInsets
+    {
+        return sectionInsets
+    }
+
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt _: Int) -> CGFloat
+    {
+        return sectionInsets.left
+    }
 }

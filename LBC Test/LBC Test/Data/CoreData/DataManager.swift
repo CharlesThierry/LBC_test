@@ -198,22 +198,22 @@ class DataManager {
 
     func setupFetchController(_ categoryID: Int? = nil) {
         let request = NSFetchRequest<Entry>(entityName: CoreDataEntityNames.Entry.rawValue)
-        
+
         if categoryID != nil {
             let categoryPredicate = NSPredicate(format: "oneCategory.id == \(categoryID!)")
             request.predicate = categoryPredicate
         }
-        
+
         let sortUrgent = NSSortDescriptor(key: CoreDataEntry.urgent.rawValue, ascending: false)
         let sortDate = NSSortDescriptor(key: CoreDataEntry.creationDate.rawValue, ascending: false)
-        
+
         request.sortDescriptors = [sortUrgent, sortDate]
-        
+
         request.fetchBatchSize = fetchBatchSize
 
         fetchController = NSFetchedResultsController<Entry>(fetchRequest: request, managedObjectContext:
             container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        
+
         do {
             try fetchController!.performFetch()
         } catch {
