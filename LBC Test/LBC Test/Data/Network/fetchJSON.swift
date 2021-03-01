@@ -61,6 +61,3 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
         return Result.failure(.dataConversionError)
     }
 }
-
-// UIImage forces recog of UIKit - use data ?
-func fetchImage(url _: URL, completion _: @escaping (_: UIImage) -> Void) {}
