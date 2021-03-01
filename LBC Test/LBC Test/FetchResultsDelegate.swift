@@ -60,7 +60,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
 
     func object(at index: IndexPath) -> ClassifiedDescription? {
         let entry = fetchResultController.object(at: index)
-        let classified = ClassifiedDescription(entry: entry, formatter: dateFormatter, priceFormatter:priceFormatter)
+        let classified = ClassifiedDescription(entry: entry, formatter: dateFormatter, priceFormatter: priceFormatter)
         return classified
     }
 

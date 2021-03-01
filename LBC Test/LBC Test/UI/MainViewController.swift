@@ -12,9 +12,9 @@ private let reuseIdentifier = "Cell"
 class MainViewController: UICollectionViewController, PrimaryCVController {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
-    var itemsPerRow: CGFloat  { get {
+    var itemsPerRow: CGFloat {
         return UIScreen.main.bounds.width > UIScreen.main.bounds.height ? 4.0 : 3.0
-    }}
+    }
 
     var results: FetchResults? { didSet {
         results?.delegate = self
@@ -31,7 +31,7 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
     override func viewDidLoad() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
         super.viewDidLoad()
     }
 
