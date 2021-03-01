@@ -14,7 +14,7 @@ class DetailViewController: UIViewController {
 
     var imageView: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         return image
     }()
@@ -99,6 +99,7 @@ class DetailViewController: UIViewController {
         //        underview.addSubview(siretLabel)
 
         imageView.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
+        imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7).isActive = true
         titleLabel.setBasicConstraints(top: imageView.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         descriptionLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         dateLabel.setBasicConstraints(top: descriptionLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
@@ -122,7 +123,7 @@ class DetailViewController: UIViewController {
             case let .success(data):
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
-                    self.imageView.setMagicImage(image: image)
+                    self.imageView.image = image
                 }
             }
         }

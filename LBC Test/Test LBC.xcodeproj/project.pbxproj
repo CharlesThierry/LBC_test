@@ -23,7 +23,6 @@
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
 		FB82115825ED62CD00F50668 /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82115725ED62CD00F50668 /* UIView+Constraint.swift */; };
-		FB82116325ED836100F50668 /* UIView+Magic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82116225ED836100F50668 /* UIView+Magic.swift */; };
 		FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */; };
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
@@ -70,7 +69,6 @@
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
 		FB82115725ED62CD00F50668 /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
-		FB82116225ED836100F50668 /* UIView+Magic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Magic.swift"; path = "LBC Test/Constants & Aux/UIView+Magic.swift"; sourceTree = SOURCE_ROOT; };
 		FBD2EF8A25E7C73700CD2689 /* Test LBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test LBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBD2EF9625E7C73800CD2689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 		FB770A7C25E84FC6005C322B /* Constants & Aux */ = {
 			isa = PBXGroup;
 			children = (
-				FB82116225ED836100F50668 /* UIView+Magic.swift */,
 				FB770A7425E84E32005C322B /* DataConstants.swift */,
 				FB82115725ED62CD00F50668 /* UIView+Constraint.swift */,
 				FB01D4D925EA33A40000F950 /* DateFormatter+Custom.swift */,
@@ -378,7 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
-				FB82116325ED836100F50668 /* UIView+Magic.swift in Sources */,
 				FBE650BA25ECFCCC009D6260 /* NumberFormatter+custom.swift in Sources */,
 				FB04E86A25EC021C00F39BB9 /* ClassifiedDescription.swift in Sources */,
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
