@@ -131,7 +131,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         let screenRatio = view.bounds.height / view.bounds.width
-        
+
         // FIXME: This height is problematic on small device w/ compact height (i.e. an iPhone in landscape)
         let heightPerItem = widthPerItem * screenRatio
         return CGSize(width: widthPerItem, height: heightPerItem)

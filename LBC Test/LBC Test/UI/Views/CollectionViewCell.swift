@@ -104,27 +104,26 @@ class CollectionViewCell: UICollectionViewCell {
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
         underview.addSubview(dateLabel)
-        
+
         categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leftAnchor, right: nil)
-        
+
         urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.rightAnchor)
-        
+
         imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leftAnchor, right: rightAnchor)
 
         underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, height: heightAnchor, multiplier: 0.2)
-        
+
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
 
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leftAnchor, right: underview.rightAnchor)
-        
+
         dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leftAnchor, right: underview.rightAnchor)
-        
+
         // category goes bottomright picture
         NSLayoutConstraint.activate([
             urgentLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
             urgentLabel.leftAnchor.constraint(greaterThanOrEqualTo: imageView.leftAnchor),
         ])
-
     }
 
     @available(*, unavailable)
