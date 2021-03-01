@@ -22,9 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let window = UIWindow(frame: UIScreen.main.bounds)
 
             let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
-
-            model.primary = viewController
-            model.initModelData {}
+            model.start(viewController)
 
             window.rootViewController = viewController
             window.makeKeyAndVisible()

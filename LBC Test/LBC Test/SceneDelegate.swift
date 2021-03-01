@@ -18,11 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
 
         // TODO: Merge with the AppDelegate
-
         let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
-
-        model.primary = viewController
-        model.initModelData {}
+        model.start(viewController)
 
         viewController.view.bounds = UIScreen.main.bounds
 

@@ -35,6 +35,11 @@ class Model: NSObject {
 
     weak var secondaryC: SecondaryCVController!
 
+    func start(_ vc: PrimaryCVController) {
+        self.primary = vc
+        initModelData {}
+    }
+    
     func initModelData(completion: @escaping () -> Void) {
         guard let _ = primary else {
             // without a primary set, the data will be desync'd. e.g. setting the primary afterward
