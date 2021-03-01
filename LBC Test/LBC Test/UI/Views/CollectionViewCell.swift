@@ -63,6 +63,21 @@ class CollectionViewCell: UICollectionViewCell {
         dateLabel.text = ad.creationDate
         urgentLabel.isHidden = !ad.urgent
         imageView.image = #imageLiteral(resourceName: "placeholder")
+        if ad.coverPicturePath == "placeholder" { return }
+        let url = URL(string: ad.coverPicturePath)
+        if url == nil { return }
+        
+        httpFetch(url: url!) { fetchResult in
+            switch(fetchResult) {
+                case let .failure(error):
+                    print("Could not fetch the related image \(error)")
+                case let .success(data):
+                    let image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.imageView.image = image
+                    }
+            }
+        }
     }
 
     func setupUI() {

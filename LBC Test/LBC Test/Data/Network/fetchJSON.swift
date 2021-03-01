@@ -21,7 +21,7 @@ enum ConversionError: Error {
     case dataConversionError
 }
 
-func fetchJson(url: URL, completion: @escaping (Result<Data, FetchingError>) -> Void) {
+func httpFetch(url: URL, completion: @escaping (Result<Data, FetchingError>) -> Void) {
     let session = URLSession(configuration: URLSessionConfiguration.default, delegate: nil, delegateQueue: nil)
     var request = URLRequest(url: url)
 
@@ -61,3 +61,4 @@ func generateItemsDescriptions<DescriptionArray>(data: Data, type: DescriptionAr
         return Result.failure(.dataConversionError)
     }
 }
+

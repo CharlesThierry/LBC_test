@@ -31,7 +31,8 @@ class ClassifiedDescription {
         urgent = entry.urgent
 
         categoryName = (entry.oneCategory?.title)!
-
-        coverPicturePath = "placeholder"
+        let images = entry.manyImages as! Set<Image>
+        let image = images.first(where: { image -> Bool in return image.title == ImagesTitle.small.rawValue })
+        coverPicturePath = image?.url ?? "placeholder"
     }
 }

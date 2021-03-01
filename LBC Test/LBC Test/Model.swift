@@ -52,7 +52,7 @@ class Model: NSObject {
         guard let categoryURL = c else {
             fatalError("Model Categorystring not a URL")
         }
-        fetchJson(url: categoryURL) { fetchResult in
+        httpFetch(url: categoryURL) { fetchResult in
             switch fetchResult {
             case let .failure(error):
                 print("Can't fetch category information \(error)")
@@ -77,7 +77,7 @@ class Model: NSObject {
         guard let entryURL = c else {
             fatalError("Model Categorystring not a URL")
         }
-        fetchJson(url: entryURL) { fetchResult in
+        httpFetch(url: entryURL) { fetchResult in
             switch fetchResult {
             case let .failure(error):
                 print("Can't fetch category information \(error)")
