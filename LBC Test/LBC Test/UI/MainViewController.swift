@@ -11,7 +11,10 @@ private let reuseIdentifier = "Cell"
 
 class MainViewController: UICollectionViewController, PrimaryCVController {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    private let itemsPerRow: CGFloat = 3.0
+
+    var itemsPerRow: CGFloat  { get {
+        return UIScreen.main.bounds.width > UIScreen.main.bounds.height ? 4.0 : 3.0
+    }}
 
     var results: FetchResults? { didSet {
         results?.delegate = self
@@ -28,6 +31,7 @@ class MainViewController: UICollectionViewController, PrimaryCVController {
 
     override func viewDidLoad() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         super.viewDidLoad()
     }
 
@@ -121,10 +125,10 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
                         sizeForItemAt _: IndexPath) -> CGSize
     {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
+        let paddingSpace = sectionInsets.left * itemsPerRow
+        let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        let screenRatio = UIScreen.main.bounds.height / UIScreen.main.bounds.width
+        let screenRatio = view.bounds.height / view.bounds.width
         return CGSize(width: widthPerItem, height: widthPerItem * screenRatio)
     }
 
@@ -132,11 +136,5 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt _: Int) -> UIEdgeInsets
     {
         return sectionInsets
-    }
-
-    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt _: Int) -> CGFloat
-    {
-        return sectionInsets.left
     }
 }
