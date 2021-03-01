@@ -10,7 +10,7 @@ import Foundation
 class ClassifiedDescription {
     var title: String
     var description: String
-    var price: Float
+    var price: String
     var creationDate: String
     var siret: String!
     var urgent: Bool
@@ -20,10 +20,10 @@ class ClassifiedDescription {
     var coverPicturePath: String
     var additionalPicturesPath = [String]()
 
-    init(entry: Entry, formatter: DateFormatter) {
+    init(entry: Entry, formatter: DateFormatter, priceFormatter: NumberFormatter) {
         title = entry.title!
         description = entry.longDesc!
-        price = entry.price
+        price = priceFormatter.string(from: NSNumber(value: entry.price))!
 
         creationDate = formatter.string(from: entry.creationDate!)
 

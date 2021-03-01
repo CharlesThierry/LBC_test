@@ -59,7 +59,7 @@ class CollectionViewCell: UICollectionViewCell {
 
     func setClassified(ad: ClassifiedDescription) {
         titleLabel.text = ad.title
-        priceLabel.text = "\(ad.price)"
+        priceLabel.text = ad.price
         dateLabel.text = ad.creationDate
         urgentLabel.isHidden = !ad.urgent
         imageView.image = #imageLiteral(resourceName: "placeholder")

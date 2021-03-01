@@ -29,6 +29,7 @@
 		FBE6506F25EC2F88009D6260 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6506E25EC2F88009D6260 /* MainViewController.swift */; };
 		FBE6507725EC3008009D6260 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507625EC3008009D6260 /* DetailViewController.swift */; };
 		FBE6507C25EC3074009D6260 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */; };
+		FBE650BA25ECFCCC009D6260 /* NumberFormatter+custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE650B925ECFCCC009D6260 /* NumberFormatter+custom.swift */; };
 		FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF7E3EA25EA607200E31E4A /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		FBE6506E25EC2F88009D6260 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FBE6507625EC3008009D6260 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		FBE650B925ECFCCC009D6260 /* NumberFormatter+custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+custom.swift"; sourceTree = "<group>"; };
 		FBF7E3EA25EA607200E31E4A /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +170,7 @@
 			children = (
 				FB770A7425E84E32005C322B /* DataConstants.swift */,
 				FB01D4D925EA33A40000F950 /* DateFormatter+Custom.swift */,
+				FBE650B925ECFCCC009D6260 /* NumberFormatter+custom.swift */,
 			);
 			path = "Constants & Aux";
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB770A7525E84E32005C322B /* DataConstants.swift in Sources */,
+				FBE650BA25ECFCCC009D6260 /* NumberFormatter+custom.swift in Sources */,
 				FB04E86A25EC021C00F39BB9 /* ClassifiedDescription.swift in Sources */,
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
