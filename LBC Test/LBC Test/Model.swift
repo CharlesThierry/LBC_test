@@ -31,7 +31,11 @@ class Model: NSObject {
             fatalError("A primary receiver must be set to sync")
         }
         DispatchQueue.global(qos: .background).async {
-            self.dataManager.purge()
+            /*
+             This function is used to purge the database on start.
+             Usefull to get the loading animations all the time
+             */
+            //self.dataManager.purge()
             self.fillCategoryData(completion)
         }
     }
