@@ -114,11 +114,25 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension MainViewController {
+
+protocol SelectedRow: AnyObject {
+    func selected(_ :Int?)
+}
+extension MainViewController: SelectedRow{
     @objc
     func changeCategory() {
         let picker = CategoryPickerViewController(nibName: nil, bundle: nil)
         picker.results = results
+        picker.selectedDelegate = self
         showDetailViewController(picker, sender: nil)
+    }
+    
+    func selected(_ selected: Int?) {
+        var categoryID: Int?
+        if selected != nil {
+            categoryID = results?.category(at: selected!)?.id
+        }
+        results?.setCategoryFilter(categoryID: categoryID)
+        dismiss(animated: true, completion: nil)
     }
 }

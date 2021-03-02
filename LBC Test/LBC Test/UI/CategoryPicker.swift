@@ -9,6 +9,7 @@ import UIKit
 
 class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var results: FetchResults?
+    weak var selectedDelegate: SelectedRow?
     
     internal var picker = UIPickerView(frame: .zero)
     internal var clearButton: UIButton = {
@@ -24,6 +25,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("OK", for: .normal)
         btn.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        btn.addTarget(self, action: #selector(validateCurrentCategory), for: .touchUpInside)
         return btn
     }()
     
@@ -48,6 +50,24 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         confirmButton.setBasicConstraints(top: clearButton.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
     }
     
+    @objc
+    func showAllCategories() {
+        guard let delegate = selectedDelegate else {
+            return
+        }
+        delegate.selected(nil)
+    }
+    
+    @objc
+    func validateCurrentCategory() {
+        let selected = picker.selectedRow(inComponent: 0)
+        guard let delegate = selectedDelegate else {
+            return
+        }
+        delegate.selected(selected)
+    }
+    
+    // pickerview detail
     func pickerView(_: UIPickerView, titleForRow row: Int, forComponent _: Int) -> String? {
         guard let res = results else {
             print("No result")
@@ -69,9 +89,5 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
             return 0
         }
         return res.numberOfCategories
-    }
-    
-    func pickerView(_: UIPickerView, didSelectRow row: Int, inComponent _: Int) {
-        results?.setCategoryFilter(categoryID: results?.category(at: row)?.id)
     }
 }
