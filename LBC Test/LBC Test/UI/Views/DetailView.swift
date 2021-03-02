@@ -60,6 +60,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailUrgentL"
+        label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
         label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).withAlphaComponent(0.9)
         label.layer.cornerRadius = 5.0
@@ -71,6 +72,8 @@ class DetailView: UIView {
     var categoryLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .center
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
         label.accessibilityIdentifier = "DetailCategoryL"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -116,14 +119,16 @@ class DetailView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(imageView)
         scrollView.addSubview(urgentLabel)
-
+        scrollView.addSubview(categoryLabel)
         imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
         imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
 
-        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.trailingAnchor)
-
+        categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
+        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
+        
+        
         let underview = UIView()
         underview.accessibilityIdentifier = "DetailUnderview"
         underview.translatesAutoresizingMaskIntoConstraints = false
@@ -172,6 +177,7 @@ class DetailView: UIView {
         imageView.image = #imageLiteral(resourceName: "placeholder")
         siretLabel.text = ad.siret
         urgentLabel.isHidden = !ad.urgent
+        categoryLabel.text = ad.categoryName
 
         if ad.coverPicturePath == "placeholder" { return }
         let url = URL(string: ad.coverPicturePath)

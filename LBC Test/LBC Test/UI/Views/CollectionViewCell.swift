@@ -31,6 +31,7 @@ class CollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
+        label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
         label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).withAlphaComponent(0.9)
         label.layer.cornerRadius = 5.0
@@ -41,6 +42,7 @@ class CollectionViewCell: UICollectionViewCell {
     var categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = .center
         label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
         label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -103,15 +105,13 @@ class CollectionViewCell: UICollectionViewCell {
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
 
-        categoryLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        categoryLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
         categoryLabel.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
-        categoryLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor).isActive = true
-        categoryLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
+        categoryLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
 
-        urgentLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
         urgentLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
-        urgentLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor).isActive = true
-        urgentLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
+        urgentLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
+        urgentLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
 
         imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
         underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor,
