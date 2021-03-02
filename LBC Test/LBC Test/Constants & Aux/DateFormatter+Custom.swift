@@ -19,6 +19,7 @@ extension DateFormatter {
 
     static let relative: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "fr_FR")
         formatter.doesRelativeDateFormatting = true
         formatter.dateStyle = .short
         formatter.timeStyle = .short
