@@ -30,6 +30,7 @@
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
 		FBD2EFB025E7C73800CD2689 /* LBC_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */; };
+		FBDB4F5825EEA2C000765041 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB4F5325EEA2BC00765041 /* CustomExtensions.swift */; };
 		FBE6506F25EC2F88009D6260 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6506E25EC2F88009D6260 /* MainViewController.swift */; };
 		FBE6507725EC3008009D6260 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507625EC3008009D6260 /* DetailViewController.swift */; };
 		FBE6507C25EC3074009D6260 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */; };
@@ -84,6 +85,7 @@
 		FBD2EFAB25E7C73800CD2689 /* Test LBCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Test LBCUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_TestUITests.swift; sourceTree = "<group>"; };
 		FBD2EFB125E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBDB4F5325EEA2BC00765041 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
 		FBE6506E25EC2F88009D6260 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FBE6507625EC3008009D6260 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */,
+				FBDB4F5325EEA2BC00765041 /* CustomExtensions.swift */,
 				FB042FBA25E94125001ACCC1 /* CoreDataTests.swift */,
 				FB042FE025E95D54001ACCC1 /* HTTPTests.swift */,
 				FBD2EFA625E7C73800CD2689 /* Info.plist */,
@@ -411,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBDB4F5825EEA2C000765041 /* CustomExtensions.swift in Sources */,
 				FB042FBC25E94125001ACCC1 /* CoreDataTests.swift in Sources */,
 				FB04E77C25EAF00500F39BB9 /* DataManager+tests.swift in Sources */,
 				FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */,
