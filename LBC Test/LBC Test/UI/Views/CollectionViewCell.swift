@@ -8,6 +8,9 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    private let inset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: -3.0, right: -2.0)
+    
     var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -45,32 +48,32 @@ class CollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    var dateLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.lineBreakMode = .byTruncatingTail
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
     var imageView: UIImageView = {
         let image = UIImageView()
+        image.layer.cornerRadius = 5.0
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image
     }()
 
+    var underview: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setupUI()
     }
 
     func setClassified(ad: ClassifiedDescription) {
+        
         titleLabel.text = ad.title
         priceLabel.text = ad.price
-        dateLabel.text = ad.creationDate
         urgentLabel.isHidden = !ad.urgent
         categoryLabel.text = ad.categoryName
 
@@ -96,28 +99,27 @@ class CollectionViewCell: UICollectionViewCell {
         addSubview(imageView)
         addSubview(categoryLabel)
         addSubview(urgentLabel)
-
-        let underview = UIView()
-        underview.translatesAutoresizingMaskIntoConstraints = false
+        
         addSubview(underview)
-
+        
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
-        underview.addSubview(dateLabel)
 
-        categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leadingAnchor, right: nil)
+        categoryLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        categoryLabel.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
+        categoryLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor).isActive = true
+        categoryLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
 
-        urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: nil, right: imageView.trailingAnchor)
+        urgentLabel.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
+        urgentLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
+        urgentLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor).isActive = true
+        urgentLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
+        
+        imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
+        underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.3)
+        titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
+        priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
 
-        imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leadingAnchor, right: trailingAnchor)
-
-        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.3)
-
-        titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
-
-        priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
-
-        dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
     }
 
     @available(*, unavailable)

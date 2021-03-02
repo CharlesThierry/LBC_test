@@ -43,7 +43,7 @@ class Model: NSObject {
         }
         httpFetch(url: categoryURL) { fetchResult in
             switch fetchResult {
-            case let .failure(error):
+            case .failure:
                 // TODO: handle error / warn user
                 completion()
                 return
