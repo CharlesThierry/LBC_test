@@ -118,12 +118,6 @@ class CollectionViewCell: UICollectionViewCell {
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
 
         dateLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
-
-        // category goes bottomright picture
-        NSLayoutConstraint.activate([
-            urgentLabel.topAnchor.constraint(greaterThanOrEqualTo: imageView.topAnchor),
-            urgentLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor),
-        ])
     }
 
     @available(*, unavailable)
