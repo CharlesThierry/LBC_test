@@ -17,11 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
 
-        // TODO: Merge with the AppDelegate
         let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
         model.start(viewController)
-
-        viewController.view.bounds = UIScreen.main.bounds
 
         let window = UIWindow(windowScene: scene)
         window.rootViewController = viewController
