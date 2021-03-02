@@ -17,6 +17,10 @@ protocol ClassifiedViewDelegate: AnyObject {
     func change(changes: [FetchChange: [(IndexPath?, IndexPath?)]])
 }
 
+protocol CategoryDelegate: AnyObject {
+    func change(_ newCount: Int)
+}
+
 enum FetchChange {
     case delete
     case insert
@@ -43,6 +47,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
 
     weak var classifiedDelegate: ClassifiedViewDelegate?
+    weak var categoryDelegate: CategoryDelegate?
 
     // the formatter are init'd and retained here to avoid creating one per ClassifiedDescription
     let dateFormatter = DateFormatter.relative
@@ -93,6 +98,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
         fetchEntryController = FetchController<Entry>(data)
         super.init()
         fetchEntryController.delegate = self
+        fetchCategoryController.delegate = self
     }
 
     func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -106,29 +112,36 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
         changeOperations = nil
     }
 
-    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        var operation: FetchChange = .update
-        guard let operations = changeOperations else { fatalError("Illegal change operation") }
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        if controller == fetchCategoryController.fetch {
+            guard let delegate = self.categoryDelegate else {
+                return
+            }
+            delegate.change(fetchCategoryController.numberOfObjects())
+        } else {
+            var operation: FetchChange = .update
+            guard let operations = changeOperations else { fatalError("Illegal change operation") }
 
-        switch type {
-        case .insert:
-            operation = .insert
-        case .delete:
-            operation = .delete
-        case .move:
-            operation = .move
-        case .update:
-            operation = .update
-        @unknown default:
-            print("Not supported")
+            switch type {
+            case .insert:
+                operation = .insert
+            case .delete:
+                operation = .delete
+            case .move:
+                operation = .move
+            case .update:
+                operation = .update
+            @unknown default:
+                print("Not supported")
+            }
+
+            var changeSet = operations[operation]
+            if changeSet == nil {
+                changeSet = [(IndexPath, IndexPath)]()
+            }
+            changeSet?.append((indexPath, newIndexPath))
+
+            changeOperations![operation] = changeSet
         }
-
-        var changeSet = operations[operation]
-        if changeSet == nil {
-            changeSet = [(IndexPath, IndexPath)]()
-        }
-        changeSet?.append((indexPath, newIndexPath))
-
-        changeOperations![operation] = changeSet
     }
 }

@@ -29,6 +29,14 @@ class FetchController<Results> where Results: NSManagedObject {
     }
 
     func numberOfObjects() -> Int {
+        if fetch.fetchedObjects == nil {
+            do {
+                try fetch.performFetch()
+            } catch {
+                return 0
+            }
+        }
+        
         guard let fetched = fetch.fetchedObjects else {
             return 0
         }

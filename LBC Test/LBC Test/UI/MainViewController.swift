@@ -9,10 +9,16 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
+extension UIBarButtonItem : CategoryDelegate {
+    func change(_ newCount: Int) {
+        self.isEnabled = newCount > 0
+    }
+}
+
 class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let categoryButton: UIBarButtonItem = {
-        let bbI = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(changeCategory))
+        let bbI = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
         bbI.isEnabled = false
         return bbI
     }()
@@ -22,6 +28,7 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
 
     var results: FetchResults? { didSet {
         results?.classifiedDelegate = self
+        results?.categoryDelegate = categoryButton
     }}
 
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -39,6 +46,9 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         // add a navigation bar to the controller to show a filter button
         super.viewDidLoad()
         collectionView?.contentInsetAdjustmentBehavior = .always
+        categoryButton.target = self
+        categoryButton.action = #selector(changeCategory)
+        refreshCategoryButton()
         navigationItem.setRightBarButton(categoryButton, animated: false)
     }
 
@@ -56,7 +66,6 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         return 1
     }
     override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        refreshCategoryButton()
         guard let res = results else { return 0 }
         return res.numberOfObjects
     }
@@ -72,6 +81,7 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     }
 
     func change(changes: [FetchChange: [(IndexPath?, IndexPath?)]]) {
+        refreshCategoryButton()
         collectionView.performBatchUpdates {
             let insertsOp = changes[.insert]
             if insertsOp != nil {
