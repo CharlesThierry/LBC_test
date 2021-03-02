@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     var ad: ClassifiedDescription
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,9 +29,9 @@ class DetailViewController: UIViewController {
         detail.closeButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
         view = detail
     }
-    
+
     @objc
-    func dismissController () {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    func dismissController() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

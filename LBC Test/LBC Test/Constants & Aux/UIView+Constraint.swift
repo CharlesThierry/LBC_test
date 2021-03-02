@@ -15,10 +15,10 @@ extension UIView {
     func setBasicConstraints(top: NSLayoutYAxisAnchor?, bottom: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, right: NSLayoutXAxisAnchor?,
                              width: NSLayoutDimension? = nil, widthMultiplier: CGFloat? = 1.0,
                              height: NSLayoutDimension? = nil, heightMultiplier: CGFloat? = 1,
-                             insets: UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)) {
-        
+                             insets: UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0))
+    {
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         if let top = top {
             topAnchor.constraint(equalTo: top, constant: insets.top).isActive = true
         }

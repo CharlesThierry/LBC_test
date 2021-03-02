@@ -8,9 +8,8 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    
     private let inset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: -3.0, right: -2.0)
-    
+
     var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -64,14 +63,13 @@ class CollectionViewCell: UICollectionViewCell {
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         return view
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
 
     func setClassified(ad: ClassifiedDescription) {
-        
         titleLabel.text = ad.title
         priceLabel.text = ad.price
         urgentLabel.isHidden = !ad.urgent
@@ -99,9 +97,9 @@ class CollectionViewCell: UICollectionViewCell {
         addSubview(imageView)
         addSubview(categoryLabel)
         addSubview(urgentLabel)
-        
+
         addSubview(underview)
-        
+
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
 
@@ -114,12 +112,11 @@ class CollectionViewCell: UICollectionViewCell {
         urgentLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor).isActive = true
         urgentLabel.leadingAnchor.constraint(greaterThanOrEqualTo: imageView.leadingAnchor).isActive = true
         urgentLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
-        
+
         imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
         underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.3)
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
-
     }
 
     @available(*, unavailable)

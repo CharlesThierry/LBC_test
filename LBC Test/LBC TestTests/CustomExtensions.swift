@@ -36,8 +36,9 @@ class CustomExtensionsTest: XCTestCase {
             XCTFail()
             return
         }
-        XCTAssert(date == Date(timeIntervalSince1970:0))
+        XCTAssert(date == Date(timeIntervalSince1970: 0))
     }
+
     func testDateFRandom() {
         let expectedString = "1982-10-01T17:09:25+0000"
         var dateCompo = DateComponents()
@@ -60,15 +61,16 @@ class CustomExtensionsTest: XCTestCase {
         }
         XCTAssert(date == expectedDate)
     }
-    
+
     func testDateFRelativeFar() {
         let expectedString = "01/01/1970 01:00"
         let date = Date(timeIntervalSince1970: TimeInterval())
         let string = DateFormatter.relative.string(from: date)
         XCTAssert(string == expectedString)
     }
+
     func testDateFRelativeClose() {
-        let date = Date.init(timeIntervalSinceNow: -60*60*24)
+        let date = Date(timeIntervalSinceNow: -60 * 60 * 24)
         let string = DateFormatter.relative.string(from: date)
         XCTAssert(string.hasPrefix("hier"))
     }

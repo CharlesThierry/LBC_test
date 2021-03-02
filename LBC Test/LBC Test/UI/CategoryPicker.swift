@@ -10,7 +10,7 @@ import UIKit
 class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     weak var results: FetchResults?
     weak var selectedDelegate: SelectedRow?
-    
+
     internal var picker = UIPickerView(frame: .zero)
     internal var clearButton: UIButton = {
         let btn = UIButton(frame: .zero)
@@ -29,20 +29,20 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         btn.addTarget(self, action: #selector(validateCurrentCategory), for: .touchUpInside)
         return btn
     }()
-    
+
     override func loadView() {
         view = UIView(frame: .zero)
-        
+
         let underview = UIView(frame: .zero)
         underview.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         underview.layer.cornerRadius = 5.0
         view.addSubview(underview)
         underview.setBasicConstraints(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, right: view.safeAreaLayoutGuide.trailingAnchor)
-        
+
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.delegate = self
         picker.dataSource = self
-        
+
         underview.addSubview(picker)
         underview.addSubview(clearButton)
         underview.addSubview(confirmButton)
@@ -50,7 +50,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         clearButton.setBasicConstraints(top: picker.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         confirmButton.setBasicConstraints(top: clearButton.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
     }
-    
+
     @objc
     func showAllCategories() {
         guard let delegate = selectedDelegate else {
@@ -58,7 +58,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         delegate.selected(nil)
     }
-    
+
     @objc
     func validateCurrentCategory() {
         let selected = picker.selectedRow(inComponent: 0)
@@ -67,7 +67,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         delegate.selected(selected)
     }
-    
+
     // pickerview detail
     func pickerView(_: UIPickerView, titleForRow row: Int, forComponent _: Int) -> String? {
         guard let res = results else {
@@ -80,7 +80,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
         return category.name
     }
-    
+
     func numberOfComponents(in _: UIPickerView) -> Int {
         return 1
     }
