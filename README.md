@@ -1,25 +1,9 @@
 # LBC_test
 
-## Done
+## Missing
 
-* Data fetch and storage
-* Basic main UI
-* Basic Detail UI
-* Cells with pictures downloaded on the fly
+* User alerts on network failure while refreshing, etc
 
-## TODO
-
-* MainViewController
-	* Finish (filter, fetch indicator?)
-	* Add a "reset" button?
-	* Add some UI polish?
-* DetailedView
-	* Missing general UI look
-	* polish
-
-* Alerts (on network failure)
-
-* Add tests around the ClassifiedDescription and the formatters
 
 
 ## Structure
