@@ -70,8 +70,8 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
         return fetchCategoryController.numberOfObjects()
     }
 
-    func category(at index: IndexPath) -> CategoryDescription? {
-        guard let entry = fetchCategoryController.object(at: index) else {
+    func category(at index: Int) -> CategoryDescription? {
+        guard let entry = fetchCategoryController.object(at: IndexPath(row: index, section: 0)) else {
             fatalError("No entry for indexPath \(index)")
         }
         let category = CategoryDescription(category: entry)

@@ -34,10 +34,9 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
         collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
         // add a navigation bar to the controller to show a filter button
         super.viewDidLoad()
-        let categorySelector = UIBarButtonItem(barButtonSystemItem: .action,
-                                               target: self,
-                                               action: #selector(changeCategory))
-        navigationItem.setRightBarButton(categorySelector, animated: false)
+        let categoryButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(changeCategory))
+
+        navigationItem.setRightBarButton(categoryButton, animated: false)
     }
 
     // MARK: UICollectionViewDataSource
@@ -118,7 +117,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController {
     @objc
     func changeCategory() {
-        let categorySelector = UIPickerView()
-        categorySelector.dataSource = results
+        let selector = CategoryViewController(nibName: nil, bundle: nil)
+        self.showDetailViewController(selector, sender:nil)
     }
+}
+
+class CategoryViewController: UIViewController {
+    
 }
