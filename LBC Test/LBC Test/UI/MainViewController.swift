@@ -33,8 +33,11 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
         // add a navigation bar to the controller to show a filter button
-
         super.viewDidLoad()
+        let categorySelector = UIBarButtonItem(barButtonSystemItem: .action,
+                                               target: self,
+                                               action: #selector(self.changeCategory))
+        self.navigationItem.setRightBarButton(categorySelector, animated: false)
     }
 
     // MARK: UICollectionViewDataSource
@@ -50,7 +53,7 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-        guard let classified = results?.object(at: indexPath) else {
+        guard let classified = results?.entry(at: indexPath) else {
             fatalError("Can't fetch info for \(indexPath)")
         }
         cell.setClassified(ad: classified)
@@ -84,7 +87,7 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedAd = results?.object(at: indexPath)
+        let selectedAd = results?.entry(at: indexPath)
         guard let ad = selectedAd else {
             fatalError("Selected Ad not found")
         }
@@ -100,9 +103,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * itemsPerRow
         let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        let screenRatio = view.bounds.height / view.bounds.width
-
-        // FIXME: This height is problematic on small device w/ compact height (i.e. an iPhone in landscape)
+        
         let heightPerItem = widthPerItem * 1.6
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
@@ -111,5 +112,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt _: Int) -> UIEdgeInsets
     {
         return sectionInsets
+    }
+}
+
+extension MainViewController {
+    @objc
+    func changeCategory () {
+        let categorySelector = UIPickerView()
+        categorySelector.dataSource = results
     }
 }

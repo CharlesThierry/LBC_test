@@ -38,7 +38,7 @@ class DataManager {
 
     init() {
         storeSetup()
-        setupFetchController()
+//        setupFetchController()
     }
 
     func storeSetup() {
@@ -189,35 +189,6 @@ class DataManager {
             images.title = description.title?.rawValue
             images.url = description.url
             images.oneClassified = entry
-        }
-    }
-
-    // MARK: Using fetchResultsController to update the collectionview
-
-    var fetchController: NSFetchedResultsController<Entry>?
-
-    func setupFetchController(_ categoryID: Int? = nil) {
-        let request = NSFetchRequest<Entry>(entityName: CoreDataEntityNames.Entry.rawValue)
-
-        if categoryID != nil {
-            let categoryPredicate = NSPredicate(format: "oneCategory.id == \(categoryID!)")
-            request.predicate = categoryPredicate
-        }
-
-        let sortUrgent = NSSortDescriptor(key: CoreDataEntry.urgent.rawValue, ascending: false)
-        let sortDate = NSSortDescriptor(key: CoreDataEntry.creationDate.rawValue, ascending: false)
-
-        request.sortDescriptors = [sortUrgent, sortDate]
-
-        request.fetchBatchSize = fetchBatchSize
-
-        fetchController = NSFetchedResultsController<Entry>(fetchRequest: request, managedObjectContext:
-            container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        do {
-            try fetchController!.performFetch()
-        } catch {
-            fatalError("CoreData fetchedResults error \(error)")
         }
     }
 }

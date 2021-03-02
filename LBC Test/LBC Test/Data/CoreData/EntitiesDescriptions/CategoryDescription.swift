@@ -15,11 +15,10 @@ protocol CategoryProtocol {
 class CategoryDescription: CategoryProtocol, Decodable {
     var id: Int?
     var name: String?
-    init(id: Int,
-         name: String)
+    init(category: Category)
     {
-        self.id = id
-        self.name = name
+        self.id = Int(category.id)
+        self.name = category.title
     }
 
     required init(from decoder: Decoder) throws {

@@ -11,12 +11,12 @@ import Foundation
 let category = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
-// Model handles information distribution to both the main view and the detail view
+// Model handles the data fetching and retains the
 class Model: NSObject {
     let dataManager = DataManager()
 
-    weak var primary: FetchResultUpdates! { didSet {
-        primary.results = FetchResults(dataManager.fetchController!)
+    weak var primary: FetchResultUpdates? { didSet {
+        primary?.results = FetchResults(dataManager)
     }}
 
     func start(_ vc: FetchResultUpdates) {
@@ -44,7 +44,6 @@ class Model: NSObject {
         httpFetch(url: categoryURL) { fetchResult in
             switch fetchResult {
             case let .failure(error):
-                print("Can't fetch category information \(error)")
                 // TODO: handle error / warn user
                 completion()
                 return
@@ -56,6 +55,7 @@ class Model: NSObject {
                 case let .success(catArray):
                     self.dataManager.addCategories(catArray)
                     self.fillEntryData(completion)
+                    
                 }
             }
         }

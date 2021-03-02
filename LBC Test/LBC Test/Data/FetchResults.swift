@@ -40,29 +40,57 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
 
     weak var delegate: FetchResultUpdates?
 
+    // the formatter are init'd and retained here to avoid creating one per ClassifiedDescription
     let dateFormatter = DateFormatter.relative
     let priceFormatter = NumberFormatter.priceFormatter
 
-    private var fetchResultController: NSFetchedResultsController<Entry>
-
+    private var fetchEntryController: FetchController<Entry>
+    internal var fetchCategoryController: FetchController<Category>
+    internal var dataManager: DataManager?
+    
+    // Entry actions
     var numberOfObjects: Int {
-        guard let sectionInfo = fetchResultController.sections?[0] else {
-            return 0
+        return fetchEntryController.numberOfObjects()
+    }
+    
+    func entry(at index: IndexPath) -> ClassifiedDescription? {
+        guard let entry = fetchEntryController.object(at: index) else {
+            fatalError("No entry for indexPath \(index)")
         }
-        return sectionInfo.numberOfObjects
-    }
-
-    init(_ c: NSFetchedResultsController<Entry>) {
-        fetchResultController = c
-        super.init()
-        fetchResultController.delegate = self
-    }
-
-    func object(at index: IndexPath) -> ClassifiedDescription? {
-        let entry = fetchResultController.object(at: index)
         let classified = ClassifiedDescription(entry: entry, formatter: dateFormatter, priceFormatter: priceFormatter)
         return classified
     }
+    
+    func setCategory(categoryID: Int) {
+        fetchEntryController.changeCategory(categoryID: categoryID)
+    }
+    
+    // Category action
+    var numberOfCategories: Int {
+        return fetchCategoryController.numberOfObjects()
+    }
+    
+    func category(at index: IndexPath) -> CategoryDescription? {
+        guard let entry = fetchCategoryController.object(at: index) else {
+            fatalError("No entry for indexPath \(index)")
+        }
+        let category = CategoryDescription(category:entry)
+        return category
+
+    }
+    
+    
+    
+    init(_ data: DataManager) {
+        dataManager = data
+
+        fetchCategoryController = FetchController<Category>(data)
+        fetchEntryController = FetchController<Entry>(data)
+        super.init()
+        fetchEntryController.delegate = self
+        
+    }
+
 
     func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         changeOperations = [FetchChange: [(IndexPath?, IndexPath?)]]()
