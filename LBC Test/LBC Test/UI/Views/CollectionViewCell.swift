@@ -114,7 +114,9 @@ class CollectionViewCell: UICollectionViewCell {
         urgentLabel.trailingAnchor.constraint(lessThanOrEqualTo: imageView.trailingAnchor).isActive = true
 
         imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
-        underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.3)
+        underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor,
+                                      left: leadingAnchor, right: trailingAnchor,
+                                      height: heightAnchor, heightMultiplier: 0.3, insets: UIEdgeInsets(top: 3.0, left: 0.0, bottom: 0.0, right: 0.0))
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
     }
