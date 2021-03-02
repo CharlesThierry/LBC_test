@@ -134,5 +134,6 @@ extension MainViewController: SelectedRow{
         }
         results?.setCategoryFilter(categoryID: categoryID)
         dismiss(animated: true, completion: nil)
+        self.collectionView.reloadData()
     }
 }

@@ -82,6 +82,10 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
         return category
     }
 
+    func setCategoryFilter(categoryID cID: Int?) {
+        fetchEntryController.changeCategory(categoryID: cID)
+    }
+
     init(_ data: DataManager) {
         dataManager = data
 

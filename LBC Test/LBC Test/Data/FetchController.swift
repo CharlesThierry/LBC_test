@@ -77,6 +77,12 @@ extension FetchController where Results: Entry {
         if cID != nil {
             categoryPredicate = NSPredicate(format: "oneCategory.id == \(cID!)")
         }
-        request.predicate = categoryPredicate
+        fetch.fetchRequest.predicate = categoryPredicate
+        do {
+            try fetch.performFetch()
+        } catch {
+            print("Error on Entry fetch \(error) ")
+        }
+
     }
 }
