@@ -16,7 +16,8 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         let btn = UIButton(frame: .zero)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("Toutes categories", for: .normal)
-        btn.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        btn.setTitleColor(btn.tintColor, for: .normal)
+        btn.addTarget(self, action: #selector(showAllCategories), for: .touchUpInside)
         return btn
     }()
 
@@ -24,7 +25,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         let btn = UIButton(frame: .zero)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle("OK", for: .normal)
-        btn.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        btn.setTitleColor(btn.tintColor, for: .normal)
         btn.addTarget(self, action: #selector(validateCurrentCategory), for: .touchUpInside)
         return btn
     }()
