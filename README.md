@@ -26,9 +26,9 @@
 
 ### UI
 
-This App uses a CollectionViewController to display the Classified listing ads. Tapping on an item opens a detailed view of the ad.
+This App uses a CollectionViewController to display the Classified listing ads. Tapping on an item opens a detailed view of the ad in a DetailViewController presented through `showDetailViewController(_:sender:)`. The data of the Ad is directly provided by the MainViewController
 
-Ads are filtered by Urgent, then by date. On the main controller are displayed the title, price, date, a picture (or a placeholder if non available) and the ad 'Urgent' status.
+In the Main controller, ads are sorted by is_urgent, then by date. It is possible to filter through category by using the dedicated Action button.
 
 
 ### Data storage
@@ -57,6 +57,8 @@ Model handles the initial https fetchs to category and listing. Once those are f
 The DataManager handles all the CoreData interaction, by retaining the container, a store and a separate context (to avoid writes to it on the main thread). Writing takes places every few new items added to the context, to quickly show progress to the user.
 
 Data is sent to the UI through a NSFetchedResultsController. In order to avoid putting CoreData knowledge in the UI, a interfacing layer (FetchResults) is created by the Model and given to the MainViewController.
+
+FetchResults maintain two NSFetchedResultsController thinly wrapped in a generic class FetchController. This wrap allows the FetchResults to directly get the information to pass to the MainController.
 
 In addition to isolate the CoreData layer, this interfacing layer concatenates the modifications received from the NSFetchedResultsController to present them in a single call to the UI.
 
