@@ -11,7 +11,11 @@ private let reuseIdentifier = "Cell"
 
 class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-
+    private let categoryButton: UIBarButtonItem = {
+        let bbI = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(changeCategory))
+        bbI.isEnabled = false
+        return bbI
+    }()
     var itemsPerRow: CGFloat {
         return UIScreen.main.bounds.width > UIScreen.main.bounds.height ? 4.0 : 3.0
     }
@@ -35,18 +39,24 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         // add a navigation bar to the controller to show a filter button
         super.viewDidLoad()
         collectionView?.contentInsetAdjustmentBehavior = .always
-        let categoryButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(changeCategory))
-
         navigationItem.setRightBarButton(categoryButton, animated: false)
     }
 
+    func refreshCategoryButton () {
+        guard let res = results else {
+            categoryButton.isEnabled = false
+            return
+        }
+        categoryButton.isEnabled = res.numberOfCategories > 0
+    }
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
-
     override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        refreshCategoryButton()
         guard let res = results else { return 0 }
         return res.numberOfObjects
     }
