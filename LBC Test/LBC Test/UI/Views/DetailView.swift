@@ -9,7 +9,8 @@ import UIKit
 
 class DetailView: UIView {
     var ad: ClassifiedDescription
-    
+    var controller: DetailViewController?
+
     var scrollView: UIScrollView = {
         let scrollview = UIScrollView(frame: .zero)
         scrollview.contentInsetAdjustmentBehavior = .always
@@ -67,19 +68,33 @@ class DetailView: UIView {
         var label = UILabel()
         return label
     }()
-    
+
+    var closeButton: UIButton = {
+        var btn: UIButton
+        if #available(iOS 13.0, *) {
+            btn = UIButton(type: .close)
+        } else {
+            btn = UIButton(frame: .zero)
+            btn.setImage(UIImage(named: "Close Button"), for: .normal)
+            btn.tintColor = #colorLiteral(red: 0.6840892674, green: 0.6840892674, blue: 0.6840892674, alpha: 1)
+            btn.widthAnchor.constraint(equalTo: btn.heightAnchor).isActive = true
+            btn.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        }
+        return btn
+    }()
+
     init(_ detail: ClassifiedDescription) {
         ad = detail
         super.init(frame: .zero)
-        
+
         addSubview(scrollView)
-        scrollView.setBasicConstraints(top: topAnchor, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor)
+        scrollView.setBasicConstraints(top: safeAreaLayoutGuide.topAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, left: safeAreaLayoutGuide.leadingAnchor, right: safeAreaLayoutGuide.trailingAnchor)
         scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(imageView)
         scrollView.addSubview(urgentLabel)
 
-        imageView.setBasicConstraints(top: scrollView.topAnchor, bottom: nil, left: scrollView.leadingAnchor, right: nil, width: widthAnchor, height: heightAnchor, heightMultiplier: 0.8)
+        imageView.setBasicConstraints(top: scrollView.topAnchor, bottom: nil, left: scrollView.leadingAnchor, right: nil, width: safeAreaLayoutGuide.widthAnchor, height: heightAnchor, heightMultiplier: 0.7)
 
         let underview = UIView()
         underview.translatesAutoresizingMaskIntoConstraints = false
@@ -103,9 +118,13 @@ class DetailView: UIView {
         dateLabel.setBasicConstraints(top: descriptionLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         priceLabel.setBasicConstraints(top: dateLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         siretLabel.setBasicConstraints(top: priceLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)
+
+        addSubview(closeButton)
+        closeButton.setBasicConstraints(top: safeAreaLayoutGuide.topAnchor, bottom: nil, left: safeAreaLayoutGuide.leadingAnchor, right: nil)
+
         setupUI()
     }
-    
+
     func setupUI() {
         titleLabel.text = ad.title
         descriptionLabel.text = ad.description

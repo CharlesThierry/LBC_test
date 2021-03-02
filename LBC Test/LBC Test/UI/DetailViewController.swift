@@ -6,12 +6,10 @@
 //
 
 import UIKit
-// TODO: Add a close button or use overshoot dragdown movement to close
+
 class DetailViewController: UIViewController {
     var ad: ClassifiedDescription
-
-
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -27,6 +25,13 @@ class DetailViewController: UIViewController {
     }
 
     override func loadView() {
-        view = DetailView(ad)
+        let detail = DetailView(ad)
+        detail.closeButton.addTarget(self, action: #selector(dismissController), for: .touchUpInside)
+        view = detail
+    }
+    
+    @objc
+    func dismissController () {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

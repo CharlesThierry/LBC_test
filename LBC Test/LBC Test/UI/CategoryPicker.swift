@@ -37,7 +37,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
         underview.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         underview.layer.cornerRadius = 5.0
         view.addSubview(underview)
-        underview.setBasicConstraints(top: nil, bottom: view.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor)
+        underview.setBasicConstraints(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, right: view.safeAreaLayoutGuide.trailingAnchor)
         
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.delegate = self
