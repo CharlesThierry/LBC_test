@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class MainViewController: UICollectionViewController, FetchResultUpdates {
+class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 
     var itemsPerRow: CGFloat {
@@ -117,11 +117,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController {
     @objc
     func changeCategory() {
-        let selector = CategoryViewController(nibName: nil, bundle: nil)
-        self.showDetailViewController(selector, sender:nil)
+        
     }
-}
-
-class CategoryViewController: UIViewController {
-    
 }

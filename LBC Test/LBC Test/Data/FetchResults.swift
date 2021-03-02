@@ -12,7 +12,7 @@ import Foundation
  This protocol & class basically reimplements the NSFetchedResultsController to allow
  for the UI update without it knowing about the CoreData stuff
  */
-protocol FetchResultUpdates: AnyObject {
+protocol ClassifiedViewDelegate: AnyObject {
     var results: FetchResults? { get set }
     func change(changes: [FetchChange: [(IndexPath?, IndexPath?)]])
 }
@@ -35,10 +35,14 @@ func change(f: NSFetchedResultsChangeType) -> FetchChange {
     }
 }
 
+/*
+ This class keeps the FetchController and provides the data from the data core to the element that
+ needs it: the mainViewController (via the ClassifiedViewDelegate
+ */
 class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
 
-    weak var delegate: FetchResultUpdates?
+    weak var classifiedDelegate: ClassifiedViewDelegate?
 
     // the formatter are init'd and retained here to avoid creating one per ClassifiedDescription
     let dateFormatter = DateFormatter.relative
@@ -94,7 +98,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         // push update to the collection view
 
-        delegate?.change(changes: changeOperations!)
+        classifiedDelegate?.change(changes: changeOperations!)
         changeOperations = nil
     }
 

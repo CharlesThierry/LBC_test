@@ -15,11 +15,11 @@ let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/list
 class Model: NSObject {
     let dataManager = DataManager()
 
-    weak var primary: FetchResultUpdates? { didSet {
+    weak var primary: ClassifiedViewDelegate? { didSet {
         primary?.results = FetchResults(dataManager)
     }}
 
-    func start(_ vc: FetchResultUpdates) {
+    func start(_ vc: ClassifiedViewDelegate) {
         primary = vc
         initModelData {}
     }
