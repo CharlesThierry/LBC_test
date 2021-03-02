@@ -17,7 +17,7 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     }
 
     var results: FetchResults? { didSet {
-        results?.delegate = self
+        results?.classifiedDelegate = self
     }}
 
     override init(collectionViewLayout layout: UICollectionViewLayout) {
@@ -117,6 +117,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController {
     @objc
     func changeCategory() {
-        
+        let picker = CategoryPickerViewController(nibName: nil, bundle: nil)
+        picker.results = results
+        showDetailViewController(picker, sender: nil)
     }
 }

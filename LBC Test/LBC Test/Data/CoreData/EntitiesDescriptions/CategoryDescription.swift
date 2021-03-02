@@ -17,7 +17,7 @@ class CategoryDescription: CategoryProtocol, Decodable {
     var name: String?
     init(category: Category) {
         id = Int(category.id)
-        name = category.title
+        name = category.name
     }
 
     required init(from decoder: Decoder) throws {

@@ -30,7 +30,7 @@ class ClassifiedDescription {
         siret = entry.siret
         urgent = entry.urgent
 
-        categoryName = (entry.oneCategory?.title)!
+        categoryName = (entry.oneCategory?.name)!
         let images = entry.manyImages as! Set<Image>
         let image = images.first(where: { image -> Bool in image.title == ImagesTitle.small.rawValue })
         coverPicturePath = image?.url ?? "placeholder"

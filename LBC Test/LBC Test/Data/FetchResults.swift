@@ -37,7 +37,7 @@ func change(f: NSFetchedResultsChangeType) -> FetchChange {
 
 /*
  This class keeps the FetchController and provides the data from the data core to the element that
- needs it: the mainViewController (via the ClassifiedViewDelegate
+ needs it: the mainViewController via the ClassifiedViewDelegate
  */
 class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
     var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?

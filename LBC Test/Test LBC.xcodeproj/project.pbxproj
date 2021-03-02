@@ -25,6 +25,7 @@
 		FB770A2525E8496D005C322B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A2425E8496D005C322B /* DataManager.swift */; };
 		FB770A7525E84E32005C322B /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB770A7425E84E32005C322B /* DataConstants.swift */; };
 		FB82115825ED62CD00F50668 /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB82115725ED62CD00F50668 /* UIView+Constraint.swift */; };
+		FB91D31925EE6D9600DACD41 /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB91D31825EE6D9600DACD41 /* CategoryPicker.swift */; };
 		FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */; };
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		FB770A2425E8496D005C322B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		FB770A7425E84E32005C322B /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
 		FB82115725ED62CD00F50668 /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
+		FB91D31825EE6D9600DACD41 /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
 		FBD2EF8A25E7C73700CD2689 /* Test LBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test LBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBD2EF9625E7C73800CD2689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				FBE6506E25EC2F88009D6260 /* MainViewController.swift */,
+				FB91D31825EE6D9600DACD41 /* CategoryPicker.swift */,
 				FBE6507625EC3008009D6260 /* DetailViewController.swift */,
 				FBE6508025EC3092009D6260 /* Views */,
 			);
@@ -387,6 +390,7 @@
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
 				FBE6506F25EC2F88009D6260 /* MainViewController.swift in Sources */,
 				FB82115825ED62CD00F50668 /* UIView+Constraint.swift in Sources */,
+				FB91D31925EE6D9600DACD41 /* CategoryPicker.swift in Sources */,
 				FB01D4DA25EA33A40000F950 /* DateFormatter+Custom.swift in Sources */,
 				FB04E7E325EBB68400F39BB9 /* SceneDelegate.swift in Sources */,
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,

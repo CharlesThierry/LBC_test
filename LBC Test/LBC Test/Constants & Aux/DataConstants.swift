@@ -38,7 +38,7 @@ enum CoreDataEntityNames: String {
 
 enum CoreDataCategory: String {
     case id
-    case title
+    case name
 }
 
 enum ImagesTitle: String, Codable {

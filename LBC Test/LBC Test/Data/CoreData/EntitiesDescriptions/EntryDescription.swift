@@ -43,7 +43,6 @@ class EntryDescription: EntryProtocol, Decodable {
         urgent = try c.decodeIfPresent(Bool.self, forKey: .is_urgent)
         siret = try c.decodeIfPresent(String.self, forKey: .siret)
         categoryID = try c.decodeIfPresent(Int.self, forKey: .category_id)
-        // TODO: Date stays at nil, check why the JSONDecoder fails
         creationDate = try c.decodeIfPresent(Date.self, forKey: .creation_date)
 
         let imagesUrl = try c.decodeIfPresent([String: String].self, forKey: .images_url)

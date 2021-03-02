@@ -129,12 +129,11 @@ class DataManager {
                 if !isNew {
                     continue
                 }
-
                 // TODO: Check if the name shouldn't be overriden ?
                 let entity = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Category.rawValue, in: context)
                 let category = Category(entity: entity!, insertInto: context)
                 category.id = Int64(id)
-                category.title = c.name
+                category.name = c.name
             }
         }
         save()
@@ -182,7 +181,6 @@ class DataManager {
         let category = try? context.fetch(fetch)
         entry.oneCategory = category?.first
 
-        // TODO: can there be multiple images with the same URLs?
         for description in c.images! {
             let imageED = NSEntityDescription.entity(forEntityName: CoreDataEntityNames.Image.rawValue, in: context)
             let images = Image(entity: imageED!, insertInto: context)

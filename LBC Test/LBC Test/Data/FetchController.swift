@@ -21,7 +21,7 @@ class FetchController<Results> where Results: NSManagedObject {
         request = NSFetchRequest<Results>(entityName: entityName.rawValue)
         sort(request)
         fetch = NSFetchedResultsController<Results>(fetchRequest: request, managedObjectContext:
-            dM.container.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            dM.container.viewContext, sectionNameKeyPath: nil, cacheName:nil)
     }
 
     func object(at: IndexPath) -> Results? {
@@ -43,14 +43,18 @@ class FetchController<Results> where Results: NSManagedObject {
 extension FetchController where Results: Category {
     convenience init(_ dM: DataManager) {
         self.init(dM, entityName: CoreDataEntityNames.Category) { request in
-            let sortName = NSSortDescriptor(key: CoreDataCategory.title.rawValue, ascending: false)
-            request.sortDescriptors = [sortName]
+            let sortID = NSSortDescriptor(key: CoreDataCategory.id.rawValue, ascending: false)
+            request.sortDescriptors = [sortID]
         }
         do {
             try fetch.performFetch()
         } catch {
             print("Error on Category fetch \(error) ")
         }
+    }
+    func object(at: IndexPath) -> Results? {
+        try? fetch.performFetch()
+        return fetch.object(at: at)
     }
 }
 
@@ -68,9 +72,6 @@ extension FetchController where Results: Entry {
             print("Error on Entry fetch \(error) ")
         }
     }
-
-    func setupRequest(_: NSFetchRequest<Results>, _: DataManager) {}
-
     func changeCategory(categoryID cID: Int?) {
         var categoryPredicate: NSPredicate?
         if cID != nil {
