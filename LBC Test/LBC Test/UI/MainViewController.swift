@@ -36,8 +36,8 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
         super.viewDidLoad()
         let categorySelector = UIBarButtonItem(barButtonSystemItem: .action,
                                                target: self,
-                                               action: #selector(self.changeCategory))
-        self.navigationItem.setRightBarButton(categorySelector, animated: false)
+                                               action: #selector(changeCategory))
+        navigationItem.setRightBarButton(categorySelector, animated: false)
     }
 
     // MARK: UICollectionViewDataSource
@@ -85,8 +85,8 @@ class MainViewController: UICollectionViewController, FetchResultUpdates {
     }
 
     // MARK: UICollectionViewDelegate
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    override func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedAd = results?.entry(at: indexPath)
         guard let ad = selectedAd else {
             fatalError("Selected Ad not found")
@@ -103,7 +103,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * itemsPerRow
         let availableWidth = view.bounds.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        
+
         let heightPerItem = widthPerItem * 1.6
         return CGSize(width: widthPerItem, height: heightPerItem)
     }
@@ -117,7 +117,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainViewController {
     @objc
-    func changeCategory () {
+    func changeCategory() {
         let categorySelector = UIPickerView()
         categorySelector.dataSource = results
     }

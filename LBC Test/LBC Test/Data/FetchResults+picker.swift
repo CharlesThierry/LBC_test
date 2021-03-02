@@ -8,13 +8,11 @@
 import UIKit
 
 extension FetchResults: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in _: UIPickerView) -> Int {
         return 1
     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.numberOfCategories
+
+    func pickerView(_: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
+        return numberOfCategories
     }
-    
-    
 }

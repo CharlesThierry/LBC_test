@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             // Init the window and the main controller
             let window = UIWindow(frame: UIScreen.main.bounds)
-            
+
             let viewController = MainViewController(collectionViewLayout: UICollectionViewFlowLayout())
-            let navigationController = UINavigationController (rootViewController: viewController)
+            let navigationController = UINavigationController(rootViewController: viewController)
             model.start(viewController)
 
             window.rootViewController = navigationController

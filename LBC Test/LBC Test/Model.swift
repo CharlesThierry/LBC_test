@@ -55,7 +55,6 @@ class Model: NSObject {
                 case let .success(catArray):
                     self.dataManager.addCategories(catArray)
                     self.fillEntryData(completion)
-                    
                 }
             }
         }

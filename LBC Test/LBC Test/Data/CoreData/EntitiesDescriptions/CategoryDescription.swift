@@ -15,10 +15,9 @@ protocol CategoryProtocol {
 class CategoryDescription: CategoryProtocol, Decodable {
     var id: Int?
     var name: String?
-    init(category: Category)
-    {
-        self.id = Int(category.id)
-        self.name = category.title
+    init(category: Category) {
+        id = Int(category.id)
+        name = category.title
     }
 
     required init(from decoder: Decoder) throws {

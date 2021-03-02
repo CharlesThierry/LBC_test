@@ -8,7 +8,6 @@
 import CoreData
 
 class FetchController<Results> where Results: NSManagedObject {
-    
     var fetch: NSFetchedResultsController<Results>
     internal weak var dataManager: DataManager?
     internal var request: NSFetchRequest<Results>
@@ -17,7 +16,7 @@ class FetchController<Results> where Results: NSManagedObject {
         fetch.delegate = delegate
     }}
 
-    init(_ dM: DataManager, entityName: CoreDataEntityNames, sort: (_: NSFetchRequest<Results>) -> ()) {
+    init(_ dM: DataManager, entityName: CoreDataEntityNames, sort: (_: NSFetchRequest<Results>) -> Void) {
         dataManager = dM
         request = NSFetchRequest<Results>(entityName: entityName.rawValue)
         sort(request)
@@ -36,7 +35,7 @@ class FetchController<Results> where Results: NSManagedObject {
         return fetched.count
     }
 
-    func setupRequest(_ request: NSFetchRequest<Results>, _ dM: DataManager) {
+    func setupRequest(_: NSFetchRequest<Results>, _: DataManager) {
         fatalError("Should not be called")
     }
 }
@@ -70,7 +69,7 @@ extension FetchController where Results: Entry {
         }
     }
 
-    func setupRequest(_ request: NSFetchRequest<Results>, _ dM: DataManager) {}
+    func setupRequest(_: NSFetchRequest<Results>, _: DataManager) {}
 
     func changeCategory(categoryID cID: Int?) {
         var categoryPredicate: NSPredicate?
