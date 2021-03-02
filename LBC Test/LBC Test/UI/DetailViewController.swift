@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// TODO: Add a close button or use overshoot dragdown movement to close
 class DetailViewController: UIViewController {
     var ad: ClassifiedDescription
 
@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
         let image = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
 
@@ -77,19 +78,19 @@ class DetailViewController: UIViewController {
         scrollView.setBasicConstraints(top: view.topAnchor, bottom: view.bottomAnchor, left: view.leadingAnchor, right: view.trailingAnchor)
         scrollView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(imageView)
+        imageView.setBasicConstraints(top: scrollView.topAnchor, bottom: nil, left: scrollView.leadingAnchor, right: nil, width: view.widthAnchor, height: view.heightAnchor, heightMultiplier: 0.8)
 
         let underview = UIView()
         underview.translatesAutoresizingMaskIntoConstraints = false
         underview.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 
         scrollView.addSubview(underview)
-        underview.setBasicConstraints(top: scrollView.topAnchor,
+        underview.setBasicConstraints(top: imageView.bottomAnchor,
                                       bottom: scrollView.bottomAnchor,
                                       left: scrollView.leadingAnchor,
                                       right: nil,
                                       width: scrollView.widthAnchor)
-
-        underview.addSubview(imageView)
 
         underview.addSubview(titleLabel)
         underview.addSubview(descriptionLabel)
@@ -98,8 +99,6 @@ class DetailViewController: UIViewController {
         //        underview.addSubview(priceLabel)
         //        underview.addSubview(siretLabel)
 
-        imageView.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
-        imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7).isActive = true
         titleLabel.setBasicConstraints(top: imageView.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         descriptionLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
         dateLabel.setBasicConstraints(top: descriptionLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor)

@@ -12,7 +12,7 @@ extension UIView {
      Set the parameterized anchor equal to the related parameter.
      If multiplier is present, it will be used for width and height
      */
-    func setBasicConstraints(top: NSLayoutYAxisAnchor?, bottom: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, right: NSLayoutXAxisAnchor?, width: NSLayoutDimension? = nil, height: NSLayoutDimension? = nil, multiplier: CGFloat? = 1) {
+    func setBasicConstraints(top: NSLayoutYAxisAnchor?, bottom: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, right: NSLayoutXAxisAnchor?, width: NSLayoutDimension? = nil, widthMultiplier: CGFloat? = 1.0, height: NSLayoutDimension? = nil, heightMultiplier: CGFloat? = 1) {
         translatesAutoresizingMaskIntoConstraints = false
         if let top = top {
             topAnchor.constraint(equalTo: top).isActive = true
@@ -27,12 +27,12 @@ extension UIView {
             trailingAnchor.constraint(equalTo: right).isActive = true
         }
         if let width = width,
-           let multiplier = multiplier
+           let multiplier = widthMultiplier
         {
             widthAnchor.constraint(equalTo: width, multiplier: multiplier).isActive = true
         }
         if let height = height,
-           let multiplier = multiplier
+           let multiplier = heightMultiplier
         {
             heightAnchor.constraint(equalTo: height, multiplier: multiplier).isActive = true
         }
