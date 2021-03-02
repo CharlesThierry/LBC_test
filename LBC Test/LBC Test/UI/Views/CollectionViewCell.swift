@@ -111,7 +111,7 @@ class CollectionViewCell: UICollectionViewCell {
 
         imageView.setBasicConstraints(top: topAnchor, bottom: underview.topAnchor, left: leadingAnchor, right: trailingAnchor)
 
-        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.2)
+        underview.setBasicConstraints(top: nil, bottom: bottomAnchor, left: leadingAnchor, right: trailingAnchor, height: heightAnchor, heightMultiplier: 0.3)
 
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor)
 
