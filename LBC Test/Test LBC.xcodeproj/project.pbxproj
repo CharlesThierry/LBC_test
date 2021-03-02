@@ -31,6 +31,7 @@
 		FBD2EF9725E7C73800CD2689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBD2EF9625E7C73800CD2689 /* Assets.xcassets */; };
 		FBD2EFB025E7C73800CD2689 /* LBC_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */; };
 		FBDB4F5825EEA2C000765041 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB4F5325EEA2BC00765041 /* CustomExtensions.swift */; };
+		FBDB4F6C25EEB19800765041 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBDB4F6B25EEB19800765041 /* DetailView.swift */; };
 		FBE6506F25EC2F88009D6260 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6506E25EC2F88009D6260 /* MainViewController.swift */; };
 		FBE6507725EC3008009D6260 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507625EC3008009D6260 /* DetailViewController.swift */; };
 		FBE6507C25EC3074009D6260 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */; };
@@ -86,6 +87,7 @@
 		FBD2EFAF25E7C73800CD2689 /* LBC_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBC_TestUITests.swift; sourceTree = "<group>"; };
 		FBD2EFB125E7C73800CD2689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBDB4F5325EEA2BC00765041 /* CustomExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
+		FBDB4F6B25EEB19800765041 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FBE6506E25EC2F88009D6260 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		FBE6507625EC3008009D6260 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		FBE6508025EC3092009D6260 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FBDB4F6B25EEB19800765041 /* DetailView.swift */,
 				FBE6507B25EC3074009D6260 /* CollectionViewCell.swift */,
 			);
 			path = Views;
@@ -391,6 +394,7 @@
 				FB04E86A25EC021C00F39BB9 /* ClassifiedDescription.swift in Sources */,
 				FBF7E3EB25EA607200E31E4A /* Model.swift in Sources */,
 				FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */,
+				FBDB4F6C25EEB19800765041 /* DetailView.swift in Sources */,
 				FBE6506F25EC2F88009D6260 /* MainViewController.swift in Sources */,
 				FB82115825ED62CD00F50668 /* UIView+Constraint.swift in Sources */,
 				FB91D31925EE6D9600DACD41 /* CategoryPicker.swift in Sources */,

@@ -34,6 +34,7 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
         // add a navigation bar to the controller to show a filter button
         super.viewDidLoad()
+        collectionView?.contentInsetAdjustmentBehavior = .always
         let categoryButton = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(changeCategory))
 
         navigationItem.setRightBarButton(categoryButton, animated: false)
@@ -114,11 +115,14 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+/*
+ This protocol allows the picker to inform the mainVC of which category was selected
+ */
 protocol SelectedRow: AnyObject {
-    func selected(_ :Int?)
+    func selected(_: Int?)
 }
-extension MainViewController: SelectedRow{
+
+extension MainViewController: SelectedRow {
     @objc
     func changeCategory() {
         let picker = CategoryPickerViewController(nibName: nil, bundle: nil)
@@ -126,7 +130,7 @@ extension MainViewController: SelectedRow{
         picker.selectedDelegate = self
         showDetailViewController(picker, sender: nil)
     }
-    
+
     func selected(_ selected: Int?) {
         var categoryID: Int?
         if selected != nil {
@@ -134,6 +138,6 @@ extension MainViewController: SelectedRow{
         }
         results?.setCategoryFilter(categoryID: categoryID)
         dismiss(animated: true, completion: nil)
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
 }
