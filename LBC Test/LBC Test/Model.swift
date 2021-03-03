@@ -35,7 +35,7 @@ class Model: NSObject {
              This function is used to purge the database on start.
              Usefull to get the loading animations all the time
              */
-            //self.dataManager.purge()
+            // self.dataManager.purge()
             self.fillCategoryData(completion)
         }
     }
