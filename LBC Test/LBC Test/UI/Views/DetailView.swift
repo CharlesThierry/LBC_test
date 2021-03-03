@@ -13,14 +13,14 @@ class DetailView: UIView {
 
     private let inset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: -5.0, right: -5.0)
 
-    var scrollView: UIScrollView = {
+    internal var scrollView: UIScrollView = {
         let scrollview = UIScrollView(frame: .zero)
         scrollview.contentInsetAdjustmentBehavior = .always
         scrollview.translatesAutoresizingMaskIntoConstraints = false
         return scrollview
     }()
 
-    var imageView: UIImageView = {
+    internal var imageView: UIImageView = {
         let image = UIImageView(image: #imageLiteral(resourceName: "placeholder"))
         image.accessibilityIdentifier = "DetailImageV"
         image.contentMode = .scaleAspectFit
@@ -29,7 +29,7 @@ class DetailView: UIView {
         return image
     }()
 
-    var titleLabel: UILabel = {
+    internal var titleLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.accessibilityIdentifier = "DetailTitleL"
@@ -39,7 +39,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var descriptionLabel: UILabel = {
+    internal var descriptionLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailDescriptionL"
@@ -48,7 +48,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var priceLabel: UILabel = {
+    internal var priceLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailPriceL"
@@ -56,7 +56,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var urgentLabel: UILabel = {
+    internal var urgentLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailUrgentL"
@@ -69,7 +69,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var categoryLabel: UILabel = {
+    internal var categoryLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textAlignment = .center
@@ -79,7 +79,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var siretLabel: UILabel = {
+    internal var siretLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailSiretL"
@@ -87,7 +87,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var dateLabel: UILabel = {
+    internal var dateLabel: UILabel = {
         var label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.accessibilityIdentifier = "DetailDateL"
@@ -95,7 +95,7 @@ class DetailView: UIView {
         return label
     }()
 
-    var closeButton: UIButton = {
+    internal var closeButton: UIButton = {
         var btn: UIButton
         if #available(iOS 13.0, *) {
             btn = UIButton(type: .close)
@@ -127,8 +127,7 @@ class DetailView: UIView {
 
         categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
         urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
-        
-        
+
         let underview = UIView()
         underview.accessibilityIdentifier = "DetailUnderview"
         underview.translatesAutoresizingMaskIntoConstraints = false

@@ -13,8 +13,9 @@ protocol CategoryProtocol {
 }
 
 class CategoryDescription: CategoryProtocol, Decodable {
-    var id: Int?
-    var name: String?
+    internal var id: Int?
+    internal var name: String?
+
     init(category: Category) {
         id = Int(category.id)
         name = category.name

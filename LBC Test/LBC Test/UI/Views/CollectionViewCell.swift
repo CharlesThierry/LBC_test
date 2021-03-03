@@ -10,7 +10,7 @@ import UIKit
 class CollectionViewCell: UICollectionViewCell {
     private let inset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: -3.0, right: -2.0)
 
-    var titleLabel: UILabel = {
+    internal var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.numberOfLines = 2
@@ -19,7 +19,7 @@ class CollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    var priceLabel: UILabel = {
+    internal var priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 10)
         label.lineBreakMode = .byTruncatingTail
@@ -27,7 +27,7 @@ class CollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    var urgentLabel: UILabel = {
+    internal var urgentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
@@ -39,7 +39,7 @@ class CollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    var categoryLabel: UILabel = {
+    internal var categoryLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
         label.textAlignment = .center
@@ -49,7 +49,7 @@ class CollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    var imageView: UIImageView = {
+    internal var imageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 5.0
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +58,7 @@ class CollectionViewCell: UICollectionViewCell {
         return image
     }()
 
-    var underview: UIView = {
+    internal var underview: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5.0
         view.translatesAutoresizingMaskIntoConstraints = false

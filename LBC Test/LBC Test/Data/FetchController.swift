@@ -36,7 +36,7 @@ class FetchController<Results> where Results: NSManagedObject {
                 return 0
             }
         }
-        
+
         guard let fetched = fetch.fetchedObjects else {
             return 0
         }

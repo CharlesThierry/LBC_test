@@ -23,14 +23,14 @@ protocol EntryProtocol {
 }
 
 class EntryDescription: EntryProtocol, Decodable {
-    var id: Int?
-    var title: String?
-    var description: String?
-    var price: Float?
-    var urgent: Bool?
-    var creationDate: Date?
-    var categoryID: Int?
-    var siret: String?
+    internal var id: Int?
+    internal var title: String?
+    internal var description: String?
+    internal var price: Float?
+    internal var urgent: Bool?
+    internal var creationDate: Date?
+    internal var categoryID: Int?
+    internal var siret: String?
 
     internal var images: [ImageDescription]?
 

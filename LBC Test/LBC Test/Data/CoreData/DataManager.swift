@@ -15,7 +15,7 @@ let fetchBatchSize = 20
  3 types of entities are created (Category, Classified and Images) as described in the model.
  */
 class DataManager {
-    lazy var container: NSPersistentContainer = {
+    internal lazy var container: NSPersistentContainer = {
         // setting up the container with the most basic undo&merge options
         let container = NSPersistentContainer(name: CoreDataConstant.modelName)
         container.loadPersistentStores(completionHandler: { _, error in
@@ -29,7 +29,7 @@ class DataManager {
         return container
     }()
 
-    lazy var context: NSManagedObjectContext = {
+    internal lazy var context: NSManagedObjectContext = {
         // this context is background, will be used for all insertion/deletion
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = container.viewContext
@@ -41,7 +41,7 @@ class DataManager {
 //        setupFetchController()
     }
 
-    func storeSetup() {
+    internal func storeSetup() {
         // setting up the store description to quickload the store
         let description = NSPersistentStoreDescription()
         description.type = NSSQLiteStoreType
@@ -83,7 +83,7 @@ class DataManager {
 
     // MARK: Save the context
 
-    func save() {
+    internal func save() {
         context.performAndWait {
             if context.hasChanges {
                 // Only time container.viewContext is supposed to have changes is when
@@ -105,7 +105,7 @@ class DataManager {
      it would mean making the relations between the classified and the category optional, which I
      choose not to do to keep a relation between the objects.
      */
-    func checkIfEntryExists(id: Int, name: CoreDataEntityNames) -> Bool {
+    internal func checkIfEntryExists(id: Int, name: CoreDataEntityNames) -> Bool {
         let fetch = NSFetchRequest<NSFetchRequestResult>()
         fetch.entity = NSEntityDescription.entity(forEntityName: name.rawValue, in: container.viewContext)
         fetch.includesSubentities = false

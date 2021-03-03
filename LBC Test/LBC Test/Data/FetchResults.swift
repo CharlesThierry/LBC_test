@@ -44,16 +44,16 @@ func change(f: NSFetchedResultsChangeType) -> FetchChange {
  needs it: the mainViewController via the ClassifiedViewDelegate
  */
 class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
-    var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
+    internal var changeOperations: [FetchChange: [(IndexPath?, IndexPath?)]]?
 
     weak var classifiedDelegate: ClassifiedViewDelegate?
     weak var categoryDelegate: CategoryDelegate?
 
     // the formatter are init'd and retained here to avoid creating one per ClassifiedDescription
-    let dateFormatter = DateFormatter.relative
-    let priceFormatter = NumberFormatter.priceFormatter
+    internal let dateFormatter = DateFormatter.relative
+    internal let priceFormatter = NumberFormatter.priceFormatter
 
-    private var fetchEntryController: FetchController<Entry>
+    internal var fetchEntryController: FetchController<Entry>
     internal var fetchCategoryController: FetchController<Category>
     internal var dataManager: DataManager?
 
@@ -114,7 +114,7 @@ class FetchResults: NSObject, NSFetchedResultsControllerDelegate {
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         if controller == fetchCategoryController.fetch {
-            guard let delegate = self.categoryDelegate else {
+            guard let delegate = categoryDelegate else {
                 return
             }
             delegate.change(fetchCategoryController.numberOfObjects())
