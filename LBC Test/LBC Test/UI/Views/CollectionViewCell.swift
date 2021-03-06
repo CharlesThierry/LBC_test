@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    private let inset = UIEdgeInsets(top: 5.0, left: 2.0, bottom: -3.0, right: -2.0)
+    private let inset = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: -4.0)
 
     internal var titleLabel: UILabel = {
         let label = UILabel()
@@ -115,8 +115,8 @@ class CollectionViewCell: UICollectionViewCell {
 
         imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
         underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor,
-                                      left: leadingAnchor, right: trailingAnchor,
-                                      height: heightAnchor, heightMultiplier: 0.3, insets: UIEdgeInsets(top: 3.0, left: 0.0, bottom: 0.0, right: 0.0))
+                                      left: leadingAnchor, right: trailingAnchor, insets: UIEdgeInsets(top: 5.0, left: 0.0, bottom: 0.0, right: 0.0))
+        underview.heightAnchor.constraint(equalToConstant: 48).isActive = true
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
     }
