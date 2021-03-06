@@ -52,3 +52,19 @@ extension MainViewController: SelectedRow {
         collectionView.reloadData()
     }
 }
+
+extension MainViewController: ModelDelegate {
+    @objc
+    func changeRefresh() {
+        guard let mod = model else {
+            fatalError("No model to refresh")
+        }
+        mod.refreshModel()
+    }
+
+    func modelStatusUpdate(_ isRefreshing: Bool) {
+        DispatchQueue.main.async {
+            self.refreshButton.isEnabled = !isRefreshing
+        }
+    }
+}

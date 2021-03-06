@@ -11,20 +11,55 @@ import Foundation
 let category = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
 let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
-// Model handles the data fetching and retains the
-class Model: NSObject {
+/*
+ Protocol implemented by the main view controller displaying the list of classified ads
+ to allow for a refresh button
+ */
+protocol ModelDelegate: AnyObject {
+    var model: RefreshModel? { get set }
+    func modelStatusUpdate(_: Bool)
+}
+
+/*
+ To avoid exposing the whole Model object to the MainViewController
+ */
+protocol RefreshModel: AnyObject {
+    func refreshModel()
+}
+
+// Model handles the data fetching and retains the datamanager
+class Model: NSObject, RefreshModel {
     let dataManager = DataManager()
+    weak var delegate: ModelDelegate?
+
+    private var _isRefreshing: Bool = false { didSet {
+        if delegate != nil { delegate?.modelStatusUpdate(_isRefreshing) }
+    }}
+    var isRefreshing: Bool { return _isRefreshing }
 
     weak var primary: ClassifiedViewDelegate? { didSet {
         primary?.results = FetchResults(dataManager)
     }}
 
-    func start(_ vc: ClassifiedViewDelegate) {
+    func start(_ vc: ClassifiedViewDelegate & ModelDelegate) {
         primary = vc
-        initModelData {}
+        delegate = vc
+        vc.model = self
+        initModelData()
     }
 
-    func initModelData(completion: @escaping () -> Void) {
+    func refreshModel() {
+        if isRefreshing {
+            return
+        }
+        self.fillCategoryData(
+            {
+                self._isRefreshing = false
+            }
+        )
+    }
+
+    func initModelData() {
         guard let _ = primary else {
             // without a primary set, the data will be desync'd. e.g. setting the primary afterward
             // will lead to it receiving 'delete' FetchAction when there is actually 0 item displayed
@@ -36,11 +71,12 @@ class Model: NSObject {
              Usefull to get the loading animations all the time
              */
             // self.dataManager.purge()
-            self.fillCategoryData(completion)
+            self.refreshModel()
         }
     }
 
     func fillCategoryData(_ completion: @escaping () -> Void) {
+        _isRefreshing = true
         let c = URL(string: category)
         guard let categoryURL = c else {
             fatalError("Model Categorystring not a URL")

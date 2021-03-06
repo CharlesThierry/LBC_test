@@ -10,10 +10,18 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
+    // only used to request data refresh
+    weak var model: RefreshModel?
+
     internal let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     internal let categoryButton: UIBarButtonItem = {
         let bbI = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
         bbI.isEnabled = false
+        return bbI
+    }()
+
+    internal let refreshButton: UIBarButtonItem = {
+        let bbI = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
         return bbI
     }()
 
@@ -38,13 +46,15 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     override func viewDidLoad() {
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = #colorLiteral(red: 0.9653822122, green: 0.9653822122, blue: 0.9653822122, alpha: 1)
-        // add a navigation bar to the controller to show a filter button
+        // add a navigation bar to the controller to show a filter and a refresh button
         super.viewDidLoad()
         collectionView?.contentInsetAdjustmentBehavior = .always
         categoryButton.target = self
         categoryButton.action = #selector(changeCategory)
+        refreshButton.target = self
+        refreshButton.action = #selector(changeRefresh)
+        navigationItem.setRightBarButtonItems([categoryButton, refreshButton], animated: false)
         refreshCategoryButton()
-        navigationItem.setRightBarButton(categoryButton, animated: false)
     }
 
     func refreshCategoryButton() {
@@ -59,21 +69,6 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
 
     override func numberOfSections(in _: UICollectionView) -> Int {
         return 1
-    }
-
-    override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        guard let res = results else { return 0 }
-        return res.numberOfObjects
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
-        guard let classified = results?.entry(at: indexPath) else {
-            fatalError("Can't fetch info for \(indexPath)")
-        }
-        cell.setClassified(ad: classified)
-
-        return cell
     }
 
     func change(changes: [FetchChange: [(IndexPath?, IndexPath?)]]) {
@@ -109,5 +104,20 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         }
         let detail = DetailViewController(ad: ad)
         showDetailViewController(detail, sender: self)
+    }
+
+    override func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+        guard let res = results else { return 0 }
+        return res.numberOfObjects
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CollectionViewCell
+        guard let classified = results?.entry(at: indexPath) else {
+            fatalError("Can't fetch info for \(indexPath)")
+        }
+        cell.setClassified(ad: classified)
+
+        return cell
     }
 }
