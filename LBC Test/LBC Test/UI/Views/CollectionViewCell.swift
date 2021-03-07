@@ -8,7 +8,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
-    private let inset = UIEdgeInsets(top: 0.0, left: 4.0, bottom: 0.0, right: -4.0)
+    private let inset = UIEdgeInsets(top: 2.0, left: 4.0, bottom: -2.0, right: -4.0)
 
     internal var titleLabel: UILabel = {
         let label = UILabel()
@@ -61,6 +61,8 @@ class CollectionViewCell: UICollectionViewCell {
     internal var underview: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5.0
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).withAlphaComponent(0.3).cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.clipsToBounds = true
@@ -70,6 +72,8 @@ class CollectionViewCell: UICollectionViewCell {
     internal var upperview: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5.0
+        view.layer.borderWidth = 1.0
+        view.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).withAlphaComponent(0.3).cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -127,7 +131,7 @@ class CollectionViewCell: UICollectionViewCell {
         addSubview(underview)
         underview.setBasicConstraints(top: upperview.bottomAnchor, bottom: bottomAnchor,
                                       left: leadingAnchor, right: trailingAnchor, insets: UIEdgeInsets(top: 5.0, left: 0.0, bottom: 0.0, right: 0.0))
-        underview.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        underview.heightAnchor.constraint(equalToConstant: 54).isActive = true
 
         underview.addSubview(titleLabel)
         underview.addSubview(priceLabel)
