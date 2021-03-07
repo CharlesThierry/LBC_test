@@ -8,8 +8,8 @@
 import CoreData
 import Foundation
 
-let category = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
-let listing = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
+let category: StaticString = "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json"
+let listing: StaticString = "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json"
 
 /*
  Protocol implemented by the main view controller displaying the list of classified ads
@@ -77,7 +77,7 @@ class Model: NSObject, RefreshModel {
 
     func fillCategoryData(_ completion: @escaping () -> Void) {
         _isRefreshing = true
-        let c = URL(string: category)
+        let c = URL(staticString: category)
         guard let categoryURL = c else {
             fatalError("Model Categorystring not a URL")
         }
@@ -101,7 +101,7 @@ class Model: NSObject, RefreshModel {
     }
 
     func fillEntryData(_ completion: @escaping () -> Void) {
-        let c = URL(string: listing)
+        let c = URL(staticString: listing)
         guard let entryURL = c else {
             fatalError("Model Categorystring not a URL")
         }

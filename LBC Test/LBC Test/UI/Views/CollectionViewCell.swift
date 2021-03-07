@@ -55,6 +55,7 @@ class CollectionViewCell: UICollectionViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
+        image.image = #imageLiteral(resourceName: "placeholder")
         return image
     }()
 
@@ -89,22 +90,9 @@ class CollectionViewCell: UICollectionViewCell {
         priceLabel.text = ad.price
         urgentLabel.isHidden = !ad.urgent
         categoryLabel.text = ad.categoryName
-
-        imageView.image = #imageLiteral(resourceName: "placeholder")
-        if ad.coverPicturePath == "placeholder" { return }
-        let url = URL(string: ad.coverPicturePath)
-        if url == nil { return }
-
-        httpFetch(url: url!) { fetchResult in
-            switch fetchResult {
-            case let .failure(error):
-                print("Could not fetch the related image \(error)")
-            case let .success(data):
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            }
+        
+        if let coverPicture = ad.coverPicturePath {
+            imageView.setURLImage(str: coverPicture)
         }
     }
 

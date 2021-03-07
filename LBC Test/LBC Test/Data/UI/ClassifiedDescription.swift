@@ -17,7 +17,7 @@ class ClassifiedDescription {
 
     var categoryName: String
 
-    var coverPicturePath: String
+    var coverPicturePath: String?
     var additionalPicturesPath = [String]()
 
     init(entry: Entry, formatter: DateFormatter, priceFormatter: NumberFormatter) {
@@ -33,6 +33,6 @@ class ClassifiedDescription {
         categoryName = (entry.oneCategory?.name)!
         let images = entry.manyImages as! Set<Image>
         let image = images.first(where: { image -> Bool in image.title == ImagesTitle.small.rawValue })
-        coverPicturePath = image?.url ?? "placeholder"
+        coverPicturePath = image?.url
     }
 }

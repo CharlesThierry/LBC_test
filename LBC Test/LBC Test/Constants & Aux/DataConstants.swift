@@ -10,7 +10,6 @@ import Foundation
 class CoreDataConstant {
     static let dbName = "LBC"
     static let modelName = "LBC"
-    static let cacheName = "fetchedCache"
 }
 
 enum JSONCategory: String, CodingKey {

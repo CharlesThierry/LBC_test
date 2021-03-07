@@ -29,6 +29,8 @@
 		FB825BB925EF7AD6002DDE8D /* MainViewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825BB825EF7AD6002DDE8D /* MainViewController+extensions.swift */; };
 		FB825BE225F4E5D0002DDE8D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB825BE425F4E5D0002DDE8D /* Localizable.strings */; };
 		FB825BEA25F4E671002DDE8D /* String+localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825BE925F4E671002DDE8D /* String+localizable.swift */; };
+		FB825BF525F4EE06002DDE8D /* URL+StaticString.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825BF425F4EE06002DDE8D /* URL+StaticString.swift */; };
+		FB825BFA25F4EF8E002DDE8D /* UIImage+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB825BF925F4EF8E002DDE8D /* UIImage+URL.swift */; };
 		FB91D31925EE6D9600DACD41 /* CategoryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB91D31825EE6D9600DACD41 /* CategoryPicker.swift */; };
 		FB96114A25EA986C001E215D /* TestRandomClassified.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB042FA625E8F35C001ACCC1 /* TestRandomClassified.swift */; };
 		FBD2EF8E25E7C73700CD2689 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */; };
@@ -85,6 +87,8 @@
 		FB825BE325F4E5D0002DDE8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB825BE825F4E5D4002DDE8D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FB825BE925F4E671002DDE8D /* String+localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localizable.swift"; sourceTree = "<group>"; };
+		FB825BF425F4EE06002DDE8D /* URL+StaticString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+StaticString.swift"; sourceTree = "<group>"; };
+		FB825BF925F4EF8E002DDE8D /* UIImage+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+URL.swift"; sourceTree = "<group>"; };
 		FB91D31825EE6D9600DACD41 /* CategoryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPicker.swift; sourceTree = "<group>"; };
 		FBD2EF8A25E7C73700CD2689 /* Test LBC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test LBC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBD2EF8D25E7C73700CD2689 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -200,6 +204,8 @@
 				FBE650B925ECFCCC009D6260 /* NumberFormatter+custom.swift */,
 				FB825BB025EF7A58002DDE8D /* UIButton+Category.swift */,
 				FB825BE925F4E671002DDE8D /* String+localizable.swift */,
+				FB825BF425F4EE06002DDE8D /* URL+StaticString.swift */,
+				FB825BF925F4EF8E002DDE8D /* UIImage+URL.swift */,
 			);
 			path = "Constants & Aux";
 			sourceTree = "<group>";
@@ -420,10 +426,12 @@
 				FB770A0725E84183005C322B /* LBC.xcdatamodeld in Sources */,
 				FB825BB925EF7AD6002DDE8D /* MainViewController+extensions.swift in Sources */,
 				FB042FD325E94490001ACCC1 /* fetchJSON.swift in Sources */,
+				FB825BF525F4EE06002DDE8D /* URL+StaticString.swift in Sources */,
 				FB042FA225E8F17A001ACCC1 /* ImageDescription.swift in Sources */,
 				FB69092F25EE3D9500CE06CE /* FetchResults+picker.swift in Sources */,
 				FBE6507C25EC3074009D6260 /* CollectionViewCell.swift in Sources */,
 				FB04E87225EC094B00F39BB9 /* FetchResults.swift in Sources */,
+				FB825BFA25F4EF8E002DDE8D /* UIImage+URL.swift in Sources */,
 				FB042F9D25E8F138001ACCC1 /* CategoryDescription.swift in Sources */,
 				FBE6507725EC3008009D6260 /* DetailViewController.swift in Sources */,
 				FB042F7B25E8E5E3001ACCC1 /* EntryDescription.swift in Sources */,

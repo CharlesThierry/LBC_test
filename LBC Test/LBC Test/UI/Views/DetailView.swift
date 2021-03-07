@@ -123,7 +123,7 @@ class DetailView: UIView {
         imageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         imageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
+        imageView.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.7).isActive = true
 
         categoryLabel.setBasicConstraints(top: imageView.topAnchor, bottom: nil, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
         urgentLabel.setBasicConstraints(top: nil, bottom: imageView.bottomAnchor, left: imageView.leadingAnchor, right: imageView.trailingAnchor)
@@ -163,7 +163,7 @@ class DetailView: UIView {
                                        insets: inset)
 
         addSubview(closeButton)
-        closeButton.setBasicConstraints(top: safeAreaLayoutGuide.topAnchor, bottom: nil, left: safeAreaLayoutGuide.leadingAnchor, right: nil)
+        closeButton.setBasicConstraints(top: safeAreaLayoutGuide.topAnchor, bottom: nil, left: safeAreaLayoutGuide.leadingAnchor, right: nil, insets: UIEdgeInsets(top: 8.0, left: 8.0, bottom: 0.0, right:0.0))
 
         setupUI()
     }
@@ -173,25 +173,12 @@ class DetailView: UIView {
         descriptionLabel.text = ad.description
         priceLabel.text = ad.price
         dateLabel.text = ad.creationDate
-        imageView.image = #imageLiteral(resourceName: "placeholder")
         siretLabel.text = ad.siret
         urgentLabel.isHidden = !ad.urgent
         categoryLabel.text = ad.categoryName
 
-        if ad.coverPicturePath == "placeholder" { return }
-        let url = URL(string: ad.coverPicturePath)
-        if url == nil { return }
-
-        httpFetch(url: url!) { fetchResult in
-            switch fetchResult {
-            case let .failure(error):
-                print("Could not fetch the related image \(error)")
-            case let .success(data):
-                let image = UIImage(data: data)
-                DispatchQueue.main.async {
-                    self.imageView.image = image
-                }
-            }
+        if let coverPicture = ad.coverPicturePath {
+            imageView.setURLImage(str: coverPicture)
         }
     }
 
