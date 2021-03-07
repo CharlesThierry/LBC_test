@@ -15,7 +15,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
     internal var clearButton: UIButton = {
         let btn = UIButton(frame: .zero)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("Toutes categories", for: .normal)
+        btn.setTitle("button_ShowAllCategories".localized(), for: .normal)
         btn.setTitleColor(btn.tintColor, for: .normal)
         btn.addTarget(self, action: #selector(showAllCategories), for: .touchUpInside)
         return btn
@@ -24,7 +24,7 @@ class CategoryPickerViewController: UIViewController, UIPickerViewDelegate, UIPi
     internal var confirmButton: UIButton = {
         let btn = UIButton(frame: .zero)
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setTitle("OK", for: .normal)
+        btn.setTitle("button_OK".localized(), for: .normal)
         btn.setTitleColor(btn.tintColor, for: .normal)
         btn.addTarget(self, action: #selector(validateCurrentCategory), for: .touchUpInside)
         return btn

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIBarButtonItem: CategoryDelegate {
+extension UIButton: CategoryDelegate {
     func change(_ newCount: Int) {
         isEnabled = newCount > 0
     }

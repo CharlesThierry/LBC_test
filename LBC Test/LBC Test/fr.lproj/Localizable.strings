@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Test LBC
+
+  Created by Charles Thierry on 07/03/2021.
+  
+*/
+
+"button_categories" = "Catégories";
+"button_ShowAllCategories" = "Toutes les catégories";
+"button_OK" = "OK";
+"label_urgent" = "URGENT";

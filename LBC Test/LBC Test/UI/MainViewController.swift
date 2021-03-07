@@ -14,8 +14,10 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
     weak var model: RefreshModel?
 
     internal let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    internal let categoryButton: UIBarButtonItem = {
-        let bbI = UIBarButtonItem(title: "Categories", style: .plain, target: nil, action: nil)
+    internal let categoryButton: UIButton = {
+        let bbI = UIButton(frame:.zero)
+        bbI.setTitle("button_categories".localized(), for: .normal)
+        bbI.setTitleColor(bbI.tintColor, for: .normal)
         bbI.isEnabled = false
         return bbI
     }()
@@ -49,11 +51,13 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         // add a navigation bar to the controller to show a filter and a refresh button
         super.viewDidLoad()
         collectionView?.contentInsetAdjustmentBehavior = .always
-        categoryButton.target = self
-        categoryButton.action = #selector(changeCategory)
+        categoryButton.addTarget(self, action: #selector(changeCategory), for: .touchUpInside)
+        navigationItem.titleView = categoryButton
+        
         refreshButton.target = self
         refreshButton.action = #selector(changeRefresh)
-        navigationItem.setRightBarButtonItems([categoryButton, refreshButton], animated: false)
+        navigationItem.setRightBarButtonItems([refreshButton], animated: false)
+        
         refreshCategoryButton()
     }
 

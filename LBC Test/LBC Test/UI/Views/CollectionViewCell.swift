@@ -34,8 +34,7 @@ class CollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.521568656, green: 0.1098039225, blue: 0.05098039284, alpha: 1)
         label.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1).withAlphaComponent(0.9)
-        label.layer.cornerRadius = 5.0
-        label.text = "URGENT"
+        label.text = "label_urgent".localized()
         return label
     }()
 
@@ -46,6 +45,7 @@ class CollectionViewCell: UICollectionViewCell {
         label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
         label.lineBreakMode = .byTruncatingTail
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.clipsToBounds = true
         return label
     }()
 
@@ -63,6 +63,15 @@ class CollectionViewCell: UICollectionViewCell {
         view.layer.cornerRadius = 5.0
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        view.clipsToBounds = true
+        return view
+    }()
+
+    internal var upperview: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 5.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
         return view
     }()
 
@@ -96,14 +105,15 @@ class CollectionViewCell: UICollectionViewCell {
     }
 
     func setupUI() {
-        addSubview(imageView)
-        addSubview(categoryLabel)
-        addSubview(urgentLabel)
+        // setup the top subview with the image, category and urgent label
+        addSubview(upperview)
+        upperview.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
 
-        addSubview(underview)
+        upperview.addSubview(imageView)
+        upperview.addSubview(categoryLabel)
+        upperview.addSubview(urgentLabel)
 
-        underview.addSubview(titleLabel)
-        underview.addSubview(priceLabel)
+        imageView.setBasicConstraints(top: upperview.topAnchor, bottom: upperview.bottomAnchor, left: upperview.leadingAnchor, right: upperview.trailingAnchor)
 
         categoryLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
         categoryLabel.topAnchor.constraint(equalTo: imageView.topAnchor).isActive = true
@@ -113,10 +123,15 @@ class CollectionViewCell: UICollectionViewCell {
         urgentLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor).isActive = true
         urgentLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor).isActive = true
 
-        imageView.setBasicConstraints(top: topAnchor, bottom: nil, left: leadingAnchor, right: trailingAnchor)
-        underview.setBasicConstraints(top: imageView.bottomAnchor, bottom: bottomAnchor,
+        // setup the bottom subview with the price and title label
+        addSubview(underview)
+        underview.setBasicConstraints(top: upperview.bottomAnchor, bottom: bottomAnchor,
                                       left: leadingAnchor, right: trailingAnchor, insets: UIEdgeInsets(top: 5.0, left: 0.0, bottom: 0.0, right: 0.0))
         underview.heightAnchor.constraint(equalToConstant: 48).isActive = true
+
+        underview.addSubview(titleLabel)
+        underview.addSubview(priceLabel)
+
         titleLabel.setBasicConstraints(top: underview.topAnchor, bottom: nil, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
         priceLabel.setBasicConstraints(top: titleLabel.bottomAnchor, bottom: underview.bottomAnchor, left: underview.leadingAnchor, right: underview.trailingAnchor, insets: inset)
     }
