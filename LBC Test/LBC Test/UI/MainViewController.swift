@@ -15,7 +15,7 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
 
     internal let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     internal let categoryButton: UIButton = {
-        let bbI = UIButton(frame:.zero)
+        let bbI = UIButton(frame: .zero)
         bbI.setTitle("button_categories".localized(), for: .normal)
         bbI.setTitleColor(bbI.tintColor, for: .normal)
         bbI.isEnabled = false
@@ -53,11 +53,11 @@ class MainViewController: UICollectionViewController, ClassifiedViewDelegate {
         collectionView?.contentInsetAdjustmentBehavior = .always
         categoryButton.addTarget(self, action: #selector(changeCategory), for: .touchUpInside)
         navigationItem.titleView = categoryButton
-        
+
         refreshButton.target = self
         refreshButton.action = #selector(changeRefresh)
         navigationItem.setRightBarButtonItems([refreshButton], animated: false)
-        
+
         refreshCategoryButton()
     }
 
